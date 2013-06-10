@@ -1,6 +1,6 @@
 test("markdownReader", () ->
     injector = angular.injector(["ng", "sideBySide"])
-    markDownReader = injector.get("markdownReader")
+    markdownReader = injector.get("markdownReader")
 
     testCases = [{
         tested: """
@@ -74,5 +74,5 @@ test("markdownReader", () ->
     }]
 
     for testCase in testCases
-        deepEqual(markDownReader(testCase.tested), testCase.expected)
+        deepEqual(markdownReader(testCase.tested), testCase.expected)
 )
