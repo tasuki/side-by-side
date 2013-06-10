@@ -10,4 +10,4 @@ before_script:
 script:
     - middleman &
     - sleep 5
-    - node_modules/phantomjs/bin/phantomjs node_modules/qunitjs/addons/phantomjs/runner.js http://0.0.0.0:4567/tests.html
+    - node_modules/.bin/phantomjs node_modules/qunitjs/addons/phantomjs/runner.js http://0.0.0.0:4567/tests.html
