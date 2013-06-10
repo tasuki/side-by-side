@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+    - 0.10
+
+before_script:
+    - bundle
+    - npm install
+
+script:
+    - middleman &
+    - sleep 5
+    - node_modules/phantomjs/bin/phantomjs node_modules/qunitjs/addons/phantomjs/runner.js http://0.0.0.0:4567/tests.html

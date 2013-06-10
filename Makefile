@@ -1,0 +1,3 @@
+default:
+	bundle
+	middleman build

@@ -1,0 +1,11 @@
+{
+    "name": "side-by-side",
+    "version": "0.0.1",
+    "author": "Vit Brunner",
+    "description": "Visual comparison of different translations of itemized texts; e.g. poems, bibles, etc.",
+    "devDependencies": {
+        "qunitjs": "1.11.x",
+        "phantomjs": "1.9.x"
+    },
+    "license": "MIT"
+}
