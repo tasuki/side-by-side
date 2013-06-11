@@ -4,10 +4,8 @@ node_js:
     - 0.10
 
 before_script:
-    - bundle
-    - npm install
+    - make run &
+    - sleep 5
 
 script:
-    - middleman &
-    - sleep 5
-    - node_modules/.bin/phantomjs node_modules/qunitjs/addons/phantomjs/runner.js http://0.0.0.0:4567/tests.html
+    - make test

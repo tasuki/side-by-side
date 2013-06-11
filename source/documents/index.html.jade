@@ -1,0 +1,14 @@
+doctype 5
+html(ng-app="sideBySide")
+    head
+        title Side By Side viewer
+        meta(charset="utf-8")
+        link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/css?family=Titillium+Web:400,700,400italic,700italic")
+        link(rel="stylesheet", type="text/css", href="styles/style.css")
+        include _scripts.html.jade
+
+    body
+        div(class="container", ng-controller="comparisonController")
+            div(class="verse", ng-repeat="verse in verses")
+                div(class="section", ng-bind="verse.section")
+                div(class="version", ng-repeat= "version in verse.versions") {{ version }}
