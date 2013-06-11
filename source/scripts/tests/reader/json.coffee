@@ -1,7 +1,4 @@
 test("jsonReader", () ->
-    injector = angular.injector(["ng", "sideBySide"])
-    jsonReader = injector.get("jsonReader")
-
     testCases = [{
         tested: """
             {
@@ -28,6 +25,5 @@ test("jsonReader", () ->
         }
     }]
 
-    for testCase in testCases
-        deepEqual(jsonReader(testCase.tested), testCase.expected)
+    testReader("jsonReader", testCases)
 )

@@ -1,7 +1,4 @@
 test("markdownReader", () ->
-    injector = angular.injector(["ng", "sideBySide"])
-    markdownReader = injector.get("markdownReader")
-
     testCases = [{
         tested: """
             Title: Universal Declaration of Human Rights
@@ -73,6 +70,5 @@ test("markdownReader", () ->
         }
     }]
 
-    for testCase in testCases
-        deepEqual(markdownReader(testCase.tested), testCase.expected)
+    testReader("markdownReader", testCases)
 )
