@@ -3,7 +3,6 @@ default:
 	node_modules/.bin/docpad generate
 
 run:
-	npm install
 	node_modules/.bin/docpad run
 
 test:
