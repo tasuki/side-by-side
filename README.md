@@ -14,8 +14,8 @@ bibles, etc.
 Install nodejs and javascript dependencies, on Debian/Ubuntu, it goes more or
 less like this:
 
-    sudo apt-get install nodejs
-    npm install
+	sudo apt-get install nodejs
+	npm install
 
 ### Tests
 
