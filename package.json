@@ -4,10 +4,10 @@
 	"author": "Vit Brunner",
 	"description": "Visual comparison of different translations of itemized texts; e.g. poems, bibles, etc.",
 	"devDependencies": {
-		"docpad": "6.x",
-		"docpad-plugin-coffeescript": "2.x",
-		"docpad-plugin-jade": "2.x",
-		"docpad-plugin-less": "2.x",
+		"docpad": "6.38.x",
+		"docpad-plugin-coffeescript": "2.2.x",
+		"docpad-plugin-jade": "2.3.x",
+		"docpad-plugin-sass": "2.4.x",
 		"qunitjs": "1.11.x",
 		"phantomjs": "1.9.x"
 	},

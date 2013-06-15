@@ -1,0 +1,31 @@
+body
+	font-family: "Titillium Web", sans-serif
+
+.version
+	display: inline-block
+	letter-spacing: normal
+	word-spacing: normal
+
+	.section
+		color: #FFF
+		background-color: #999
+		padding: 0px 5px
+		border-radius: 5px
+		position: absolute
+		line-height: 20px
+		left: -10px
+		top: -5px
+
+	.version-inner
+		background-color: #F6F6F6
+		position: relative
+		padding: 10px 10px 5px 10px
+
+$max_columns: 6
+@for $i from 1 through $max_columns
+	.cols-#{$i}
+		.version
+			width: percentage(1 / $i)
+
+			.version-outer
+				padding: 5px percentage(1 / (5 * $i))
