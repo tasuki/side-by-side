@@ -50,30 +50,17 @@ angular.module("sideBySide").factory("transformer", () ->
 				uneven.join(", ") + "." +
 				" (" + details.join("; ") + ")."
 
-
 		checkLengths(translations)
 
 		data = {
-			meta: []
+			meta: (translation.meta for translation in translations)
 			verses: []
 		}
 
-		data.meta.push(translation.meta) for translation in translations
-
-		id = 0
-		while true
-			versions = []
-			found = false
-			for translation in translations
-				if translation.content.length > id
-					found = translation.content[id]
-					versions.push(found)
-
-			if found == false
-				break
-
-			data.verses.push(versions)
-			id++
+		# columns into rows and rows into columns
+		for i in _.range(translations[0].content.length)
+			data.verses.push(translation.content[i] \
+				for translation in translations)
 
 		return data
 )
