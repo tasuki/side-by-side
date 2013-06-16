@@ -103,7 +103,11 @@ test("transformer", () ->
 	)
 	deepEqual(transformer(english, czech), expected)
 
-	# Test various error messages as we remove items
+	# Test various error messages
+	throws(() ->
+		transformer()
+	)
+
 	czech.content.pop()
 	throws(() ->
 		transformer(english, czech, polish)

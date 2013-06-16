@@ -2,13 +2,15 @@ angular.module("sideBySide").factory("transformer", () ->
 	# Transform translations
 	#
 	# @param translations [...Object] Translation with 'meta' and 'content' keys
-	# @throw On uneven number of verses
+	# @throw No poems or uneven number of verses
 	# @return [Array] Translations transformed into row-based format
 	return (translations...) ->
 		# Check whether all translations have same number of verses
 		#
 		# @param translations [array] Translations to check
 		check_lengths = (translations) ->
+			if translations.length < 1
+				throw "No poems found!"
 			lengths = []
 			for translation in translations
 				l = translation.content.length
