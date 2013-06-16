@@ -1,4 +1,11 @@
 angular.module("sideBySide").factory("jsonReader", () ->
+	# Read json poem
+	#
+	# For sample input, see:
+	# source/documents/tests/services/reader/json.js.coffee
+	#
+	# @param source [String] Json poem
+	# @return [Object] Poem object
 	return (source) ->
 		parsed = eval('(' + source + ')')
 

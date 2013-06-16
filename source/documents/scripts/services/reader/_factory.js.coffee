@@ -1,4 +1,8 @@
 angular.module("sideBySide").factory("readerFactory", ($injector) ->
+	# Create poem reader based on file name
+	#
+	# @param [String] Source file name
+	# @return [Object] Reader
 	return (filename) ->
 		extension = filename.split(".").pop()
 		switch extension
