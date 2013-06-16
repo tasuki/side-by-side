@@ -96,6 +96,13 @@ test("transformer", () ->
 	transformer = injector.get("transformer")
 	deepEqual(transformer(english, czech, polish), expected)
 
+	# Test transformation still works when we remove Polish
+	expected.meta = expected.meta.slice(0, 2)
+	expected.verses = _.map(expected.verses, (translations) ->
+		return translations.slice(0, 2)
+	)
+	deepEqual(transformer(english, czech), expected)
+
 	# Test various error messages as we remove items
 	czech.content.pop()
 	throws(() ->

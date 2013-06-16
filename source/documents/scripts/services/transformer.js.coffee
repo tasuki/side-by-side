@@ -15,14 +15,12 @@ angular.module("sideBySide").factory("transformer", () ->
 				lengths[l] = 0 if l not of lengths
 				lengths[l]++
 
-			# are all same length?
-			if _.size(_.compact(lengths)) <= 1
-				return
+			# return if all are same length
+			return if _.size(_.compact(lengths)) <= 1
 
-			uneven = []
-			for i,j in lengths
-				if typeof i != "undefined"
-					uneven.push(i + " of length " + j)
+			uneven = (count + " of length " + length \
+				for count,length in lengths \
+				when typeof count isnt "undefined")
 
 			details = []
 			while _.size(_.compact(lengths)) > 1
@@ -30,10 +28,9 @@ angular.module("sideBySide").factory("transformer", () ->
 				maxdex = _.indexOf(lengths, _.max(lengths))
 
 				# least occuring count is higher than most occuring count 
-				if mindex > maxdex
-					message = "Superfluous verses: "
-				else
-					message = "Missing verses after: "
+				message = if mindex > maxdex \
+					then "Superfluous verses: " \
+					else "Missing verses after: "
 
 				# get last verses of translations with mindex verses
 				lastVerses = _.map(translations.filter((translation) ->
@@ -49,7 +46,7 @@ angular.module("sideBySide").factory("transformer", () ->
 
 			throw "Poems with uneven number of verses: " +
 				uneven.join(", ") + "." +
-				" (" + details.join(". ") + ")."
+				" (" + details.join("; ") + ")."
 
 
 		check_lengths(translations)
@@ -59,8 +56,7 @@ angular.module("sideBySide").factory("transformer", () ->
 			verses: []
 		}
 
-		for translation in translations
-			data.meta.push(translation.meta)
+		data.meta.push(translation.meta) for translation in translations
 
 		id = 0
 		while true
