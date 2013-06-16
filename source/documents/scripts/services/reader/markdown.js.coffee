@@ -1,6 +1,6 @@
 angular.module("sideBySide").factory("markdownReader", () ->
 	return (source) ->
-		read_meta = (block, inlineLexer) ->
+		readMeta = (block, inlineLexer) ->
 			meta = {}
 			lexed = inlineLexer.output(block.text)
 			for line in lexed.split("\n")
@@ -8,8 +8,8 @@ angular.module("sideBySide").factory("markdownReader", () ->
 				meta[match[1].trim()] = match[2].trim()
 			return meta
 
-		read_content = (lexed) ->
-			get_section = (lexed) ->
+		readContent = (lexed) ->
+			getSection = (lexed) ->
 				items = []
 				while lexed.length > 0
 					if lexed[0]["type"] == "heading"
@@ -25,7 +25,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 				else
 					heading = ''
 
-				text = get_section(lexed)
+				text = getSection(lexed)
 				text.links = lexed.links
 				content.push({
 					section: heading
@@ -39,7 +39,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 		inlineLexer = new marked.InlineLexer(lexed.links)
 
 		return {
-			meta: read_meta(meta, inlineLexer)
-			content: read_content(lexed)
+			meta: readMeta(meta, inlineLexer)
+			content: readContent(lexed)
 		}
 )

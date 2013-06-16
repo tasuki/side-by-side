@@ -8,7 +8,7 @@ angular.module("sideBySide").factory("transformer", () ->
 		# Check whether all translations have same number of verses
 		#
 		# @param translations [array] Translations to check
-		check_lengths = (translations) ->
+		checkLengths = (translations) ->
 			if translations.length < 1
 				throw "No poems found!"
 			lengths = []
@@ -51,7 +51,7 @@ angular.module("sideBySide").factory("transformer", () ->
 				" (" + details.join("; ") + ")."
 
 
-		check_lengths(translations)
+		checkLengths(translations)
 
 		data = {
 			meta: []
