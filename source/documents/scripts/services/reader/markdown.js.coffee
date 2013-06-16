@@ -27,8 +27,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 		readSection = (lexed) ->
 			items = []
 			while lexed.length > 0
-				if lexed[0]["type"] == "heading"
-					break
+				break if lexed[0]["type"] == "heading"
 				items.push(lexed.shift())
 			return items
 
@@ -40,10 +39,9 @@ angular.module("sideBySide").factory("markdownReader", () ->
 			content = []
 
 			while lexed.length > 0
-				if lexed[0]["type"] == "heading"
-					heading = lexed.shift().text
-				else
-					heading = ''
+				heading = if lexed[0]["type"] == "heading" \
+					then lexed.shift().text \
+					else heading = ''
 
 				text = readSection(lexed)
 				text.links = lexed.links
@@ -51,7 +49,6 @@ angular.module("sideBySide").factory("markdownReader", () ->
 					section: heading
 					text: marked.parser(text)
 				})
-
 			return content
 
 		lexed = marked.lexer(source)

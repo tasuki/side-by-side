@@ -9,15 +9,12 @@ angular.module("sideBySide").factory("jsonReader", () ->
 	return (source) ->
 		parsed = eval('(' + source + ')')
 
-		newContent = []
-		for verse in parsed.content
+		for i,verse of parsed.content
 			if typeof(verse) == "string"
-				newContent.push({ section: "", text: verse })
+				parsed.content[i] = { section: "", text: verse }
 			else
-				if "section" not of verse
-					verse.section = ""
-				newContent.push(verse)
+				verse.section = "" if "section" not of verse
+				parsed.content[i] = verse
 
-		parsed.content = newContent
 		return parsed
 )
