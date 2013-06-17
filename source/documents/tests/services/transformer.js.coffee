@@ -94,14 +94,14 @@ test("transformer", () ->
 
 	# Test transformation works as it should
 	transformer = injector.get("transformer")
-	deepEqual(transformer(english, czech, polish), expected)
+	deepEqual(transformer([english, czech, polish]), expected)
 
 	# Test transformation still works when we remove Polish
 	expected.meta = expected.meta.slice(0, 2)
 	expected.verses = _.map(expected.verses, (translations) ->
 		return translations.slice(0, 2)
 	)
-	deepEqual(transformer(english, czech), expected)
+	deepEqual(transformer([english, czech]), expected)
 
 	# Test various error messages
 	throws(() ->
@@ -110,16 +110,16 @@ test("transformer", () ->
 
 	czech.content.pop()
 	throws(() ->
-		transformer(english, czech, polish)
+		transformer([english, czech, polish])
 	, /missing.*nevezmeš jména/i)
 
 	polish.content.pop()
 	throws(() ->
-		transformer(english, czech, polish)
+		transformer([english, czech, polish])
 	, /superfluous.*sabbath/i)
 
 	polish.content.pop()
 	throws(() ->
-		transformer(english, czech, polish)
+		transformer([english, czech, polish])
 	, /missing.*bogów cudzych.*nevezmeš/i)
 )
