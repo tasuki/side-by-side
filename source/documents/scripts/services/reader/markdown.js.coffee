@@ -14,9 +14,9 @@ angular.module("sideBySide").factory("markdownReader", () ->
 		# @return [Object] Meta properties
 		readMeta = (text, inlineLexer) ->
 			meta = {}
-			lexed = inlineLexer.output(text)
-			for line in lexed.split("\n")
-				match = /([^:]*):(.*)/.exec(line)
+			for line in text.split("\n")
+				lexed = inlineLexer.output(line)
+				match = /([^:]*):(.*)/.exec(lexed)
 				meta[match[1].trim()] = match[2].trim()
 			return meta
 
@@ -53,10 +53,10 @@ angular.module("sideBySide").factory("markdownReader", () ->
 
 		lexed = marked.lexer(source)
 		meta = lexed.shift()
-		inlineLexer = new marked.InlineLexer(lexed.links)
+		meta = readMeta(meta.text, new marked.InlineLexer(lexed.links))
 
 		return {
-			meta: readMeta(meta.text, inlineLexer)
+			meta: meta
 			content: readContent(lexed)
 		}
 )

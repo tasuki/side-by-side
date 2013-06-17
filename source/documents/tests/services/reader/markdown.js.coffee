@@ -1,10 +1,10 @@
 test("markdownReader", () ->
 	testCases = [{
 		tested: """
-			Title: Universal Declaration of Human Rights
+			Title: Universal Declaration of Human Rights  
 			Author: John Peters Humphrey
-			Date: 1948
-			Source: http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights
+			Date: 1948  
+			Source: http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights  
 
 			## 1
 			All human beings are born *free* and equal in dignity and rights...
