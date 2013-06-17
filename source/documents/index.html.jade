@@ -16,7 +16,7 @@ html(ng-app="sideBySide")
 					.version-outer
 						.version-inner
 							.section {{ version.section }}
-							.text {{ version.text }}
+							.text(ng-bind-html-unsafe="version.text")
 
 		//// debugging cascade
 		//hr

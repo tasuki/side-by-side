@@ -1,41 +1,23 @@
 angular.module("sideBySide.controllers", [])
-.controller "comparisonController", ['$scope', ($scope) ->
-	$scope.columns = 2
-	$scope.verses = [
-		[
-			{
-				section: 'first'
-				text: 'a'
-			}, {
-				section: 'I'
-				text: '1'
-			}
-		], [
-			{
-				section: 'second'
-				text: 'b'
-			}, {
-				section: 'II'
-				text: '2'
-			}
-		], [
-			{
-				section: 'third'
-				text: 'c'
-			}, {
-				section: 'III'
-				text: '3'
-			}
-		], [
-			{
-				section: 'fourth'
-				text: 'd'
-			}, {
-				section: 'IV'
-				text: '4'
-			}
-		]
-	]
+.controller "comparisonController", [
+	'$location', '$q', '$scope', 'fetch', 'transformer'
+	($location, $q, $scope, fetch, transformer) ->
+		$scope.columns = 1
+		$scope.verses = [[{
+			section: 'Loading...'
+			text: 'Please be patient!'
+		}]]
+
+		update = (config) ->
+			fetch(config).then((promises) ->
+				$q.all(promises).then((results) ->
+					$scope.columns = results.length
+					transformed = transformer(results)
+					$scope.verses = transformed.verses
+				)
+			)
+
+		update($location.path() + "/config.json")
 ]
 
 #.controller "notificationController", ['$scope', '$timeout', ($scope, $timeout) ->
