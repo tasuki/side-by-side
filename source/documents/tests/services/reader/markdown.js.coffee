@@ -35,6 +35,7 @@ test("markdownReader", () ->
 				Source: '<a href="http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights">http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights</a>'
 			}
 			content: [
+				{ section: "", text: "<p></p>\n" }
 				{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights...</p>\n" }
 				{ section: "2", text: """
 					<p>Everyone is entitled to all the rights and freedoms...</p>
@@ -52,21 +53,50 @@ test("markdownReader", () ->
 		}
 	}, {
 		tested: """
-			Title: Test leading text
+			Title: Test leading text and mixed separators
 
 			**This** is leading text.
 			# I
 			First section.
+
+			---
+			Second section.
+			"""
+		expected: {
+			meta: {
+				Title: "Test leading text and mixed separators"
+			}
+			content: [
+				{ section: "", text: "<p><strong>This</strong> is leading text.</p>\n" }
+				{ section: "I", text: "<p>First section.</p>\n" }
+				{ section: "", text: "<p>Second section.</p>\n" }
+			]
+		}
+	}, {
+		tested: """
+			Title: Separator test
+			Separator: heading
+
+			# I
+			First section.
+
+			---
+			Second part.
+
 			# II
 			Second section.
 			"""
 		expected: {
 			meta: {
-				Title: "Test leading text"
+				Title: "Separator test"
+				Separator: "heading"
 			}
 			content: [
-				{ section: "", text: "<p><strong>This</strong> is leading text.</p>\n" }
-				{ section: "I", text: "<p>First section.</p>\n" }
+				{ section: "", text: "<p></p>\n" }
+				{ section: "I", text: """
+					<p>First section.</p>
+					<hr>
+					<p>Second part.</p>\n""" }
 				{ section: "II", text: "<p>Second section.</p>\n" }
 			]
 		}
