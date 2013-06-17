@@ -6,8 +6,8 @@
 	"devDependencies": {
 		"docpad": "6.38.x",
 		"docpad-plugin-coffeescript": "2.2.x",
+		"docpad-plugin-stylus": "2.3.x",
 		"docpad-plugin-jade": "2.3.x",
-		"docpad-plugin-sass": "2.4.x",
 		"qunitjs": "1.11.x",
 		"phantomjs": "1.9.x"
 	},

@@ -2,6 +2,7 @@ body
 	font-family: "Titillium Web", sans-serif
 
 .version
+	vertical-align: top
 	display: inline-block
 	letter-spacing: normal
 	word-spacing: normal
@@ -21,11 +22,11 @@ body
 		position: relative
 		padding: 10px 10px 5px 10px
 
-$max_columns: 6
-@for $i from 1 through $max_columns
-	.cols-#{$i}
+max_columns = 6
+for columns in 1 .. max_columns
+	.cols-{columns}
 		.version
-			width: percentage(1 / $i)
+			width: (100 / columns)%
 
 			.version-outer
-				padding: 5px percentage(1 / (5 * $i))
+				padding: 5px (100 / (5 * columns))%
