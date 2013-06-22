@@ -52,6 +52,9 @@ angular.module("sideBySide").factory("markdownReader", () ->
 				})
 			return content
 
+		marked.setOptions({
+			smartypants: true
+		})
 		lexed = marked.lexer(source)
 		meta = lexed.shift()
 		meta = readMeta(meta.text, new marked.InlineLexer(lexed.links))

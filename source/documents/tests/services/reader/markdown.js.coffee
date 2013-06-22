@@ -35,12 +35,12 @@ test("markdownReader", () ->
 				Source: '<a href="http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights">http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights</a>'
 			}
 			content: [
-				{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights...</p>\n" }
+				{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights…</p>\n" }
 				{ section: "2", text: """
-					<p>Everyone is entitled to all the rights and freedoms...</p>
-					<p>Furthermore, no distinction shall be made on the basis of...</p>\n""" }
-				{ section: "11.1", text: "<p>Everyone charged with a penal offence has the right to be presumed...</p>\n" }
-				{ section: "11.2", text: "<p>No one shall be held guilty of any penal offence...</p>\n" }
+					<p>Everyone is entitled to all the rights and freedoms…</p>
+					<p>Furthermore, no distinction shall be made on the basis of…</p>\n""" }
+				{ section: "11.1", text: "<p>Everyone charged with a penal offence has the right to be presumed…</p>\n" }
+				{ section: "11.2", text: "<p>No one shall be held guilty of any penal offence…</p>\n" }
 				{ section: "13", text: """
 					<p>Everyone is entitled to:</p>
 					<ul>
