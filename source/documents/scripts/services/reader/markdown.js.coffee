@@ -39,10 +39,6 @@ angular.module("sideBySide").factory("markdownReader", () ->
 		readContent = (lexed, separators) ->
 			content = []
 
-			# if first block is separator, add dummy foreword
-			if lexed[0]["type"] in separators
-				lexed.unshift({type: "paragraph", text: ""})
-
 			while lexed.length > 0
 				heading = if lexed[0]["type"] in separators \
 					then lexed.shift().text or "" \

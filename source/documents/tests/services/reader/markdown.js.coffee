@@ -35,7 +35,6 @@ test("markdownReader", () ->
 				Source: '<a href="http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights">http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights</a>'
 			}
 			content: [
-				{ section: "", text: "<p></p>\n" }
 				{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights...</p>\n" }
 				{ section: "2", text: """
 					<p>Everyone is entitled to all the rights and freedoms...</p>
@@ -92,7 +91,6 @@ test("markdownReader", () ->
 				Separator: "heading"
 			}
 			content: [
-				{ section: "", text: "<p></p>\n" }
 				{ section: "I", text: """
 					<p>First section.</p>
 					<hr>
