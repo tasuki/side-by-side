@@ -1,5 +1,39 @@
 body
-	font-family: "Titillium Web", sans-serif
+	color: #22220C
+	background: #F2F2DA
+	font-family: "Noticia Text", serif
+	padding-bottom: 36px
+
+.pure-menu.pure-menu-open
+	height: 36px
+	li
+		a
+			color: #C6C684
+			&:hover
+				background: #4A4A16
+				color: #FFF
+			&.active
+				&:hover
+					color: #22220C
+				background: #BB4
+				color: #FFF
+
+	.pure-g-r
+		.version
+			height: 26px
+			padding: 5px 0px
+			vertical-align: middle
+
+.pure-menu.menu-main
+	background: #22220C
+	margin-bottom: 1em
+
+.pure-menu.menu-verses
+	// background: #F2F2DA
+	background: #22220C
+	position: fixed
+	left: 0
+	bottom: 0
 
 .version
 	vertical-align: top
@@ -7,20 +41,24 @@ body
 	letter-spacing: normal
 	word-spacing: normal
 
+	.version-container
+		border-top: 1px solid #C6C684
+		position: relative
+		padding: 0px 10px
+
+	.version-menu
+		color: #E5E5A1
+		padding: 0px 10px
+
 	.section
-		color: #FFF
-		background-color: #999
-		padding: 0px 5px
+		color: #E5E5A1
+		background: #4A4A33
+		padding: 1px 5px
 		border-radius: 5px
 		position: absolute
 		line-height: 20px
-		left: -10px
-		top: -5px
-
-	.version-inner
-		background-color: #F6F6F6
-		position: relative
-		padding: 10px 10px 5px 10px
+		left: 0px
+		top: -6px
 
 max_columns = 6
 for columns in 1 .. max_columns
@@ -28,5 +66,5 @@ for columns in 1 .. max_columns
 		.version
 			width: (100 / columns)%
 
-			.version-outer
-				padding: 5px (100 / (5 * columns))%
+			.version-padded
+				padding: 0px (100 / (5 * columns))%
