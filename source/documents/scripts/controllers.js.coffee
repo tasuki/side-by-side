@@ -9,15 +9,18 @@ angular.module("sideBySide.controllers", [])
 		}]]
 
 		update = (config) ->
-			fetch(config).then((promises) ->
-				$q.all(promises).then((results) ->
+			fetch(config).then((result) ->
+				$q.all(result.promises).then((results) ->
 					$scope.columns = results.length
 					transformed = transformer(results)
 					$scope.verses = transformed.verses
+					$scope.meta = transformed.meta
+					headingKey = result.heading or "Author"
+					$scope.headings = (version[headingKey] for version in transformed.meta)
 				)
 			)
 
-		update($location.path() + "/config.json")
+		update(window.location.pathname.slice(0, -1) + $location.path() + "/config.json")
 ]
 
 #.controller "notificationController", ['$scope', '$timeout', ($scope, $timeout) ->

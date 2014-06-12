@@ -11,6 +11,10 @@ angular.module("sideBySide").factory "fetch", ['$http', 'readerFactory', ($http,
 					reader = readerFactory(poem)
 					return reader(response.data)
 				))
-			return promises
+
+			return {
+				promises: promises
+				heading: response.data.heading
+			}
 		)
 ]
