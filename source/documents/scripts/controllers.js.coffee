@@ -22,21 +22,3 @@ angular.module("sideBySide.controllers", [])
 
 		update(window.location.pathname.slice(0, -1) + $location.path() + "/config.json")
 ]
-
-#.controller "notificationController", ['$scope', '$timeout', ($scope, $timeout) ->
-#	$scope.id = 0
-#	$scope.notifications = []
-#
-#	$scope.notify = (text, type = "info") ->
-#		$scope.notifications[$scope.id] = {
-#			text: text
-#			type: type
-#		}
-#		$timeout(() ->
-#			$scope.remove($scope.id)
-#		, 1000)
-#		$scope.id++
-#
-#	$scope.remove = (id) ->
-#		delete $scope.notifications[id]
-#]
