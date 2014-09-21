@@ -30,7 +30,7 @@ html(ng-app="sideBySide")
 				.version(ng-repeat="heading in headings")
 					.version-padded
 						.version-menu
-							.text {{ heading }}
+							.text(ng-bind-html="heading")
 
 		// verses
 		#content
@@ -38,5 +38,5 @@ html(ng-app="sideBySide")
 				.version(ng-repeat="version in verse")
 					.version-padded
 						.version-container
-							.section(ng-hide="version.section == ''") {{ version.section }}
-							.text(ng-bind-html-unsafe="version.text")
+							.section(ng-hide="version.section == ''" ng-bind-html="version.section")
+							.text(ng-bind-html="version.text")

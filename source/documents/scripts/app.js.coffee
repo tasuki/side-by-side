@@ -1,1 +1,1 @@
-angular.module 'sideBySide', ['sideBySide.controllers']
+angular.module('sideBySide', ['sideBySide.controllers', 'ngSanitize'])
