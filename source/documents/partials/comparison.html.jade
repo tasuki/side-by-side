@@ -1,0 +1,16 @@
+// bottom menu
+.pure-menu.pure-menu-open.pure-menu-horizontal.menu-verses
+	.pure-g-r
+		.version(ng-repeat="heading in headings")
+			.version-padded
+				.version-menu
+					.text(ng-bind-html="heading")
+
+// verses
+#content
+	.pure-g-r(ng-repeat="verse in verses")
+		.version(ng-repeat="version in verse")
+			.version-padded
+				.version-container
+					.section(ng-hide="version.section == ''" ng-bind-html="version.section")
+					.text(ng-bind-html="version.text")

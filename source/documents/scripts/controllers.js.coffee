@@ -1,7 +1,7 @@
 angular.module("sideBySide.controllers", [])
-.controller "comparisonController", [
-	'$location', '$q', '$scope', 'fetch', 'transformer'
-	($location, $q, $scope, fetch, transformer) ->
+.controller "ComparisonController", [
+	'$routeParams', '$q', '$scope', 'fetch', 'transformer'
+	($routeParams, $q, $scope, fetch, transformer) ->
 		$scope.columns = 1
 		$scope.verses = [[{
 			section: 'Loading...'
@@ -20,5 +20,9 @@ angular.module("sideBySide.controllers", [])
 				)
 			)
 
-		update(window.location.pathname.slice(0, -1) + $location.path() + "/config.json")
+		config = if $routeParams.config \
+			then $routeParams.config.replace(/\./g, '/') \
+			else ''
+
+		update(config + "/config.json")
 ]

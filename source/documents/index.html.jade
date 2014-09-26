@@ -9,7 +9,7 @@ html(ng-app="sideBySide")
 		link(rel="stylesheet", type="text/css", href="styles/style.css")
 		include _scripts.html.jade
 
-	body(ng-controller="comparisonController", class="cols-{{columns}}")
+	body
 		noscript Well, terribly sorry but you do need to have Javascript enabled.
 
 		// top menu
@@ -24,19 +24,4 @@ html(ng-app="sideBySide")
 				li
 					a(href="#") About
 
-		// bottom menu
-		.pure-menu.pure-menu-open.pure-menu-horizontal.menu-verses
-			.pure-g-r
-				.version(ng-repeat="heading in headings")
-					.version-padded
-						.version-menu
-							.text(ng-bind-html="heading")
-
-		// verses
-		#content
-			.pure-g-r(ng-repeat="verse in verses")
-				.version(ng-repeat="version in verse")
-					.version-padded
-						.version-container
-							.section(ng-hide="version.section == ''" ng-bind-html="version.section")
-							.text(ng-bind-html="version.text")
+		div(ng-view class="cols-{{columns}}")
