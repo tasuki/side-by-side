@@ -103,21 +103,24 @@ test("transformer", () ->
 	)
 	deepEqual(transformer([english, czech]), expected)
 
-	# Test various error messages
+	# Test empty throws an error
 	throws(() ->
 		transformer()
 	)
 
+	# Czech is shortest
 	czech.content.pop()
 	throws(() ->
 		transformer([english, czech, polish])
 	, /missing.*nevezmeš jména/i)
 
+	# English is longest
 	polish.content.pop()
 	throws(() ->
 		transformer([english, czech, polish])
 	, /superfluous.*sabbath/i)
 
+	# Czech and Polish too short plus different lengths
 	polish.content.pop()
 	throws(() ->
 		transformer([english, czech, polish])
