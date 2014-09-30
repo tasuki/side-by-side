@@ -1,4 +1,13 @@
 angular.module("sideBySide.controllers", [])
+.controller "AppController", [
+	'$routeParams', '$scope'
+	($routeParams, $scope) ->
+		$scope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
+			$scope.base = if $previousRoute.params.base \
+				then '/' + $previousRoute.params.base
+				else ''
+]
+
 .controller "ComparisonController", [
 	'$routeParams', '$q', '$scope', 'fetch', 'transformer'
 	($routeParams, $q, $scope, fetch, transformer) ->
@@ -20,8 +29,8 @@ angular.module("sideBySide.controllers", [])
 				)
 			)
 
-		config = if $routeParams.config \
-			then $routeParams.config.replace(/\./g, '/') \
+		config = if $routeParams.base \
+			then $routeParams.base.replace(/\./g, '/') \
 			else ''
 
 		update(config + "/config.json")

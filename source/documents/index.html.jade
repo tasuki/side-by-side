@@ -9,16 +9,16 @@ html(ng-app="sideBySide")
 		link(rel="stylesheet", type="text/css", href="styles/style.css")
 		include _scripts.html.jade
 
-	body
+	body(ng-controller="AppController")
 		noscript Well, terribly sorry but you do need to have Javascript enabled.
 
 		// top menu
 		.pure-menu.pure-menu-open.pure-menu-horizontal.menu-main
 			ul
 				li
-					a(href="#") Home
+					a(href="#{{config}}") Home
 				li
-					a(href="#") Pick
+					a(href="#{{config}}/pick") Pick
 				li
 					a(href="#") Help
 				li
