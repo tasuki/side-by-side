@@ -3,7 +3,7 @@ angular.module("sideBySide").factory("readerFactory", ($injector) ->
 	#
 	# @param [String] Source file name
 	# @return [Object] Reader
-	return (filename) ->
+	(filename) ->
 		extension = filename.split(".").pop()
 		switch extension
 			when "json"

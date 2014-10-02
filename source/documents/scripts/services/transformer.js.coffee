@@ -4,7 +4,7 @@ angular.module("sideBySide").factory("transformer", () ->
 	# @param translations [Array] Translations with 'meta' and 'content' keys
 	# @throw No poems or uneven number of verses
 	# @return [Array] Translations transformed into row-based format
-	return (translations) ->
+	(translations) ->
 		# Check whether all translations have same number of verses
 		#
 		# @param translations [array] Translations to check
@@ -62,5 +62,5 @@ angular.module("sideBySide").factory("transformer", () ->
 			data.verses.push(translation.content[i] \
 				for translation in translations)
 
-		return data
+		data
 )

@@ -6,7 +6,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 	#
 	# @param source [String] Markdown poem
 	# @return [Object] Poem object
-	return (source) ->
+	(source) ->
 		# Read meta information from markdown block
 		#
 		# @param block [string] Meta block
@@ -18,7 +18,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 				lexed = inlineLexer.output(line)
 				match = /([^:]*):(.*)/.exec(lexed)
 				meta[match[1].trim()] = match[2].trim()
-			return meta
+			meta
 
 		# Read and remove one section from start of lexed blocks
 		#
@@ -29,7 +29,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 			while lexed.length > 0
 				break if lexed[0]["type"] in separators
 				items.push(lexed.shift())
-			return items
+			items
 
 		# Read content from lexed blocks
 		#
@@ -50,18 +50,16 @@ angular.module("sideBySide").factory("markdownReader", () ->
 					section: heading
 					text: marked.parser(text)
 				})
-			return content
+			content
 
-		marked.setOptions({
-			smartypants: true
-		})
+		marked.setOptions({ smartypants: true })
 		lexed = marked.lexer(source)
 		meta = lexed.shift()
 		meta = readMeta(meta.text, new marked.InlineLexer(lexed.links))
 		separators = if meta.Separator \
 			then [meta.Separator] else ['heading', 'hr']
 
-		return {
+		{
 			meta: meta
 			content: readContent(lexed, separators)
 		}

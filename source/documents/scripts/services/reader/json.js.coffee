@@ -6,7 +6,7 @@ angular.module("sideBySide").factory("jsonReader", () ->
 	#
 	# @param source [String] Json poem
 	# @return [Object] Poem object
-	return (source) ->
+	(source) ->
 		parsed = eval('(' + source + ')')
 
 		for i,verse of parsed.content
@@ -16,5 +16,5 @@ angular.module("sideBySide").factory("jsonReader", () ->
 				verse.section = "" if "section" not of verse
 				parsed.content[i] = verse
 
-		return parsed
+		parsed
 )
