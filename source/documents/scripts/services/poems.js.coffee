@@ -9,7 +9,11 @@ angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($ro
 		else
 			fetch(config).then((result) ->
 				$q.all(result.promises).then((results) ->
-					poems = results
+					for poem in results
+						if not poem.meta.Active?
+							poem.meta.Active = true
+						poems.push poem
+
 					heading = result.heading
 					loaded = true
 
@@ -18,10 +22,16 @@ angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($ro
 			)
 
 	@get = () ->
-		poems
+		poem for poem in poems when poem.meta.Active is true
 
 	@getHeading = () ->
 		heading
+
+	@show = (id) ->
+		poems[id].meta.Active = true
+
+	@hide = (id) ->
+		poems[id].meta.Active = false
 
 	@
 ]
