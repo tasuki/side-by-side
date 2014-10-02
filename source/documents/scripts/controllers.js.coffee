@@ -9,29 +9,29 @@ angular.module("sideBySide.controllers", [])
 ]
 
 .controller "ComparisonController", [
-	'$routeParams', '$q', '$scope', 'fetch', 'transformer'
-	($routeParams, $q, $scope, fetch, transformer) ->
+	'$routeParams', '$rootScope', '$scope', 'poems', 'transformer'
+	($routeParams, $rootScope, $scope, poems, transformer) ->
 		$scope.columns = 1
 		$scope.verses = [[{
 			section: 'Loading...'
 			text: 'Please be patient!'
 		}]]
 
-		update = (config) ->
-			fetch(config).then((result) ->
-				$q.all(result.promises).then((results) ->
-					$scope.columns = results.length
-					transformed = transformer(results)
-					$scope.verses = transformed.verses
-					$scope.meta = transformed.meta
-					headingKey = result.heading or "Author"
-					$scope.headings = (version[headingKey] for version in transformed.meta)
-				)
-			)
+		$rootScope.$on "poemsLoaded", () ->
+			update()
+
+		update = () ->
+			results = poems.get()
+			$scope.columns = results.length
+			transformed = transformer(results)
+			$scope.verses = transformed.verses
+			$scope.meta = transformed.meta
+			headingKey = poems.getHeading() or "Author"
+			$scope.headings = (version[headingKey] for version in transformed.meta)
 
 		config = if $routeParams.base \
 			then $routeParams.base.replace(/\./g, '/') \
 			else ''
 
-		update(config + "/config.json")
+		poems.update(config + "/config.json")
 ]
