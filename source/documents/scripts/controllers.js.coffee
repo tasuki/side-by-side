@@ -18,9 +18,6 @@ angular.module("sideBySide.controllers", [])
 		}]]
 
 		$rootScope.$on "poemsLoaded", () ->
-			update()
-
-		update = () ->
 			results = poems.get()
 			$scope.columns = results.length
 			transformed = transformer(results)
