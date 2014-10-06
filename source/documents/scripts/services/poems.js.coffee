@@ -3,9 +3,11 @@ angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($ro
 	loaded = false
 	heading = undefined
 
-	@update = (config) ->
+	@load = (base = '') ->
+		config = base.replace(/\./g, '/') + "/config.json"
+
 		if loaded == true
-			$rootScope.$emit "poemsLoaded"
+			$rootScope.$emit "poemsUpdated"
 		else
 			fetch(config).then((result) ->
 				$q.all(result.promises).then((results) ->
@@ -17,7 +19,7 @@ angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($ro
 					heading = result.heading
 					loaded = true
 
-					$rootScope.$emit "poemsLoaded"
+					$rootScope.$emit "poemsUpdated"
 				)
 			)
 
@@ -29,9 +31,12 @@ angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($ro
 
 	@show = (id) ->
 		poems[id].meta.Active = true
+		$rootScope.$emit "poemsUpdated"
+
 
 	@hide = (id) ->
 		poems[id].meta.Active = false
+		$rootScope.$emit "poemsUpdated"
 
 	@
 ]

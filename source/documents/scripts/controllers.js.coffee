@@ -1,7 +1,7 @@
 angular.module("sideBySide.controllers", [])
 .controller "AppController", [
-	'$routeParams', '$scope'
-	($routeParams, $scope) ->
+	'$scope'
+	($scope) ->
 		$scope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
 			$scope.base = if $previousRoute.params.base \
 				then '/' + $previousRoute.params.base
@@ -17,7 +17,7 @@ angular.module("sideBySide.controllers", [])
 			text: 'Please be patient!'
 		}]]
 
-		$rootScope.$on "poemsLoaded", () ->
+		poemsUpdated = $rootScope.$on "poemsUpdated", () ->
 			results = poems.get()
 			$scope.columns = results.length
 			transformed = transformer(results)
@@ -26,9 +26,7 @@ angular.module("sideBySide.controllers", [])
 			headingKey = poems.getHeading() or "Author"
 			$scope.headings = (version[headingKey] for version in transformed.meta)
 
-		config = if $routeParams.base \
-			then $routeParams.base.replace(/\./g, '/') \
-			else ''
+		$scope.$on '$destroy', poemsUpdated
+		poems.load $routeParams.base
 
-		poems.update(config + "/config.json")
 ]
