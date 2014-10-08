@@ -1,32 +1,26 @@
 angular.module("sideBySide.controllers", [])
 .controller "AppController", [
-	'$scope'
-	($scope) ->
+	'$routeParams', '$scope', 'poems'
+	($routeParams, $scope, poems) ->
 		$scope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
 			$scope.base = if $previousRoute.params.base \
 				then '/' + $previousRoute.params.base
 				else ''
+
+		poems.load $routeParams.base
 ]
 
 .controller "ComparisonController", [
-	'$routeParams', '$rootScope', '$scope', 'poems', 'transformer'
-	($routeParams, $rootScope, $scope, poems, transformer) ->
-		$scope.columns = 1
-		$scope.verses = [[{
-			section: 'Loading...'
-			text: 'Please be patient!'
-		}]]
-
-		poemsUpdated = $rootScope.$on "poemsUpdated", () ->
-			results = poems.get()
-			$scope.columns = results.length
-			transformed = transformer(results)
+	'$scope', 'poems', 'transformer'
+	($scope, poems, transformer) ->
+		$scope.$watchCollection () ->
+			poems.active.length
+		, () ->
+			$scope.columns = poems.active.length
+			transformed = transformer(poems.active)
 			$scope.verses = transformed.verses
 			$scope.meta = transformed.meta
-			headingKey = poems.getHeading() or "Author"
+
+			headingKey = poems.heading or "Author"
 			$scope.headings = (version[headingKey] for version in transformed.meta)
-
-		$scope.$on '$destroy', poemsUpdated
-		poems.load $routeParams.base
-
 ]

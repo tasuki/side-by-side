@@ -1,42 +1,37 @@
-angular.module("sideBySide").service "poems", ['$rootScope', '$q', 'fetch', ($rootScope, $q, fetch) ->
-	poems = []
-	loaded = false
-	heading = undefined
+angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
+	all = []
+	@active = [{
+		meta: {}
+		content: [{
+			section: 'Loading...'
+			text: 'Please be patient!'
+		}]
+	}]
+	@heading = undefined
 
-	@load = (base = '') ->
+	updateActive = () =>
+		@active = (poem for poem in all when poem.meta.Active is true)
+
+	@load = (base = '') =>
 		config = base.replace(/\./g, '/') + "/config.json"
 
-		if loaded == true
-			$rootScope.$emit "poemsUpdated"
-		else
-			fetch(config).then((result) ->
-				$q.all(result.promises).then((results) ->
-					for poem in results
-						if not poem.meta.Active?
-							poem.meta.Active = true
-						poems.push poem
+		fetch(config).then (result) =>
+			$q.all(result.promises).then (results) =>
+				for poem in results
+					if not poem.meta.Active?
+						poem.meta.Active = true
+					all.push poem
 
-					heading = result.heading
-					loaded = true
-
-					$rootScope.$emit "poemsUpdated"
-				)
-			)
-
-	@get = () ->
-		poem for poem in poems when poem.meta.Active is true
-
-	@getHeading = () ->
-		heading
+				@heading = result.heading
+				updateActive()
 
 	@show = (id) ->
-		poems[id].meta.Active = true
-		$rootScope.$emit "poemsUpdated"
-
+		all[id].meta.Active = true
+		updateActive()
 
 	@hide = (id) ->
-		poems[id].meta.Active = false
-		$rootScope.$emit "poemsUpdated"
+		all[id].meta.Active = false
+		updateActive()
 
 	@
 ]
