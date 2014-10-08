@@ -13,7 +13,7 @@ angular.module("sideBySide.controllers", [])
 .controller "ComparisonController", [
 	'$scope', 'poems', 'transformer'
 	($scope, poems, transformer) ->
-		$scope.$watchCollection () ->
+		$scope.$watch () ->
 			poems.active.length
 		, () ->
 			$scope.columns = poems.active.length
