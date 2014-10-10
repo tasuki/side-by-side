@@ -3,6 +3,7 @@ angular.module('sideBySide', ['sideBySide.controllers', 'ngRoute', 'ngSanitize']
 		$routeProvider
 			.when '/:base?/pick', {
 				templateUrl: 'partials/pick.html'
+				controller: 'PickController'
 			}
 			.when '/:base?', {
 				templateUrl: 'partials/comparison.html'
