@@ -14,6 +14,9 @@ angular.module("sideBySide.controllers", [])
 .controller "ComparisonController", [
 	'$scope', 'poems', 'transformer'
 	($scope, poems, transformer) ->
+		min = 1
+		max = 5
+
 		$scope.$watch () ->
 			poems.getActive().length
 		, () ->
@@ -30,8 +33,11 @@ angular.module("sideBySide.controllers", [])
 			$scope.all = poems.all
 
 		$scope.switchActive = (poem) ->
-			if (not poem.meta.Active || poems.getActive().length > 1)
+			length = poems.getActive().length
+			active = poem.meta.Active
+			if ((length > min or not active) and (length < max or active))
 				poem.meta.Active = not poem.meta.Active
+				# TODO else notification
 
 		$scope.flipPick = () ->
 			$scope.pick = not $scope.pick
