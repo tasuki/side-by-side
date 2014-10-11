@@ -1,0 +1,11 @@
+{
+	"files":
+		[ "tests/the_raven/1845-poe.md"
+		, "tests/the_raven/1881-vrchlicky.md"
+		, "tests/the_raven/1885-muzik.md"
+		, "tests/the_raven/1918-dostal-lutinov.md"
+		, "tests/the_raven/1900-zenon-przesmycki.md"
+		, "tests/the_raven/1910-barbara-beaupre.md"
+		, "tests/the_raven/1970-baranczak.md"
+		]
+}
