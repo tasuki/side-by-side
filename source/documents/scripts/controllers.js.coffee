@@ -42,5 +42,5 @@ angular.module("sideBySide.controllers", [])
 		$scope.flipPick = () ->
 			$scope.pick = not $scope.pick
 
-		$scope.pick = true
+		$scope.pick = false
 ]
