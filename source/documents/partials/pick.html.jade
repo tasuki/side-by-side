@@ -1,8 +1,0 @@
-table
-	tr
-		th Active
-		th(ng-repeat="(attribute, value) in poems[0].meta" ng-if="attribute != 'Active'" ng-bind-html="attribute")
-	tr(ng-repeat="poem in poems" ng-class="{disabled: !poem.meta.Active}")
-		td
-			input(type="checkbox" ng-model="poem.meta.Active")
-		td(ng-repeat="(attribute, value) in poem.meta" ng-if="attribute != 'Active'" ng-bind-html="value")

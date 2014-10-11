@@ -15,9 +15,9 @@ angular.module("sideBySide.controllers", [])
 	'$scope', 'poems', 'transformer'
 	($scope, poems, transformer) ->
 		$scope.$watch () ->
-			(poem for poem in poems.all when poem.meta.Active is true).length
+			poems.getActive().length
 		, () ->
-			active = (poem for poem in poems.all when poem.meta.Active is true)
+			active = poems.getActive()
 
 			$scope.columns = active.length
 			transformed = transformer(active)
@@ -26,13 +26,15 @@ angular.module("sideBySide.controllers", [])
 
 			headingKey = poems.heading or "Author"
 			$scope.headings = (version[headingKey] for version in transformed.meta)
-]
 
-.controller "PickController", [
-	'$scope', 'poems'
-	($scope, poems) ->
-		$scope.$watch () ->
-			(poem for poem in poems.all when poem.meta.Active is true).length
-		, () ->
-			$scope.poems = poems.all
+			$scope.all = poems.all
+
+		$scope.switchActive = (poem) ->
+			if (not poem.meta.Active || poems.getActive().length > 1)
+				poem.meta.Active = not poem.meta.Active
+
+		$scope.flipPick = () ->
+			$scope.pick = not $scope.pick
+
+		$scope.pick = true
 ]

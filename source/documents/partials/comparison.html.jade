@@ -1,10 +1,17 @@
-// bottom menu
-.pure-menu.pure-menu-open.pure-menu-horizontal.menu-verses
+.pure-menu.pure-menu-open.pure-menu-horizontal.menu-verses(ng-click="flipPick()")
 	.pure-g-r
 		.version(ng-repeat="heading in headings")
 			.version-padded
 				.version-menu
 					.text(ng-bind-html="heading")
+
+.pick(ng-show="pick")
+	.pick-in
+		table
+			tr
+				th(ng-repeat="(attribute, value) in all[0].meta" ng-if="attribute != 'Active'" ng-bind-html="attribute")
+			tr(ng-repeat="poem in all" class="switch" ng-class="{disabled: !poem.meta.Active}" ng-click="switchActive(poem)")
+				td(ng-repeat="(attribute, value) in poem.meta" ng-if="attribute != 'Active'" ng-bind-html="value")
 
 // verses
 #content

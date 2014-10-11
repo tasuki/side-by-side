@@ -29,11 +29,12 @@ body
 	margin-bottom: 1em
 
 .pure-menu.menu-verses
-	// background: #F2F2DA
 	background: #22220C
 	position: fixed
 	left: 0
 	bottom: 0
+	:hover
+		cursor: pointer
 
 .version
 	vertical-align: top
@@ -60,8 +61,36 @@ body
 		left: 0px
 		top: -6px
 
-.disabled
-	color: #997
+.pick
+	background: #332
+	color: #C6C684
+	position: fixed
+	left: 0
+	bottom: 36px
+
+	width: 100%
+	.pick-in
+		padding: 10px
+
+	z-index: 2
+	max-height: 50%
+	overflow: auto
+
+	a
+		color: #886
+
+	table
+		th
+			text-align: left
+			color: #E5E5A1
+		td,th
+			padding: 5px 15px
+		tr.switch:hover
+			background: #443
+			cursor: pointer
+
+	.disabled
+		color: #886
 
 max_columns = 6
 for columns in 1 .. max_columns
