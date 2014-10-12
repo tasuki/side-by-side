@@ -25,8 +25,8 @@ angular.module("sideBySide.controllers", [])
 		min = 1
 		max = 5
 
-		$scope.$watch () ->
-			poems.getActive().length
+		$scope.$watchCollection () ->
+			poems.getActive()
 		, () ->
 			active = poems.getActive()
 
