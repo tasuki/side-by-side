@@ -7,7 +7,15 @@ angular.module("sideBySide.controllers", [])
 				then '/' + $previousRoute.params.base
 				else ''
 
-		base = $location.url().replace(/\/(.*)\/.*/, '$1')
+		appUrl = $location.absUrl()
+			.substring(0, $location.absUrl().length - $location.url().length)
+			.replace(/#$/, '')
+
+		base = appUrl + $location.url()
+			.slice(1)
+			.replace(/(.*)\/.*/, '$1')
+			.replace(/\./g, '/')
+
 		poems.load base
 ]
 

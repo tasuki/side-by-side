@@ -14,7 +14,7 @@ angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
 		(poem for poem in @all when poem.meta.Active is true)
 
 	@load = (base = '') =>
-		config = base.replace(/\./g, '/') + "/config.json"
+		config = base + "/config.json"
 
 		fetch(config).then (result) =>
 			$q.all(result.promises).then (results) =>
