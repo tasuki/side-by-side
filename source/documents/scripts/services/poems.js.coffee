@@ -1,4 +1,4 @@
-angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
+angular.module("sideBySide").service "poems", ['fetch', (fetch) ->
 	@all = [{
 		meta: {
 			Active: true
@@ -34,8 +34,8 @@ angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
 	# @param base [String]
 	@load = (base = '') =>
 		fetch(base + "/config.json").then (config) =>
-			$q.all(config.promises).then (results) =>
-				@all = (activize(poem, config.active) for poem in results)
+			config.fetchPoems.then (poems) =>
+				@all = (activize(poem, config.active) for poem in poems)
 				@heading = config.heading
 
 	@

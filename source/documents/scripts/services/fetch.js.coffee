@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory "fetch", ['$http', 'readerFactory', ($http, readerFactory) ->
+angular.module("sideBySide").factory "fetch", ['$http', '$q', 'readerFactory', ($http, $q, readerFactory) ->
 	# Fetch
 	#
 	# @param file [String] Path to config file
@@ -10,7 +10,7 @@ angular.module("sideBySide").factory "fetch", ['$http', 'readerFactory', ($http,
 					readerFactory(poem) response.data
 
 			{
-				promises: promises
+				fetchPoems: $q.all promises
 				heading: config.data.heading
 				active: config.data.active
 			}
