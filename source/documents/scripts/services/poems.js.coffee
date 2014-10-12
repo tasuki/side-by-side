@@ -22,12 +22,11 @@ angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
 	# @param active [Object] { meta: [ 'active', 'values' ] }
 	# @return poem
 	activize = (poem, active) ->
-		if !active
-			poem.meta.Active = true
+		poem.meta.Active = true if !active
 
 		for metaKey,values of active
-			if poem.meta[metaKey] in values
-				poem.meta.Active = true
+			poem.meta.Active = true if poem.meta[metaKey] in values
+
 		poem
 
 	# Load poems
@@ -36,10 +35,7 @@ angular.module("sideBySide").service "poems", ['$q', 'fetch', ($q, fetch) ->
 	@load = (base = '') =>
 		fetch(base + "/config.json").then (config) =>
 			$q.all(config.promises).then (results) =>
-				@all = []
-				for poem in results
-					@all.push activize(poem, config.active)
-
+				@all = (activize(poem, config.active) for poem in results)
 				@heading = config.heading
 
 	@
