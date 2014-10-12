@@ -4,9 +4,9 @@ angular.module("sideBySide").factory "fetch", ['$http', 'readerFactory', ($http,
 	# @param file [String] Path to config file
 	# @return [Object] Promises and heading
 	(file = "/config.json") ->
-		$http.get(file).then((response) ->
+		$http.get(file).then((config) ->
 			promises = []
-			for poem in response.data.files
+			for poem in config.data.files
 				promises.push($http.get(poem).then((response) ->
 					reader = readerFactory(poem)
 					reader(response.data)
@@ -14,7 +14,8 @@ angular.module("sideBySide").factory "fetch", ['$http', 'readerFactory', ($http,
 
 			{
 				promises: promises
-				heading: response.data.heading
+				heading: config.data.heading
+				active: config.data.active
 			}
 		)
 ]

@@ -7,5 +7,8 @@
 		, "tests/the_raven/1900-zenon-przesmycki.md"
 		, "tests/the_raven/1910-barbara-beaupre.md"
 		, "tests/the_raven/1970-baranczak.md"
-		]
+		],
+	"active": {
+		"Language": [ "Czech" ]
+	}
 }
