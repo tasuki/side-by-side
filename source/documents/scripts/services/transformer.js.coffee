@@ -9,7 +9,7 @@ angular.module("sideBySide").factory("transformer", () ->
 		#
 		# @param translations [array] Translations to check
 		checkLengths = (translations) ->
-			if translations.length < 1
+			if !translations or translations.length < 1
 				throw "No poems found!"
 			lengths = []
 			for translation in translations

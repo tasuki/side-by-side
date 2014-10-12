@@ -1,104 +1,108 @@
-test("markdownReader", () ->
-	testCases = [{
-		tested: """
-			Title: Universal Declaration of Human Rights  
-			Author: John Peters Humphrey
-			Date: 1948  
-			Source: http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights  
+reader = {}
 
-			## 1
-			All human beings are born *free* and equal in dignity and rights...
+module "markdown reader", {
+	setup: () ->
+		reader = injector.get "markdownReader"
+}
 
-			## 2
-			Everyone is entitled to all the rights and freedoms...
+test "loads poem with section numbers, paragraphs, and a list", () ->
+	deepEqual reader("""
+		Title: Universal Declaration of Human Rights
+		Author: John Peters Humphrey
+		Date: 1948
+		Source: http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights
 
-			Furthermore, no distinction shall be made on the basis of...
+		## 1
+		All human beings are born *free* and equal in dignity and rights...
 
-			## 11.1
-			Everyone charged with a penal offence has the right to be presumed...
+		## 2
+		Everyone is entitled to all the rights and freedoms...
 
-			## 11.2
-			No one shall be held guilty of any penal offence...
+		Furthermore, no distinction shall be made on the basis of...
 
-			## 13
-			Everyone is entitled to:
+		## 11.1
+		Everyone charged with a penal offence has the right to be presumed...
 
-			- sex
-			- drugs
-			- rock & roll
-			"""
-		expected: {
-			meta: {
-				Title: "Universal Declaration of Human Rights"
-				Author: "John Peters Humphrey"
-				Date: "1948"
-				Source: '<a href="http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights">http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights</a>'
-			}
-			content: [
-				{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights…</p>\n" }
-				{ section: "2", text: """
-					<p>Everyone is entitled to all the rights and freedoms…</p>
-					<p>Furthermore, no distinction shall be made on the basis of…</p>\n""" }
-				{ section: "11.1", text: "<p>Everyone charged with a penal offence has the right to be presumed…</p>\n" }
-				{ section: "11.2", text: "<p>No one shall be held guilty of any penal offence…</p>\n" }
-				{ section: "13", text: """
-					<p>Everyone is entitled to:</p>
-					<ul>
-					<li>sex</li>
-					<li>drugs</li>
-					<li>rock &amp; roll</li>
-					</ul>\n""" }
-			]
+		## 11.2
+		No one shall be held guilty of any penal offence...
+
+		## 13
+		Everyone is entitled to:
+
+		- sex
+		- drugs
+		- rock & roll
+	"""),
+	{
+		meta: {
+			Title: "Universal Declaration of Human Rights"
+			Author: "John Peters Humphrey"
+			Date: "1948"
+			Source: '<a href="http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights">http://en.wikisource.org/wiki/Universal_Declaration_of_Human_Rights</a>'
 		}
-	}, {
-		tested: """
-			Title: Test leading text and mixed separators
+		content: [
+			{ section: "1", text: "<p>All human beings are born <em>free</em> and equal in dignity and rights…</p>\n" }
+			{ section: "2", text: """
+				<p>Everyone is entitled to all the rights and freedoms…</p>
+				<p>Furthermore, no distinction shall be made on the basis of…</p>\n""" }
+			{ section: "11.1", text: "<p>Everyone charged with a penal offence has the right to be presumed…</p>\n" }
+			{ section: "11.2", text: "<p>No one shall be held guilty of any penal offence…</p>\n" }
+			{ section: "13", text: """
+				<p>Everyone is entitled to:</p>
+				<ul>
+				<li>sex</li>
+				<li>drugs</li>
+				<li>rock &amp; roll</li>
+				</ul>\n""" }
+		]
+	}
 
-			**This** is leading text.
-			# I
-			First section.
+test "loads poem with leading text and mixed separators", () ->
+	deepEqual reader("""
+		Title: Test leading text and mixed separators
 
-			---
-			Second section.
-			"""
-		expected: {
-			meta: {
-				Title: "Test leading text and mixed separators"
-			}
-			content: [
-				{ section: "", text: "<p><strong>This</strong> is leading text.</p>\n" }
-				{ section: "I", text: "<p>First section.</p>\n" }
-				{ section: "", text: "<p>Second section.</p>\n" }
-			]
+		**This** is leading text.
+		# I
+		First section.
+
+		---
+		Second section.
+	"""),
+	{
+		meta: {
+			Title: "Test leading text and mixed separators"
 		}
-	}, {
-		tested: """
-			Title: Separator test
-			Separator: heading
+		content: [
+			{ section: "", text: "<p><strong>This</strong> is leading text.</p>\n" }
+			{ section: "I", text: "<p>First section.</p>\n" }
+			{ section: "", text: "<p>Second section.</p>\n" }
+		]
+	}
 
-			# I
-			First section.
+test "loads poem using a custom separator", () ->
+	deepEqual reader("""
+		Title: Separator test
+		Separator: heading
 
-			---
-			Second part.
+		# I
+		First section.
 
-			# II
-			Second section.
-			"""
-		expected: {
-			meta: {
-				Title: "Separator test"
-				Separator: "heading"
-			}
-			content: [
-				{ section: "I", text: """
-					<p>First section.</p>
-					<hr>
-					<p>Second part.</p>\n""" }
-				{ section: "II", text: "<p>Second section.</p>\n" }
-			]
+		---
+		Second part.
+
+		# II
+		Second section.
+	"""),
+	{
+		meta: {
+			Title: "Separator test"
+			Separator: "heading"
 		}
-	}]
-
-	testReader("markdownReader", testCases)
-)
+		content: [
+			{ section: "I", text: """
+				<p>First section.</p>
+				<hr>
+				<p>Second part.</p>\n""" }
+			{ section: "II", text: "<p>Second section.</p>\n" }
+		]
+	}
