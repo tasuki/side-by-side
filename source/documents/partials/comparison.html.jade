@@ -15,7 +15,7 @@
 
 // verses
 #content
-	.pure-g-r(ng-repeat="verse in verses")
+	.pure-g-r(ng-repeat="verse in verses" id="section-{{$index + 1}}")
 		.version(ng-repeat="version in verse")
 			.version-padded
 				.version-container

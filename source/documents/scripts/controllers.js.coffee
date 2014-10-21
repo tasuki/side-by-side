@@ -20,10 +20,18 @@ angular.module("sideBySide.controllers", [])
 ]
 
 .controller "ComparisonController", [
-	'$scope', 'poems', 'transformer'
-	($scope, poems, transformer) ->
+	'$routeParams', '$scope', '$location', '$anchorScroll', 'poems', 'transformer'
+	($routeParams, $scope, $location, $anchorScroll, poems, transformer) ->
 		min = 1
 		max = 5
+
+		scroll = () ->
+			setTimeout () ->
+				if ('section' of $routeParams)
+					section = 'section-' + $routeParams['section']
+					element = document.getElementById(section)
+					element.scrollIntoView()
+			, 100
 
 		$scope.$watchCollection () ->
 			poems.getActive()
@@ -39,6 +47,7 @@ angular.module("sideBySide.controllers", [])
 			$scope.headings = (version[headingKey] for version in transformed.meta)
 
 			$scope.all = poems.all
+			scroll()
 
 		$scope.switchActive = (poem) ->
 			length = poems.getActive().length
