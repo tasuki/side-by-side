@@ -1,5 +1,7 @@
 # Side By Side
 
+[![Build Status](https://travis-ci.org/tasuk/side-by-side.png?branch=master)](https://travis-ci.org/tasuk/side-by-side)
+
 Visual comparison of different translations of itemized texts; e.g. poems,
 bibles, etc.
 
