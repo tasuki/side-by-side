@@ -1,0 +1,21 @@
+{
+	"name": "side-by-side",
+	"version": "0.0.1",
+	"author": "Vit Brunner",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components"
+	],
+	"dependencies": {
+		"lodash": "2.4.1",
+		"angular": "1.2.20",
+		"angular-route": "1.2.20",
+		"angular-sanitize": "1.2.20",
+		"marked": "0.3.2",
+		"pure": "0.2.0",
+		"qunit": "1.13.x",
+		"fontawesome": "3.0.2"
+	},
+	"license": "MIT"
+}
