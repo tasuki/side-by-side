@@ -21,5 +21,5 @@ less like this:
 
 ### Tests
 
-Start docpad with `make run` and point your browser at
+Start server with `make run` and point your browser at
 `http://0.0.0.0:9778/tests.html` or run `make test` in a separate shell.
