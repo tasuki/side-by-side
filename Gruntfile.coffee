@@ -71,4 +71,5 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 
 	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
+	grunt.registerTask 'server', [ 'connect:server:keepalive' ]
 	grunt.registerTask 'test', [ 'default', 'connect', 'qunit' ]
