@@ -2,11 +2,6 @@
 	"name": "side-by-side",
 	"version": "0.0.1",
 	"author": "Vit Brunner",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components"
-	],
 	"dependencies": {
 		"lodash": "2.4.1",
 		"angular": "1.2.20",
