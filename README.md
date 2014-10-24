@@ -19,6 +19,12 @@ less like this:
 	sudo apt-get install nodejs
 	npm install
 
+### Run dev server
+
+	node_modules/.bin/grunt server
+
+Point your browser at http://0.0.0.0:8000/#/tests.the_raven/
+
 ### Tests
 
 Run tests with `npm test`.
