@@ -12,10 +12,10 @@
 		"grunt-contrib-coffee": "0.12.x",
 		"grunt-contrib-stylus": "0.20.x",
 		"grunt-contrib-jade": "0.13.x",
-		"qunitjs": "1.13.x",
-		"phantomjs": "1.9.x"
+		"grunt-contrib-qunit": "0.5.x"
 	},
 	"scripts": {
+		"test": "node_modules/.bin/grunt test",
 		"postinstall": "node_modules/.bin/bower install"
 	},
 	"license": "MIT"

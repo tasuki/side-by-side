@@ -21,5 +21,4 @@ less like this:
 
 ### Tests
 
-Start server with `make run` and point your browser at
-`http://0.0.0.0:9778/tests.html` or run `make test` in a separate shell.
+Run tests with `npm test`.

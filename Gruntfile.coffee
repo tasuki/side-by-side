@@ -11,7 +11,6 @@ module.exports = (grunt) ->
 			server: {
 				options: {
 					base: '<%= var.destination %>'
-					keepalive: true
 				}
 			}
 		}
@@ -54,6 +53,14 @@ module.exports = (grunt) ->
 				ext: '.html'
 			}
 		}
+
+		qunit: {
+			main: {
+				options: {
+					urls: [ 'http://0.0.0.0:8000/tests.html' ]
+				}
+			}
+		}
 	}
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
@@ -61,5 +68,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-jade');
+	grunt.loadNpmTasks("grunt-contrib-qunit");
 
 	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
+	grunt.registerTask 'test', [ 'default', 'connect', 'qunit' ]
