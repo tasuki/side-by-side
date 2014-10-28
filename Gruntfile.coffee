@@ -15,6 +15,13 @@ module.exports = (grunt) ->
 			}
 		}
 
+		watch: {
+			main: {
+				files: '<%= var.source %>/**/*'
+				tasks: ['default']
+			}
+		}
+
 		copy: {
 			main: {
 				expand: true
@@ -64,6 +71,7 @@ module.exports = (grunt) ->
 	}
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
@@ -71,5 +79,5 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 
 	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
-	grunt.registerTask 'server', [ 'connect:server:keepalive' ]
+	grunt.registerTask 'serve', [ 'default', 'connect', 'watch' ]
 	grunt.registerTask 'test', [ 'default', 'connect', 'qunit' ]
