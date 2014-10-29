@@ -7,51 +7,20 @@ module.exports = (grunt) ->
 			destination: 'build'
 		}
 
+		coffee: {
+			main: {
+				expand: true
+				cwd: '<%= var.source %>'
+				src: '**/*.coffee'
+				dest: '<%= var.destination %>'
+				ext: '.js'
+			}
+		}
+
 		connect: {
 			server: {
 				options: {
 					base: '<%= var.destination %>'
-				}
-			}
-		}
-
-		watch: {
-			main: {
-				files: '<%= var.source %>/**/*'
-				tasks: ['default', 'qunit']
-			}
-			min: {
-				files: [
-					'<%= var.destination %>/scripts/**/*.js'
-					'<%= var.destination %>/bower_components/**/*.js'
-				]
-				tasks: ['uglify']
-			}
-		}
-
-		uglify: {
-			main: {
-				files: {
-					'build/min/scripts.js': [
-						'build/bower_components/lodash/dist/lodash.js'
-						'build/bower_components/angular/angular.js'
-						'build/bower_components/angular-route/angular-route.js'
-						'build/bower_components/angular-sanitize/angular-sanitize.js'
-						'build/bower_components/marked/lib/marked.js'
-						'build/scripts/**/*.js'
-					]
-				}
-			}
-		}
-
-		cssmin: {
-			main: {
-				files: {
-					'build/min/styles.css': [
-						'build/bower_components/fontawesome/css/font-awesome.min.css'
-						'build/bower_components/pure/pure-min.css'
-						'build/styles/**/*.css'
-					]
 				}
 			}
 		}
@@ -65,23 +34,15 @@ module.exports = (grunt) ->
 			}
 		}
 
-		coffee: {
+		cssmin: {
 			main: {
-				expand: true
-				cwd: '<%= var.source %>'
-				src: '**/*.coffee'
-				dest: '<%= var.destination %>'
-				ext: '.js'
-			}
-		}
-
-		stylus: {
-			main: {
-				expand: true
-				cwd: '<%= var.source %>'
-				src: '**/*.styl'
-				dest: '<%= var.destination %>'
-				ext: '.css'
+				files: {
+					'build/min/styles.css': [
+						'build/bower_components/fontawesome/css/font-awesome.min.css'
+						'build/bower_components/pure/pure-min.css'
+						'build/styles/**/*.css'
+					]
+				}
 			}
 		}
 
@@ -102,17 +63,56 @@ module.exports = (grunt) ->
 				}
 			}
 		}
+
+		stylus: {
+			main: {
+				expand: true
+				cwd: '<%= var.source %>'
+				src: '**/*.styl'
+				dest: '<%= var.destination %>'
+				ext: '.css'
+			}
+		}
+
+		uglify: {
+			main: {
+				files: {
+					'build/min/scripts.js': [
+						'build/bower_components/lodash/dist/lodash.js'
+						'build/bower_components/angular/angular.js'
+						'build/bower_components/angular-route/angular-route.js'
+						'build/bower_components/angular-sanitize/angular-sanitize.js'
+						'build/bower_components/marked/lib/marked.js'
+						'build/scripts/**/*.js'
+					]
+				}
+			}
+		}
+
+		watch: {
+			main: {
+				files: '<%= var.source %>/**/*'
+				tasks: ['default', 'qunit']
+			}
+			min: {
+				files: [
+					'<%= var.destination %>/scripts/**/*.js'
+					'<%= var.destination %>/bower_components/**/*.js'
+				]
+				tasks: ['uglify']
+			}
+		}
 	}
 
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
-	grunt.loadNpmTasks('grunt-contrib-stylus');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-jade');
-	grunt.loadNpmTasks("grunt-contrib-qunit");
+	grunt.loadNpmTasks('grunt-contrib-qunit');
+	grunt.loadNpmTasks('grunt-contrib-stylus');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
 	grunt.registerTask 'serve', [ 'default', 'connect', 'watch' ]
