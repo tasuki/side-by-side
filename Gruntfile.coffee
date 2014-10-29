@@ -117,3 +117,4 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
 	grunt.registerTask 'serve', [ 'default', 'connect', 'watch' ]
 	grunt.registerTask 'test', [ 'default', 'connect', 'qunit' ]
+	grunt.registerTask 'min', [ 'default', 'uglify', 'cssmin' ]
