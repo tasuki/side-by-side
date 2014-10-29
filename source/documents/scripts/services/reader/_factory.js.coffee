@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory("readerFactory", ($injector) ->
+angular.module("sideBySide").factory "readerFactory", ['$injector', ($injector) ->
 	# Create poem reader based on file name
 	#
 	# @param [String] Source file name
@@ -12,4 +12,4 @@ angular.module("sideBySide").factory("readerFactory", ($injector) ->
 				return $injector.get("markdownReader")
 			else
 				throw "Unknown extension '" + extension + "'."
-)
+]

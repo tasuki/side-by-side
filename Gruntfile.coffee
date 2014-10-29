@@ -18,7 +18,29 @@ module.exports = (grunt) ->
 		watch: {
 			main: {
 				files: '<%= var.source %>/**/*'
-				tasks: ['default']
+				tasks: ['default', 'qunit']
+			}
+			min: {
+				files: [
+					'<%= var.destination %>/scripts/**/*.js'
+					'<%= var.destination %>/bower_components/**/*.js'
+				]
+				tasks: ['uglify']
+			}
+		}
+
+		uglify: {
+			main: {
+				files: {
+					'build/min/scripts.js': [
+						'build/bower_components/lodash/dist/lodash.js'
+						'build/bower_components/angular/angular.js'
+						'build/bower_components/angular-route/angular-route.js'
+						'build/bower_components/angular-sanitize/angular-sanitize.js'
+						'build/bower_components/marked/lib/marked.js'
+						'build/scripts/**/*.js'
+					]
+				}
 			}
 		}
 
@@ -72,6 +94,7 @@ module.exports = (grunt) ->
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-stylus');

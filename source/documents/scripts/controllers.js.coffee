@@ -9,7 +9,7 @@ angular.module("sideBySide.controllers", [])
 
 		appUrl = $location.absUrl()
 			.substring(0, $location.absUrl().length - $location.url().length)
-			.replace(/#$/, '')
+			.replace(/[^\/]*?#$/, '')
 
 		base = appUrl + $location.url()
 			.slice(1)
