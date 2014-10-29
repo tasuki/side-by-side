@@ -1,18 +1,37 @@
 module.exports = (grunt) ->
+	vars = {
+		scripts: [
+			'bower_components/lodash/dist/lodash.js'
+			'bower_components/angular/angular.js'
+			'bower_components/angular-route/angular-route.js'
+			'bower_components/angular-sanitize/angular-sanitize.js'
+			'bower_components/marked/lib/marked.js'
+			'scripts/app.js'
+			'scripts/services/fetch.js'
+			'scripts/services/poems.js'
+			'scripts/services/reader/_factory.js'
+			'scripts/services/reader/markdown.js'
+			'scripts/services/reader/json.js'
+			'scripts/services/transformer.js'
+			'scripts/controllers.js'
+		]
+		styles: [
+			'bower_components/fontawesome/css/font-awesome.min.css'
+			'bower_components/pure/pure-min.css'
+			'styles/style.css'
+		]
+	}
+
 	grunt.initConfig {
 		pkg: grunt.file.readJSON 'package.json'
-
-		var: {
-			source: 'source'
-			destination: 'build'
-		}
+		vars: vars
 
 		coffee: {
 			main: {
 				expand: true
-				cwd: '<%= var.source %>'
+				cwd: 'source'
 				src: '**/*.coffee'
-				dest: '<%= var.destination %>'
+				dest: 'build'
 				ext: '.js'
 			}
 		}
@@ -20,7 +39,7 @@ module.exports = (grunt) ->
 		connect: {
 			server: {
 				options: {
-					base: '<%= var.destination %>'
+					base: 'build'
 				}
 			}
 		}
@@ -28,20 +47,16 @@ module.exports = (grunt) ->
 		copy: {
 			main: {
 				expand: true
-				cwd: '<%= var.source %>'
+				cwd: 'source'
 				src: 'tests/the_raven/*'
-				dest: '<%= var.destination %>'
+				dest: 'build'
 			}
 		}
 
 		cssmin: {
 			main: {
 				files: {
-					'build/min/styles.css': [
-						'build/bower_components/fontawesome/css/font-awesome.min.css'
-						'build/bower_components/pure/pure-min.css'
-						'build/styles/**/*.css'
-					]
+					'build/min/styles.css': ('build/' + style for style in vars.styles)
 				}
 			}
 		}
@@ -49,10 +64,13 @@ module.exports = (grunt) ->
 		jade: {
 			main: {
 				expand: true
-				cwd: '<%= var.source %>'
+				cwd: 'source'
 				src: '**/*.jade'
-				dest: '<%= var.destination %>'
+				dest: 'build'
 				ext: '.html'
+				options: {
+					data: vars
+				}
 			}
 		}
 
@@ -67,9 +85,9 @@ module.exports = (grunt) ->
 		stylus: {
 			main: {
 				expand: true
-				cwd: '<%= var.source %>'
+				cwd: 'source'
 				src: '**/*.styl'
-				dest: '<%= var.destination %>'
+				dest: 'build'
 				ext: '.css'
 			}
 		}
@@ -77,28 +95,18 @@ module.exports = (grunt) ->
 		uglify: {
 			main: {
 				files: {
-					'build/min/scripts.js': [
-						'build/bower_components/lodash/dist/lodash.js'
-						'build/bower_components/angular/angular.js'
-						'build/bower_components/angular-route/angular-route.js'
-						'build/bower_components/angular-sanitize/angular-sanitize.js'
-						'build/bower_components/marked/lib/marked.js'
-						'build/scripts/**/*.js'
-					]
+					'build/min/scripts.js': ('build/' + script for script in vars.scripts)
 				}
 			}
 		}
 
 		watch: {
 			main: {
-				files: '<%= var.source %>/**/*'
+				files: 'source'
 				tasks: ['default', 'qunit']
 			}
 			min: {
-				files: [
-					'<%= var.destination %>/scripts/**/*.js'
-					'<%= var.destination %>/bower_components/**/*.js'
-				]
+				files: ('build/' + script for script in vars.scripts)
 				tasks: ['uglify']
 			}
 		}

@@ -4,7 +4,8 @@ html
 		title Side By Side test suite
 		meta(charset="utf-8")
 
-		include includes/scripts.html.jade
+		for script in scripts
+			script(src="#{script}")
 
 		// test scripts
 		link(rel="stylesheet", type="text/css", href="bower_components/qunit/qunit/qunit.css")
