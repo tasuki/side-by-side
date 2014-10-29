@@ -3,7 +3,7 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON 'package.json'
 
 		var: {
-			source: 'source/documents'
+			source: 'source'
 			destination: 'build'
 		}
 
