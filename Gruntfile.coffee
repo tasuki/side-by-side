@@ -44,6 +44,18 @@ module.exports = (grunt) ->
 			}
 		}
 
+		cssmin: {
+			main: {
+				files: {
+					'build/min/styles.css': [
+						'build/bower_components/fontawesome/css/font-awesome.min.css'
+						'build/bower_components/pure/pure-min.css'
+						'build/styles/**/*.css'
+					]
+				}
+			}
+		}
+
 		copy: {
 			main: {
 				expand: true
@@ -95,6 +107,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
