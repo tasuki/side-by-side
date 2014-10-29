@@ -4,9 +4,29 @@ html(ng-app="sideBySide")
 		title Side By Side viewer
 		meta(charset="utf-8")
 		link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/css?family=Noticia+Text:400,700,400italic,700italic")
-		for style in styles
-			link(rel="stylesheet", type="text/css", href="#{style}")
-		for script in scripts
-			script(src="#{script}")
 
-	include includes/body.html.jade
+		if min == true
+			link(rel="stylesheet", type="text/css", href="styles.css")
+			script(src="scripts.js")
+		else
+			for style in styles
+				link(rel="stylesheet", type="text/css", href="#{style}")
+			for script in scripts
+				script(src="#{script}")
+
+	body(ng-controller="AppController")
+		noscript Well, terribly sorry but you do need to have Javascript enabled.
+
+		// top menu
+		.pure-menu.pure-menu-open.pure-menu-horizontal.menu-main
+			ul
+				li
+					a(href="#{{base}}") Home
+				li
+					a(href="#{{base}}/pick") Pick
+				li
+					a(href="#") Help
+				li
+					a(href="#") About
+
+		div(ng-view class="cols-{{columns}}")

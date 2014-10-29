@@ -20,6 +20,7 @@ module.exports = (grunt) ->
 			'bower_components/pure/pure-min.css'
 			'styles/style.css'
 		]
+		min: false
 	}
 
 	grunt.initConfig {
@@ -37,9 +38,15 @@ module.exports = (grunt) ->
 		}
 
 		connect: {
-			server: {
+			main: {
 				options: {
 					base: 'build'
+				}
+			}
+			min: {
+				options: {
+					port: 8001
+					base: 'build-min'
 				}
 			}
 		}
@@ -51,12 +58,18 @@ module.exports = (grunt) ->
 				src: 'tests/the_raven/*'
 				dest: 'build'
 			}
+			min: {
+				expand: true
+				cwd: 'source'
+				src: 'tests/the_raven/*'
+				dest: 'build-min'
+			}
 		}
 
 		cssmin: {
-			main: {
+			min: {
 				files: {
-					'build/min/styles.css': ('build/' + style for style in vars.styles)
+					'build-min/styles.css': ('build/' + style for style in vars.styles)
 				}
 			}
 		}
@@ -70,6 +83,21 @@ module.exports = (grunt) ->
 				ext: '.html'
 				options: {
 					data: vars
+					pretty: true
+				}
+			}
+			min: {
+				expand: true
+				cwd: 'source'
+				src: '**/*.jade'
+				dest: 'build-min'
+				ext: '.html'
+				options: {
+					data: {
+						scripts: vars.scripts
+						styles: vars.styles
+						min: true
+					}
 				}
 			}
 		}
@@ -93,21 +121,21 @@ module.exports = (grunt) ->
 		}
 
 		uglify: {
-			main: {
+			min: {
 				files: {
-					'build/min/scripts.js': ('build/' + script for script in vars.scripts)
+					'build-min/scripts.js': ('build/' + script for script in vars.scripts)
 				}
 			}
 		}
 
 		watch: {
 			main: {
-				files: 'source'
-				tasks: ['default', 'qunit']
+				files: 'source/**/*'
+				tasks: [ 'default' ]
 			}
 			min: {
-				files: ('build/' + script for script in vars.scripts)
-				tasks: ['uglify']
+				files: 'build/**/*'
+				tasks: [ 'min' ]
 			}
 		}
 	}
@@ -122,7 +150,8 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask 'default', [ 'copy', 'coffee', 'stylus', 'jade' ]
-	grunt.registerTask 'serve', [ 'default', 'connect', 'watch' ]
-	grunt.registerTask 'test', [ 'default', 'connect', 'qunit' ]
-	grunt.registerTask 'min', [ 'default', 'uglify', 'cssmin' ]
+	grunt.registerTask 'default', [ 'copy:main', 'coffee', 'stylus', 'jade:main' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'uglify', 'cssmin' ]
+
+	grunt.registerTask 'serve', [ 'default', 'min', 'connect', 'watch' ]
+	grunt.registerTask 'test', [ 'default', 'connect:main', 'qunit' ]
