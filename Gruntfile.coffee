@@ -37,9 +37,47 @@ module.exports = (grunt) ->
 		min: false
 	}
 
+	watchconfigs = {
+		main: {
+			coffee: {
+				files: 'source/**/*.coffee'
+				tasks: 'coffee:main'
+			}
+			test: {
+				files: 'source/tests/the_raven/*'
+				tasks: 'copy:main'
+			}
+			jade: {
+				files: 'source/**/*.jade'
+				tasks: 'jade:main'
+			}
+			stylus: {
+				files: 'source/**/*.styl'
+				tasks: 'stylus:main'
+			}
+		}
+		min: {
+			test_min: {
+				files: 'source/tests/the_raven/*'
+				tasks: 'copy:min'
+			}
+			jade_min: {
+				files: 'source/**/*.jade'
+				tasks: 'jade:min'
+			}
+			css_min: {
+				files: 'build/**/*.css'
+				tasks: 'cssmin:min'
+			}
+			js_min: {
+				files: 'build/**/*.js'
+				tasks: 'uglify'
+			}
+		}
+	}
+
 	grunt.initConfig {
 		pkg: grunt.file.readJSON 'package.json'
-		vars: vars
 
 		coffee: {
 			main: {
@@ -142,19 +180,9 @@ module.exports = (grunt) ->
 				}
 			}
 		}
-
-		watch: {
-			main: {
-				files: 'source/**/*'
-				tasks: [ 'default' ]
-			}
-			min: {
-				files: 'build/**/*'
-				tasks: [ 'min' ]
-			}
-		}
 	}
 
+	# Load tasks
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-copy');
@@ -165,9 +193,20 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask 'default', [ 'copy:main', 'coffee:main', 'stylus:main', 'jade:main' ]
+	# Register tasks
+	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
 	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'uglify:min', 'cssmin:min' ]
-
-	grunt.registerTask 'serve', [ 'default', 'connect:main', 'watch:main' ]
-	grunt.registerTask 'serve-all', [ 'default', 'min', 'connect', 'watch' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
+
+	grunt.registerTask 'serve', () ->
+		grunt.task.run 'default'
+		grunt.task.run 'connect:main'
+		grunt.config 'watch', watchconfigs.main
+		grunt.task.run 'watch'
+
+	grunt.registerTask 'serve-all', () ->
+		grunt.task.run 'default'
+		grunt.task.run 'min'
+		grunt.task.run 'connect'
+		grunt.config 'watch', _.extend {}, watchconfigs.main, watchconfigs.min
+		grunt.task.run 'watch'
