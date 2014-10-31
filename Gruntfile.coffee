@@ -1,3 +1,5 @@
+_ = require('lodash');
+
 module.exports = (grunt) ->
 	vars = {
 		scripts: [
@@ -106,13 +108,7 @@ module.exports = (grunt) ->
 				dest: 'build-min'
 				ext: '.html'
 				options: {
-					data: {
-						scripts: vars.scripts
-						styles: vars.styles
-						test_scripts: vars.test_scripts
-						test_styles: vars.test_styles
-						min: true
-					}
+					data: _.extend {}, vars, { min: true }
 				}
 			}
 		}
