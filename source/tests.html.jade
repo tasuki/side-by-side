@@ -4,18 +4,19 @@ html
 		title Side By Side test suite
 		meta(charset="utf-8")
 
-		for script in scripts
-			script(src="#{script}")
+		if min == true
+			link(rel="stylesheet", type="text/css", href="test_styles.css")
+			script(src="scripts.js")
+			script(src="test_scripts.js")
+		else
+			for script in scripts
+				script(src="#{script}")
 
-		// test scripts
-		link(rel="stylesheet", type="text/css", href="bower_components/qunit/qunit/qunit.css")
-		script(src="bower_components/qunit/qunit/qunit.js")
-		script(src="tests/_setup.js")
-		script(src="tests/services/reader/_factory.js")
-		script(src="tests/services/reader/markdown.js")
-		script(src="tests/services/reader/json.js")
-		script(src="tests/services/transformer.js")
-		script(src="tests/services/poems.js")
+			for script in test_scripts
+				script(src="#{script}")
+
+			for style in test_styles
+				link(rel="stylesheet", type="text/css", href="#{style}")
 
 	body
 		div(id="qunit")

@@ -20,6 +20,18 @@ module.exports = (grunt) ->
 			'bower_components/pure/pure-min.css'
 			'styles/style.css'
 		]
+		test_scripts: [
+			'bower_components/qunit/qunit/qunit.js'
+			'tests/_setup.js'
+			'tests/services/reader/_factory.js'
+			'tests/services/reader/markdown.js'
+			'tests/services/reader/json.js'
+			'tests/services/transformer.js'
+			'tests/services/poems.js'
+		]
+		test_styles: [
+			'bower_components/qunit/qunit/qunit.css'
+		]
 		min: false
 	}
 
@@ -70,6 +82,7 @@ module.exports = (grunt) ->
 			min: {
 				files: {
 					'build-min/styles.css': ('build/' + style for style in vars.styles)
+					'build-min/test_styles.css': ('build/' + style for style in vars.test_styles)
 				}
 			}
 		}
@@ -96,6 +109,8 @@ module.exports = (grunt) ->
 					data: {
 						scripts: vars.scripts
 						styles: vars.styles
+						test_scripts: vars.test_scripts
+						test_styles: vars.test_styles
 						min: true
 					}
 				}
@@ -105,7 +120,10 @@ module.exports = (grunt) ->
 		qunit: {
 			main: {
 				options: {
-					urls: [ 'http://0.0.0.0:8000/tests.html' ]
+					urls: [
+						'http://0.0.0.0:8000/tests.html'
+						'http://0.0.0.0:8001/tests.html'
+					]
 				}
 			}
 		}
@@ -124,6 +142,7 @@ module.exports = (grunt) ->
 			min: {
 				files: {
 					'build-min/scripts.js': ('build/' + script for script in vars.scripts)
+					'build-min/test_scripts.js': ('build/' + script for script in vars.test_scripts)
 				}
 			}
 		}
@@ -150,8 +169,9 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask 'default', [ 'copy:main', 'coffee', 'stylus', 'jade:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'uglify', 'cssmin' ]
+	grunt.registerTask 'default', [ 'copy:main', 'coffee:main', 'stylus:main', 'jade:main' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'uglify:min', 'cssmin:min' ]
 
-	grunt.registerTask 'serve', [ 'default', 'min', 'connect', 'watch' ]
-	grunt.registerTask 'test', [ 'default', 'connect:main', 'qunit' ]
+	grunt.registerTask 'serve', [ 'default', 'connect:main', 'watch:main' ]
+	grunt.registerTask 'serve-all', [ 'default', 'min', 'connect', 'watch' ]
+	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
