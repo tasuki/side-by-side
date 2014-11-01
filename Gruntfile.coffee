@@ -45,7 +45,7 @@ module.exports = (grunt) ->
 			}
 			test: {
 				files: 'source/tests/the_raven/*'
-				tasks: 'copy:main'
+				tasks: 'copy:main_raven'
 			}
 			jade: {
 				files: 'source/**/*.jade'
@@ -59,7 +59,7 @@ module.exports = (grunt) ->
 		min: {
 			test_min: {
 				files: 'source/tests/the_raven/*'
-				tasks: 'copy:min'
+				tasks: 'copy:min_raven'
 			}
 			jade_min: {
 				files: 'source/**/*.jade'
@@ -104,25 +104,31 @@ module.exports = (grunt) ->
 		}
 
 		copy: {
-			main: {
+			main_raven: {
 				expand: true
 				cwd: 'source'
 				src: 'tests/the_raven/*'
 				dest: 'build'
 			}
-			min: {
+			min_raven: {
 				expand: true
 				cwd: 'source'
 				src: 'tests/the_raven/*'
 				dest: 'build-min'
+			}
+			min_fonts: {
+				expand: true
+				cwd: 'build/bower_components/fontawesome/fonts'
+				src: '*'
+				dest: 'build-min/fonts/'
 			}
 		}
 
 		cssmin: {
 			min: {
 				files: {
-					'build-min/styles.css': ('build/' + style for style in vars.styles)
-					'build-min/test_styles.css': ('build/' + style for style in vars.test_styles)
+					'build-min/css/styles.css': ('build/' + style for style in vars.styles)
+					'build-min/css/test_styles.css': ('build/' + style for style in vars.test_styles)
 				}
 			}
 		}
@@ -175,8 +181,8 @@ module.exports = (grunt) ->
 		uglify: {
 			min: {
 				files: {
-					'build-min/scripts.js': ('build/' + script for script in vars.scripts)
-					'build-min/test_scripts.js': ('build/' + script for script in vars.test_scripts)
+					'build-min/js/scripts.js': ('build/' + script for script in vars.scripts)
+					'build-min/js/test_scripts.js': ('build/' + script for script in vars.test_scripts)
 				}
 			}
 		}
@@ -194,8 +200,8 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	# Register tasks
-	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'uglify:min', 'cssmin:min' ]
+	grunt.registerTask 'default', [ 'coffee:main', 'copy:main_raven', 'jade:main', 'stylus:main' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min_raven', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
 
 	grunt.registerTask 'serve', () ->
