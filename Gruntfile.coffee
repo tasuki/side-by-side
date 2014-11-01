@@ -127,8 +127,8 @@ module.exports = (grunt) ->
 		cssmin: {
 			min: {
 				files: {
-					'build-min/css/styles.css': ('build/' + style for style in vars.styles)
-					'build-min/css/test_styles.css': ('build/' + style for style in vars.test_styles)
+					'build-min/styles/styles.css': ('build/' + style for style in vars.styles)
+					'build-min/styles/test_styles.css': ('build/' + style for style in vars.test_styles)
 				}
 			}
 		}
@@ -181,8 +181,8 @@ module.exports = (grunt) ->
 		uglify: {
 			min: {
 				files: {
-					'build-min/js/scripts.js': ('build/' + script for script in vars.scripts)
-					'build-min/js/test_scripts.js': ('build/' + script for script in vars.test_scripts)
+					'build-min/scripts/scripts.js': ('build/' + script for script in vars.scripts)
+					'build-min/scripts/test_scripts.js': ('build/' + script for script in vars.test_scripts)
 				}
 			}
 		}
