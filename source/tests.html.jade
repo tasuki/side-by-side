@@ -5,9 +5,9 @@ html
 		meta(charset="utf-8")
 
 		if min == true
-			link(rel="stylesheet", type="text/css", href="styles/test_styles.css")
-			script(src="scripts/scripts.js")
-			script(src="scripts/test_scripts.js")
+			link(rel="stylesheet", type="text/css", href="styles/test_min.css")
+			script(src="scripts/all_min.js")
+			script(src="scripts/test_min.js")
 		else
 			for script in scripts
 				script(src="#{script}")
