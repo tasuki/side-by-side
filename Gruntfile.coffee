@@ -57,6 +57,10 @@ module.exports = (grunt) ->
 		min: false
 	}
 
+	template_data = {
+		base: '/'
+	}
+
 	watchconfigs = {
 		main: {
 			coffee: {
@@ -126,11 +130,31 @@ module.exports = (grunt) ->
 		}
 
 		copy: {
+			main_htaccess: {
+				expand: true
+				cwd: 'source'
+				src: '.htaccess'
+				dest: 'build'
+				options: {
+					processContent: (content) ->
+						grunt.template.process content, { data: template_data }
+				}
+			}
 			main_raven: {
 				expand: true
 				cwd: 'source'
 				src: 'tests/the_raven/*'
 				dest: 'build'
+			}
+			min_htaccess: {
+				expand: true
+				cwd: 'source'
+				src: '.htaccess'
+				dest: 'build-min'
+				options: {
+					processContent: (content) ->
+						grunt.template.process content, { data: template_data }
+				}
 			}
 			min_raven: {
 				expand: true
@@ -163,7 +187,7 @@ module.exports = (grunt) ->
 				dest: 'build'
 				ext: '.html'
 				options: {
-					data: vars
+					data: _.extend {}, vars, template_data
 					pretty: true
 				}
 			}
@@ -174,7 +198,7 @@ module.exports = (grunt) ->
 				dest: 'build-min'
 				ext: '.html'
 				options: {
-					data: _.extend {}, vars, { min: true }
+					data: _.extend {}, vars, template_data, { min: true }
 				}
 			}
 		}
@@ -222,7 +246,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	# Register tasks
-	grunt.registerTask 'default', [ 'coffee:main', 'copy:main_raven', 'jade:main', 'stylus:main' ]
+	grunt.registerTask 'default', [ 'coffee:main', 'copy:main_htaccess', 'copy:main_raven', 'jade:main', 'stylus:main' ]
 	grunt.registerTask 'min', [ 'jade:min', 'copy:min_raven', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
 

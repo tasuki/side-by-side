@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase <%= base %>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.html [PT]
