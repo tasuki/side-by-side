@@ -19,6 +19,19 @@ middleware = (connect, options) ->
 		connect.static(options.base[0])
 	]
 
+add = (subtasks, defaults = {}) ->
+	subtasks.map((item) -> [
+		item[0]
+		_.extend {
+			expand: true
+			cwd: 'source'
+			dest: if /^min/.test(item[0]) then 'build-min' else 'build'
+		}, defaults, item[1]
+	]).reduce((params, param) ->
+		params[param[0]] = param[1]
+		params
+	, {})
+
 module.exports = (grunt) ->
 	vars = {
 		scripts: [
@@ -148,19 +161,6 @@ module.exports = (grunt) ->
 			}
 		}
 	}
-
-	add = (subtasks, defaults = {}) ->
-		subtasks.map((item) -> [
-			item[0]
-			_.extend {
-				expand: true
-				cwd: 'source'
-				dest: if /^min/.test(item[0]) then 'build-min' else 'build'
-			}, defaults, item[1]
-		]).reduce((params, param) ->
-			params[param[0]] = param[1]
-			params
-		, {})
 
 	grunt.config 'coffee', add([['main', {
 		src: '**/*.coffee'
