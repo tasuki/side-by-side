@@ -103,16 +103,6 @@ module.exports = (grunt) ->
 	grunt.initConfig {
 		pkg: grunt.file.readJSON 'package.json'
 
-		coffee: {
-			main: {
-				expand: true
-				cwd: 'source'
-				src: '**/*.coffee'
-				dest: 'build'
-				ext: '.js'
-			}
-		}
-
 		connect: {
 			main: {
 				options: {
@@ -181,6 +171,11 @@ module.exports = (grunt) ->
 			params[param[0]] = param[1]
 			params
 		, {})
+
+	grunt.config 'coffee', add([['main', {
+		src: '**/*.coffee'
+		ext: '.js'
+	}]])
 
 	grunt.config 'copy', add([
 		[ 'main', {
