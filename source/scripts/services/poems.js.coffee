@@ -32,8 +32,8 @@ angular.module("sideBySide").service "poems", ['fetch', (fetch) ->
 	# Load poems
 	#
 	# @param base [String]
-	@load = (base = '') =>
-		fetch(base + "/config.json").then (config) =>
+	@load = (base) =>
+		fetch(base).then (config) =>
 			config.fetchPoems.then (poems) =>
 				@all = (activize(poem, config.active) for poem in poems)
 				@heading = config.heading

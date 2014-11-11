@@ -1,4 +1,23 @@
 _ = require('lodash');
+modRewrite = require('connect-modrewrite');
+middleware = (connect, options) ->
+	suffixes = ("\\." + suffix for suffix in [
+		'html'
+		'js'
+		'css'
+		'md'
+		'json'
+		'eot'
+		'svg'
+		'ttf'
+		'woff'
+		'otf'
+	]).join('|')
+
+	[
+		modRewrite(["!" + suffixes + "$ /index.html [L]"])
+		connect.static(options.base[0])
+	]
 
 module.exports = (grunt) ->
 	vars = {
@@ -93,12 +112,14 @@ module.exports = (grunt) ->
 			main: {
 				options: {
 					base: 'build'
+					middleware: middleware
 				}
 			}
 			min: {
 				options: {
 					port: 8001
 					base: 'build-min'
+					middleware: middleware
 				}
 			}
 		}
@@ -137,7 +158,7 @@ module.exports = (grunt) ->
 			main: {
 				expand: true
 				cwd: 'source'
-				src: '**/*.jade'
+				src: [ '*.jade', 'partials/**/*.jade' ]
 				dest: 'build'
 				ext: '.html'
 				options: {
@@ -148,7 +169,7 @@ module.exports = (grunt) ->
 			min: {
 				expand: true
 				cwd: 'source'
-				src: '**/*.jade'
+				src: [ '*.jade', 'partials/**/*.jade' ]
 				dest: 'build-min'
 				ext: '.html'
 				options: {

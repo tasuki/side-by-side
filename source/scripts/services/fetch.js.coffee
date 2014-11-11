@@ -1,12 +1,13 @@
 angular.module("sideBySide").factory "fetch", ['$http', '$q', 'readerFactory', ($http, $q, readerFactory) ->
 	# Fetch
 	#
-	# @param file [String] Path to config file
+	# @param base [String] Path to config file directory
 	# @return [Object] Promises and heading
-	(file = "/config.json") ->
+	(base) ->
+		file = base + '/config.json'
 		$http.get(file).then (config) ->
 			promises = config.data.files.map (poem) ->
-				$http.get(poem).then (response) ->
+				$http.get(base + '/' + poem).then (response) ->
 					readerFactory(poem) response.data
 
 			{

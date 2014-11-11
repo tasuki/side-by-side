@@ -2,21 +2,25 @@ angular.module("sideBySide.controllers", [])
 .controller "AppController", [
 	'$location', '$scope', 'poems'
 	($location, $scope, poems) ->
-		$scope.$on "$routeChangeSuccess", ($currentRoute, $previousRoute) ->
-			$scope.base = if $previousRoute.params.base \
-				then '/' + $previousRoute.params.base
-				else ''
+		urlParams = $location.url()
+			.split('/')
+			.filter((item) -> item)
+			.map (item) ->
+				item.split(':')
+			.reduce((prev, current) ->
+				prev[current[0]] = current[1]
+				prev
+			, {})
+
+		if 'base' of urlParams
+			urlParams.base = urlParams.base.replace(/\./g, '/')
+		else
+			urlParams.base = ''
 
 		appUrl = $location.absUrl()
 			.substring(0, $location.absUrl().length - $location.url().length)
-			.replace(/[^\/]*?#$/, '')
 
-		base = appUrl + $location.url()
-			.slice(1)
-			.replace(/(.*)\/.*/, '$1')
-			.replace(/\./g, '/')
-
-		poems.load base
+		poems.load appUrl + '/' + urlParams.base
 ]
 
 .controller "ComparisonController", [

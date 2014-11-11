@@ -5,6 +5,7 @@
 	"description": "Visual comparison of different translations of itemized texts; e.g. poems, bibles, etc.",
 	"devDependencies": {
 		"bower": "1.3.x",
+		"connect-modrewrite": "0.7.x",
 		"grunt": "0.4.x",
 		"grunt-cli": "0.1.x",
 		"grunt-contrib-coffee": "0.12.x",
