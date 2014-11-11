@@ -139,16 +139,6 @@ module.exports = (grunt) ->
 			}
 		}
 
-		stylus: {
-			main: {
-				expand: true
-				cwd: 'source'
-				src: '**/*.styl'
-				dest: 'build'
-				ext: '.css'
-			}
-		}
-
 		uglify: {
 			min: {
 				files: {
@@ -209,6 +199,11 @@ module.exports = (grunt) ->
 		src: [ '*.jade', 'partials/**/*.jade' ]
 		ext: '.html'
 	})
+
+	grunt.config 'stylus', add([['main', {
+		src: '**/*.styl'
+		ext: '.css'
+	}]])
 
 	# Load tasks
 	grunt.loadNpmTasks('grunt-contrib-coffee');
