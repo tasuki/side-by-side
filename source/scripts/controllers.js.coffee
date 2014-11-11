@@ -1,40 +1,19 @@
 angular.module("sideBySide.controllers", [])
 .controller "AppController", [
-	'$location', '$scope', 'poems'
-	($location, $scope, poems) ->
-		urlParams = $location.url()
-			.split('/')
-			.filter((item) -> item)
-			.map (item) ->
-				item.split(':')
-			.reduce((prev, current) ->
-				prev[current[0]] = current[1]
-				prev
-			, {})
-
-		if 'base' of urlParams
-			urlParams.base = urlParams.base.replace(/\./g, '/')
-		else
-			urlParams.base = ''
-
-		appUrl = $location.absUrl()
-			.substring(0, $location.absUrl().length - $location.url().length)
-
-		poems.load appUrl + '/' + urlParams.base
+	() -> null
 ]
-
 .controller "ComparisonController", [
-	'$routeParams', '$scope', '$location', '$anchorScroll', 'poems', 'transformer'
-	($routeParams, $scope, $location, $anchorScroll, poems, transformer) ->
+	'$scope', '$anchorScroll', 'route', 'poems', 'transformer'
+	($scope, $anchorScroll, route, poems, transformer) ->
 		min = 1
 		max = 5
 
 		scroll = () ->
 			setTimeout () ->
-				if ('section' of $routeParams)
-					section = 'section-' + $routeParams['section']
+				if ('section' of route.params)
+					section = 'section-' + route.params['section']
 					element = document.getElementById(section)
-					element.scrollIntoView()
+					element.scrollIntoView() if element
 			, 100
 
 		$scope.$watchCollection () ->
@@ -64,4 +43,6 @@ angular.module("sideBySide.controllers", [])
 			$scope.pick = not $scope.pick
 
 		$scope.pick = false
+
+		poems.load route.appUrl + '/' + route.params.base
 ]

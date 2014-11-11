@@ -28,6 +28,7 @@ module.exports = (grunt) ->
 			'bower_components/angular-sanitize/angular-sanitize.js'
 			'bower_components/marked/lib/marked.js'
 			'scripts/app.js'
+			'scripts/services/route.js'
 			'scripts/services/fetch.js'
 			'scripts/services/poems.js'
 			'scripts/services/reader/_factory.js'
