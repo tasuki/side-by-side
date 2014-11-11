@@ -179,30 +179,6 @@ module.exports = (grunt) ->
 			}
 		}
 
-		jade: {
-			main: {
-				expand: true
-				cwd: 'source'
-				src: [ '*.jade', 'partials/**/*.jade' ]
-				dest: 'build'
-				ext: '.html'
-				options: {
-					data: _.extend {}, vars, template_data
-					pretty: true
-				}
-			}
-			min: {
-				expand: true
-				cwd: 'source'
-				src: [ '*.jade', 'partials/**/*.jade' ]
-				dest: 'build-min'
-				ext: '.html'
-				options: {
-					data: _.extend {}, vars, template_data, { min: true }
-				}
-			}
-		}
-
 		qunit: {
 			main: {
 				options: {
@@ -233,6 +209,32 @@ module.exports = (grunt) ->
 			}
 		}
 	}
+
+	add = (defaults, subtasks) ->
+		subtasks.map((item) -> [
+			item[0]
+			_.extend {
+				expand: true
+				cwd: 'source'
+				dest: if /^min/.test(item[0]) then 'build-min' else 'build'
+			}, defaults, item[1]
+		]).reduce((params, param) ->
+			params[param[0]] = param[1]
+			params
+		, {})
+
+	grunt.config 'jade', add({
+		src: [ '*.jade', 'partials/**/*.jade' ]
+		ext: '.html'
+	}, [
+		[ 'main', { options: {
+			data: _.extend {}, vars, template_data
+			pretty: true
+		}}]
+		[ 'min', { options: {
+			data: _.extend {}, vars, template_data, { min: true }
+		}}]
+	])
 
 	# Load tasks
 	grunt.loadNpmTasks('grunt-contrib-coffee');
