@@ -210,7 +210,7 @@ module.exports = (grunt) ->
 		}
 	}
 
-	add = (defaults, subtasks) ->
+	add = (subtasks, defaults = {}) ->
 		subtasks.map((item) -> [
 			item[0]
 			_.extend {
@@ -223,10 +223,7 @@ module.exports = (grunt) ->
 			params
 		, {})
 
-	grunt.config 'jade', add({
-		src: [ '*.jade', 'partials/**/*.jade' ]
-		ext: '.html'
-	}, [
+	grunt.config 'jade', add([
 		[ 'main', { options: {
 			data: _.extend {}, vars, template_data
 			pretty: true
@@ -234,7 +231,10 @@ module.exports = (grunt) ->
 		[ 'min', { options: {
 			data: _.extend {}, vars, template_data, { min: true }
 		}}]
-	])
+	], {
+		src: [ '*.jade', 'partials/**/*.jade' ]
+		ext: '.html'
+	})
 
 	# Load tasks
 	grunt.loadNpmTasks('grunt-contrib-coffee');
