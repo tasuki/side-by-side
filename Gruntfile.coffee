@@ -130,37 +130,25 @@ module.exports = (grunt) ->
 		}
 
 		copy: {
-			main_htaccess: {
+			main: {
 				expand: true
 				cwd: 'source'
-				src: '.htaccess'
+				src: [ '.htaccess', 'tests/the_raven/*' ]
 				dest: 'build'
 				options: {
 					processContent: (content) ->
 						grunt.template.process content, { data: template_data }
 				}
 			}
-			main_raven: {
+			min: {
 				expand: true
 				cwd: 'source'
-				src: 'tests/the_raven/*'
-				dest: 'build'
-			}
-			min_htaccess: {
-				expand: true
-				cwd: 'source'
-				src: '.htaccess'
+				src: [ '.htaccess', 'tests/the_raven/*' ]
 				dest: 'build-min'
 				options: {
 					processContent: (content) ->
 						grunt.template.process content, { data: template_data }
 				}
-			}
-			min_raven: {
-				expand: true
-				cwd: 'source'
-				src: 'tests/the_raven/*'
-				dest: 'build-min'
 			}
 			min_fonts: {
 				expand: true
@@ -248,8 +236,8 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	# Register tasks
-	grunt.registerTask 'default', [ 'coffee:main', 'copy:main_htaccess', 'copy:main_raven', 'jade:main', 'stylus:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min_raven', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
+	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
 
 	grunt.registerTask 'serve', () ->
