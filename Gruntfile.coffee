@@ -141,6 +141,15 @@ module.exports = (grunt) ->
 			}
 		}
 
+		uglify: {
+			min: {
+				files: {
+					'build-min/scripts/all_min.js': ('build/' + script for script in vars.scripts)
+					'build-min/scripts/test_min.js': ('build/' + script for script in vars.test_scripts)
+				}
+			}
+		}
+
 		qunit: {
 			main: {
 				options: {
@@ -151,21 +160,7 @@ module.exports = (grunt) ->
 				}
 			}
 		}
-
-		uglify: {
-			min: {
-				files: {
-					'build-min/scripts/all_min.js': ('build/' + script for script in vars.scripts)
-					'build-min/scripts/test_min.js': ('build/' + script for script in vars.test_scripts)
-				}
-			}
-		}
 	}
-
-	grunt.config 'coffee', add([['main', {
-		src: '**/*.coffee'
-		ext: '.js'
-	}]])
 
 	grunt.config 'copy', add([
 		[ 'main', {
@@ -199,6 +194,11 @@ module.exports = (grunt) ->
 		src: [ '*.jade', 'partials/**/*.jade' ]
 		ext: '.html'
 	})
+
+	grunt.config 'coffee', add([['main', {
+		src: '**/*.coffee'
+		ext: '.js'
+	}]])
 
 	grunt.config 'stylus', add([['main', {
 		src: '**/*.styl'
