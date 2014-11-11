@@ -63,17 +63,17 @@ module.exports = (grunt) ->
 
 	watchconfigs = {
 		main: {
-			coffee: {
-				files: 'source/**/*.coffee'
-				tasks: 'coffee:main'
-			}
-			test: {
-				files: 'source/tests/the_raven/*'
-				tasks: 'copy:main_raven'
+			copy: {
+				files: [ 'source/.htaccess', 'source/tests/the_raven/*' ]
+				tasks: 'copy:main'
 			}
 			jade: {
 				files: 'source/**/*.jade'
 				tasks: 'jade:main'
+			}
+			coffee: {
+				files: 'source/**/*.coffee'
+				tasks: 'coffee:main'
 			}
 			stylus: {
 				files: 'source/**/*.styl'
@@ -81,9 +81,9 @@ module.exports = (grunt) ->
 			}
 		}
 		min: {
-			test_min: {
-				files: 'source/tests/the_raven/*'
-				tasks: 'copy:min_raven'
+			copy_min: {
+				files: [ 'source/.htaccess', 'source/tests/the_raven/*' ]
+				tasks: 'copy:min'
 			}
 			jade_min: {
 				files: 'source/**/*.jade'
@@ -95,7 +95,7 @@ module.exports = (grunt) ->
 			}
 			js_min: {
 				files: 'build/**/*.js'
-				tasks: 'uglify'
+				tasks: 'uglify:min'
 			}
 		}
 	}
