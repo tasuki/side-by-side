@@ -129,35 +129,6 @@ module.exports = (grunt) ->
 			}
 		}
 
-		copy: {
-			main: {
-				expand: true
-				cwd: 'source'
-				src: [ '.htaccess', 'tests/the_raven/*' ]
-				dest: 'build'
-				options: {
-					processContent: (content) ->
-						grunt.template.process content, { data: template_data }
-				}
-			}
-			min: {
-				expand: true
-				cwd: 'source'
-				src: [ '.htaccess', 'tests/the_raven/*' ]
-				dest: 'build-min'
-				options: {
-					processContent: (content) ->
-						grunt.template.process content, { data: template_data }
-				}
-			}
-			min_fonts: {
-				expand: true
-				cwd: 'build/bower_components/fontawesome/fonts'
-				src: '*'
-				dest: 'build-min/fonts/'
-			}
-		}
-
 		cssmin: {
 			min: {
 				files: {
@@ -210,6 +181,26 @@ module.exports = (grunt) ->
 			params[param[0]] = param[1]
 			params
 		, {})
+
+	grunt.config 'copy', add([
+		[ 'main', {
+			src: [ '.htaccess', 'tests/the_raven/*' ]
+		}]
+		[ 'min', {
+			src: [ '.htaccess', 'tests/the_raven/*' ]
+		}]
+		[ 'min_fonts', {
+			cwd: 'build/bower_components/fontawesome/fonts'
+			src: '*'
+			dest: 'build-min/fonts/'
+			options: {}
+		}]
+	], {
+		options: {
+			processContent: (content) ->
+				grunt.template.process content, { data: template_data }
+		}
+	})
 
 	grunt.config 'jade', add([
 		[ 'main', { options: {
