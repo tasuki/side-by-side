@@ -1,24 +1,30 @@
+$lighter = #EEE
+$light = #CCC
+$neutral = #888
+$dark = #333
+$darker = #222
+
 body
-	color: #22220C
-	background: #F2F2DA
+	color: $darker
+	background: $lighter
 	font-family: "Noticia Text", serif
 	padding-bottom: 36px
 
 .pure-menu.pure-menu-open
 	height: 36px
-	color: #E5E5A1
-	background: #22220C
+	color: $lighter
+	background: $darker
 	li
 		a
-			color: #C6C684
+			color: $light
 			&:hover
-				background: #4A4A16
-				color: #FFF
+				background: $dark
+				color: $lighter
 			&.active
 				&:hover
-					color: #22220C
-				background: #BB4
-				color: #FFF
+					color: $darker
+				background: $light
+				color: $lighter
 
 	.pure-g-r
 		.version
@@ -47,18 +53,18 @@ body
 	word-spacing: normal
 
 	.version-container
-		border-top: 1px solid #C6C684
+		border-top: 1px solid $light
 		position: relative
 		padding: 0px 10px
 
 	.version-menu
-		color: #E5E5A1
+		color: $lighter
 		padding: 0px 10px
 		position: relative
 
 	.section
-		color: #E5E5A1
-		background: #4A4A33
+		color: $lighter
+		background: $dark
 		padding: 1px 5px
 		border-radius: 5px
 		position: absolute
@@ -67,8 +73,8 @@ body
 		top: -6px
 
 .pick
-	background: #332
-	color: #C6C684
+	background: $dark
+	color: $light
 	position: fixed
 	left: 0
 	bottom: 36px
@@ -82,22 +88,22 @@ body
 	overflow: auto
 
 	a
-		color: #886
+		color: $neutral
 
 	table
 		margin: auto
 		min-width: 50%
 		th
 			text-align: left
-			color: #E5E5A1
+			color: $lighter
 		td,th
 			padding: 5px 15px
 		tr.switch:hover
-			background: #443
+			background: $darker
 			cursor: pointer
 
 	.disabled
-		color: #886
+		color: $neutral
 
 max_columns = 6
 for columns in 1 .. max_columns
