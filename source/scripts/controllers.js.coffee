@@ -3,8 +3,8 @@ angular.module("sideBySide.controllers", [])
 	() -> null
 ]
 .controller "ComparisonController", [
-	'$scope', '$anchorScroll', 'route', 'poems', 'transformer'
-	($scope, $anchorScroll, route, poems, transformer) ->
+	'$scope', 'route', 'poems', 'transformer'
+	($scope, route, poems, transformer) ->
 		min = 1
 		max = 5
 
