@@ -21,7 +21,7 @@ less like this:
 
 ### Run dev server
 
-	node_modules/.bin/grunt server
+	node_modules/.bin/grunt serve
 
 Point your browser at http://0.0.0.0:8000/#/tests.the_raven/
 
