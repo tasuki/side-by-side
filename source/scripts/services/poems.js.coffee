@@ -2,7 +2,7 @@ angular.module("sideBySide").service "poems", ['fetch', (fetch) ->
 	@all = [{
 		meta: {
 			Active: true
-			Loading: true
+			Loading: "Loading"
 		}
 		content: [{
 			section: 'Loading...'
