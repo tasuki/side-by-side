@@ -3,18 +3,20 @@ angular.module("sideBySide.controllers", [])
 	() -> null
 ]
 .controller "ComparisonController", [
-	'$scope', 'route', 'poems', 'transformer'
-	($scope, route, poems, transformer) ->
+	'$document', '$location', '$rootScope', '$scope', 'route', 'poems', 'transformer'
+	($document, $location, $rootScope, $scope, route, poems, transformer) ->
 		min = 1
 		max = 5
 
 		scroll = () ->
 			setTimeout () ->
-				if ('section' of route.params)
-					section = 'section-' + route.params['section']
-					element = document.getElementById(section)
-					element.scrollIntoView() if element
-			, 100
+				element = document.getElementById($location.hash())
+				$document.scrollTo(element) if element
+			, 1
+
+		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
+			$location.hash($element.prop('id')).replace()
+			$rootScope.$apply()
 
 		$scope.$watchCollection () ->
 			poems.getActive()

@@ -17,7 +17,7 @@
 
 // verses
 #content
-	.pure-g-r(ng-repeat="verse in verses" id="section-{{$index + 1}}")
+	.pure-g-r(du-scrollspy ng-href="#section-{{$index + 1}}" offset="100px" ng-repeat="verse in verses" id="section-{{$index + 1}}")
 		.version(ng-repeat="version in verse")
 			.version-padded
 				.version-container

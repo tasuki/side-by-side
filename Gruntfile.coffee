@@ -39,6 +39,7 @@ module.exports = (grunt) ->
 			'bower_components/angular/angular.js'
 			'bower_components/angular-route/angular-route.js'
 			'bower_components/angular-sanitize/angular-sanitize.js'
+			'bower_components/angular-scroll/angular-scroll.js'
 			'bower_components/marked/lib/marked.js'
 			'scripts/app.js'
 			'scripts/services/route.js'
