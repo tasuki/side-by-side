@@ -10,8 +10,13 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 		, {})
 
 	@params.base = '' if 'base' not of @params
-	@params.base = @params.base.replace(/\./g, '/')
 
 	@appUrl = $location.absUrl()
 		.substring(0, $location.absUrl().length - $location.url().length)
+
+	@update = (key, value) ->
+		@params[key] = value
+		(property + ':' + value for property, value of @params).join('/')
+
+	@
 ]

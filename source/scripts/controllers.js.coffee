@@ -10,13 +10,15 @@ angular.module("sideBySide.controllers", [])
 
 		scroll = () ->
 			setTimeout () ->
-				element = document.getElementById($location.hash())
-				$document.scrollTo(element, 10, 200) if element
+				if ('section' of route.params)
+					section = 'section-' + route.params['section']
+					element = document.getElementById(section)
+					$document.scrollTo(element, 10, 200) if element
 			, 1
 
 		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
 			if (not $scope.meta[0].Loading)
-				$location.hash($element.prop('id')).replace()
+				$location.path route.update('section', $element.prop('id').replace('section-', ''))
 				$rootScope.$apply()
 
 		$scope.$watchCollection () ->
@@ -47,5 +49,5 @@ angular.module("sideBySide.controllers", [])
 
 		$scope.pick = false
 
-		poems.load route.appUrl + '/' + route.params.base
+		poems.load route.appUrl + '/' + route.params.base.replace(/\./g, '/')
 ]
