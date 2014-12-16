@@ -11,7 +11,7 @@ angular.module("sideBySide.controllers", [])
 		scroll = () ->
 			setTimeout () ->
 				element = document.getElementById($location.hash())
-				$document.scrollTo(element) if element
+				$document.scrollTo(element, 10, 200) if element
 			, 1
 
 		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
