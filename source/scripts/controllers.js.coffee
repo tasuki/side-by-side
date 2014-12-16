@@ -15,8 +15,9 @@ angular.module("sideBySide.controllers", [])
 			, 1
 
 		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
-			$location.hash($element.prop('id')).replace()
-			$rootScope.$apply()
+			if (not $scope.meta[0].Loading)
+				$location.hash($element.prop('id')).replace()
+				$rootScope.$apply()
 
 		$scope.$watchCollection () ->
 			poems.getActive()
