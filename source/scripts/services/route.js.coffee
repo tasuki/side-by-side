@@ -16,7 +16,7 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 
 	@update = (key, value) ->
 		@params[key] = value
-		(property + ':' + value for property, value of @params).join('/')
+		$location.path (property + ':' + value for property, value of @params).join('/')
 
 	@
 ]

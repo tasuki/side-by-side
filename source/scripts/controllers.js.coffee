@@ -3,8 +3,8 @@ angular.module("sideBySide.controllers", [])
 	() -> null
 ]
 .controller "ComparisonController", [
-	'$document', '$location', '$rootScope', '$scope', 'route', 'poems', 'transformer'
-	($document, $location, $rootScope, $scope, route, poems, transformer) ->
+	'$document', '$rootScope', '$scope', 'route', 'poems', 'transformer'
+	($document, $rootScope, $scope, route, poems, transformer) ->
 		min = 1
 		max = 5
 
@@ -18,7 +18,7 @@ angular.module("sideBySide.controllers", [])
 
 		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
 			if (not $scope.meta[0].Loading)
-				$location.path route.update('section', $element.prop('id').replace('section-', ''))
+				route.update('section', $element.prop('id').replace('section-', ''))
 				$rootScope.$apply()
 
 		$scope.$watchCollection () ->
