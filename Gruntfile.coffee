@@ -59,6 +59,7 @@ module.exports = (grunt) ->
 		test_scripts: [
 			'bower_components/qunit/qunit/qunit.js'
 			'tests/_setup.js'
+			'tests/services/route.js'
 			'tests/services/reader/_factory.js'
 			'tests/services/reader/markdown.js'
 			'tests/services/reader/json.js'

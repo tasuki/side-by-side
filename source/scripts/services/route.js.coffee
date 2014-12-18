@@ -1,5 +1,5 @@
 angular.module("sideBySide").service "route", ['$location', ($location) ->
-	@params = $location.url()
+	@params = $location.path()
 		.split('/')
 		.filter((item) -> item)
 		.map (item) ->
