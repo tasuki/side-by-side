@@ -13,6 +13,6 @@ angular.module("sideBySide").factory "fetch", ['$http', '$q', 'readerFactory', (
 			{
 				fetchPoems: $q.all promises
 				heading: config.data.heading
-				active: config.data.active
+				display: config.data.display
 			}
 ]
