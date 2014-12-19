@@ -2,7 +2,10 @@ poems = {}
 
 module "poems", {
 	setup: () ->
-		poems = injector.get "poems"
+		angular.module("sideBySide").service("route", () ->
+			@params = { 'display': 'asdf' }
+		)
+		poems = angular.injector(['ng', 'sideBySide']).get('poems')
 }
 
 test "has default content", () ->

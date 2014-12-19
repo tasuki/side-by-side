@@ -1,4 +1,4 @@
-angular.module("sideBySide").service "poems", ['fetch', (fetch) ->
+angular.module("sideBySide").service "poems", ['fetch', 'route', (fetch, route) ->
 	@all = [{
 		meta: {
 			Active: true
@@ -36,7 +36,8 @@ angular.module("sideBySide").service "poems", ['fetch', (fetch) ->
 	@load = (base) =>
 		fetch(base).then (config) =>
 			config.fetchPoems.then (poems) =>
-				@all = (activize(poem, config.display) for poem in poems)
+				display = route.params.display or config.display
+				@all = (activize(poem, display) for poem in poems)
 				@heading = config.heading
 
 	@

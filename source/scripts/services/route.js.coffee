@@ -22,9 +22,16 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 	@appUrl = $location.absUrl()
 		.substring(0, $location.absUrl().length - $location.url().length)
 
+	getValue = (value) ->
+		if (typeof value == 'object')
+			for key, val of value
+				# only works for one key...
+				return key + ":" + val.join(',')
+		value
+
 	@update = (key, value) ->
 		@params[key] = value
-		$location.path (property + ':' + value for property, value of @params).join('/')
+		$location.path (property + ':' + getValue(value) for property, value of @params).join('/')
 
 	@
 ]
