@@ -5,7 +5,15 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 		.map (item) ->
 			item.split(':')
 		.reduce((params, param) ->
-			params[param[0]] = param[1]
+			key = param.shift()
+
+			if (param.length > 1)
+				value = {}
+				value[param[0]] = param[1].split(',')
+			else
+				value = param[0]
+
+			params[key] = value
 			params
 		, {})
 

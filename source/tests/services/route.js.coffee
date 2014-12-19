@@ -1,24 +1,25 @@
 route = {}
 
-module "route", {
-	setup: () ->
-		angular.module("sideBySide").service("$location", () ->
-			@path = () ->
-				'/asdf:zxcv/qwerty:asdf'
-			@url = () ->
-				'/asdf:zxcv/qwerty:asdf#test'
-			@absUrl = () ->
-				'http://example.com/asdf:zxcv/qwerty:asdf#test'
-			@
-		)
+module "route", {}
 
-		route = angular.injector(['ng', 'sideBySide']).get('route')
-}
+simpleSetup = () ->
+	angular.module("sideBySide").service("$location", () ->
+		@path = () ->
+			'/asdf:zxcv/qwerty:asdf'
+		@url = () ->
+			'/asdf:zxcv/qwerty:asdf#test'
+		@absUrl = () ->
+			'http://example.com/asdf:zxcv/qwerty:asdf#test'
+		@
+	)
+	route = angular.injector(['ng', 'sideBySide']).get('route')
 
 test "has app url", () ->
+	simpleSetup()
 	equal route.appUrl, 'http://example.com'
 
 test "gets parameters", () ->
+	simpleSetup()
 	deepEqual route.params, {
 		'asdf': 'zxcv'
 		'qwerty': 'asdf'
@@ -26,6 +27,7 @@ test "gets parameters", () ->
 	}
 
 test "updates parameters", () ->
+	simpleSetup()
 	route.update('asdf', 'hjkl')
 	deepEqual route.params, {
 		'asdf': 'hjkl'
@@ -34,10 +36,31 @@ test "updates parameters", () ->
 	}
 
 test "adds parameter", () ->
+	simpleSetup()
 	route.update('new', 'one')
 	deepEqual route.params, {
 		'asdf': 'zxcv'
 		'qwerty': 'asdf'
 		'base': ''
 		'new': 'one'
+	}
+
+test "gets arrays", () ->
+	angular.module("sideBySide").service("$location", () ->
+		urlPath = '/display:Language:Czech,English'
+		@path = () ->
+			urlPath
+		@url = () ->
+			urlPath
+		@absUrl = () ->
+			'http://example.com/' + urlPath
+		@
+	)
+	route = angular.injector(['ng', 'sideBySide']).get('route')
+
+	deepEqual route.params, {
+		'base': ''
+		'display': {
+			'Language': [ 'Czech', 'English' ]
+		}
 	}
