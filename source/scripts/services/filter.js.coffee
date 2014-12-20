@@ -5,22 +5,25 @@ angular.module("sideBySide").service "filter", ['poems', (poems) ->
 		extractHeaders(poems.all)
 
 	@getFilter = () ->
+		encodings = []
 		for header in headers
 			activeHeaderValues = _.uniq(poems.getActive().map((item) ->
 				item.meta[header]
 			))
-			if (activeHeaderValues.length > 1)
-				continue # header value differs
-
 			inactiveMatching = poems.getInactive().filter((item) ->
-				item.meta[header] == activeHeaderValues[0]
+				item.meta[header] in activeHeaderValues
 			)
 			if (inactiveMatching.length > 0)
 				continue # inactive poems have same header value
 
-			ret = {}
-			ret[header] = activeHeaderValues
-			return ret
+			encodings.push({ 'header': header, 'values': activeHeaderValues })
+
+		minlength = _.min(encodings.map((item) -> item.values.length))
+		filtered = _.first(encodings.filter((item) -> item.values.length == minlength))
+
+		ret = {}
+		ret[filtered.header] = filtered.values
+		return ret
 
 	extractHeaders = (all) ->
 		fieldLengths = all

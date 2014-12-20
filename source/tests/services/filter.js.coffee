@@ -63,3 +63,12 @@ test "get filter for poems that share a common property", () ->
 	deepEqual filter.getFilter(), {
 		'Language': [ 'Czech' ]
 	}
+
+test "get filter for arbitrary poems using shortest key", () ->
+	poemList.vrch.meta.Active = true
+	poemList.muz.meta.Active = true
+	filter.update()
+
+	deepEqual filter.getFilter(), {
+		'Code': [ 'vrch', 'muz' ]
+	}
