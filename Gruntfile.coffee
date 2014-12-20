@@ -49,6 +49,7 @@ module.exports = (grunt) ->
 			'scripts/services/reader/markdown.js'
 			'scripts/services/reader/json.js'
 			'scripts/services/transformer.js'
+			'scripts/services/filter.js'
 			'scripts/controllers.js'
 		]
 		styles: [
@@ -65,6 +66,7 @@ module.exports = (grunt) ->
 			'tests/services/reader/markdown.js'
 			'tests/services/reader/json.js'
 			'tests/services/transformer.js'
+			'tests/services/filter.js'
 		]
 		test_styles: [
 			'bower_components/qunit/qunit/qunit.css'
