@@ -1,8 +1,8 @@
 Author: Barbara Beaupré  
 Title: Kruk  
-Year: 1910
+Year: 1910  
 Language: Polish  
-Code: beau
+Code: beau  
 
 ## 1
 
