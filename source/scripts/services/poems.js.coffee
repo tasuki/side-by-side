@@ -17,6 +17,12 @@ angular.module("sideBySide").service "poems", ['fetch', 'route', (fetch, route) 
 	@getActive = () ->
 		(poem for poem in @all when poem.meta.Active is true)
 
+	# Get inactive poems
+	#
+	# @return [Array] Inactive poems
+	@getInactive = () ->
+		(poem for poem in @all when poem.meta.Active is not true)
+
 	# Activize poem based on passed rules
 	#
 	# @param poem [Object]

@@ -8,12 +8,7 @@ module "poems", {
 		poems = angular.injector(['ng', 'sideBySide']).get('poems')
 }
 
-test "has default content", () ->
-	active = poems.getActive()
-	equal active[0].content[0].text, 'Please be patient!'
-	equal active[0].content[0].section, 'Loading...'
-
-test "gets active", () ->
+setPoems = () ->
 	poems.all = [{
 		meta: { Active: true }
 		content: [{ section: '1', text: 'one' }]
@@ -25,6 +20,18 @@ test "gets active", () ->
 		content: [{ section: '3', text: 'three' }]
 	}]
 
+test "has default content", () ->
+	active = poems.getActive()
+	equal active[0].content[0].text, 'Please be patient!'
+	equal active[0].content[0].section, 'Loading...'
+
+test "gets active", () ->
+	setPoems()
 	active = poems.getActive()
 	equal active[0].content[0].section, '1'
 	equal active[1].content[0].section, '3'
+
+test "gets inactive", () ->
+	setPoems()
+	inactive = poems.getInactive()
+	equal inactive[0].content[0].section, '2'
