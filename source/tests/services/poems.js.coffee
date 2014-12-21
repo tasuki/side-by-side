@@ -2,10 +2,7 @@ poems = {}
 
 module "poems", {
 	setup: () ->
-		angular.module("sideBySide").service("route", () ->
-			@params = { 'display': 'asdf' }
-		)
-		poems = angular.injector(['ng', 'sideBySide']).get('poems')
+		poems = injector.get('poems')
 }
 
 setPoems = () ->
