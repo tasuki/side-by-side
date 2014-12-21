@@ -1,5 +1,4 @@
 filter = {}
-poems = {}
 poemList = {}
 
 module "filter", {
@@ -37,21 +36,14 @@ module "filter", {
 			Code: 'dolu'
 		}}
 
-		angular.module('sideBySide').service('poems', () ->
-			@all = [
-				poemList.poe
-				poemList.vrch
-				poemList.muz
-				poemList.dolu
-			]
-			@getActive = () ->
-				(poem for poem in @all when poem.meta.Active is true)
-			@getInactive = () ->
-				(poem for poem in @all when poem.meta.Active is not true)
-			@
-		)
-
-		filter = angular.injector(['ng', 'sideBySide']).get('filter')
+		poems = injector.get('poems')
+		poems.all = [
+			poemList.poe
+			poemList.vrch
+			poemList.muz
+			poemList.dolu
+		]
+		filter = injector.get('filter')
 }
 
 test "get filter for poems that share a common property", () ->
