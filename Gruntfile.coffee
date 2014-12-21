@@ -50,6 +50,7 @@ module.exports = (grunt) ->
 			'scripts/services/reader/json.js'
 			'scripts/services/transformer.js'
 			'scripts/services/filter.js'
+			'scripts/services/load.js'
 			'scripts/controllers.js'
 		]
 		styles: [

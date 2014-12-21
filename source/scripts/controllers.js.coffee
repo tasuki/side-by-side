@@ -3,8 +3,8 @@ angular.module("sideBySide.controllers", [])
 	() -> null
 ]
 .controller "ComparisonController", [
-	'$document', '$rootScope', '$scope', 'route', 'poems', 'transformer'
-	($document, $rootScope, $scope, route, poems, transformer) ->
+	'$document', '$rootScope', '$scope', 'load', 'poems', 'route', 'transformer'
+	($document, $rootScope, $scope, load, poems, route, transformer) ->
 		min = 1
 		max = 5
 
@@ -49,5 +49,8 @@ angular.module("sideBySide.controllers", [])
 
 		$scope.pick = false
 
-		poems.load route.appUrl + '/' + route.params.base.replace(/\./g, '/')
+		load(
+			route.appUrl + '/' + route.params.base.replace(/\./g, '/')
+			route.params.display
+		)
 ]
