@@ -19,11 +19,13 @@ angular.module("sideBySide").service "filter", ['poems', (poems) ->
 			encodings.push({ 'header': header, 'values': activeHeaderValues })
 
 		minlength = _.min(encodings.map((item) -> item.values.length))
-		filtered = _.first(encodings.filter((item) -> item.values.length == minlength))
+		firstMin = _.first(encodings.filter((item) ->
+			item.values.length == minlength
+		))
 
 		ret = {}
-		ret[filtered.header] = filtered.values
-		return ret
+		ret[firstMin.header] = firstMin.values
+		ret
 
 	extractHeaders = (all) ->
 		fieldLengths = all
