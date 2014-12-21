@@ -2,7 +2,7 @@ reader = {}
 
 module "markdown reader", {
 	setup: () ->
-		reader = injector.get "markdownReader"
+		reader = getInjector().get 'markdownReader'
 }
 
 test "loads poem with section numbers, paragraphs, and a list", () ->

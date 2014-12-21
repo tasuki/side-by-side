@@ -6,7 +6,7 @@ expected = {}
 
 module "transformer", {
 	setup: () ->
-		transformer = injector.get "transformer"
+		transformer = getInjector().get 'transformer'
 
 		english = {
 			meta: { Title: "Ten Commandments", Author: "God knows" }

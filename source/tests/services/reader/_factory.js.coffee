@@ -2,7 +2,7 @@ factory = {}
 
 module "reader factory", {
 	setup: () ->
-		factory = injector.get "readerFactory"
+		factory = getInjector().get 'readerFactory'
 }
 
 test "reads markdown", () ->

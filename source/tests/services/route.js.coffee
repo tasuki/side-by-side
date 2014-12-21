@@ -13,7 +13,7 @@ setup = (
 		@absUrl = () -> base + path + hash
 		@
 	)
-	route = angular.injector(['ng', 'sideBySide']).get('route')
+	route = getInjector().get 'route'
 
 test "has app url", () ->
 	setup()

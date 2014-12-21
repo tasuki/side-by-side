@@ -2,7 +2,7 @@ poems = {}
 
 module "poems", {
 	setup: () ->
-		poems = injector.get('poems')
+		poems = getInjector().get 'poems'
 }
 
 setPoems = () ->

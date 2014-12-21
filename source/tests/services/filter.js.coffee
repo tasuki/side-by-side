@@ -36,6 +36,7 @@ module "filter", {
 			Code: 'dolu'
 		}}
 
+		injector = getInjector()
 		poems = injector.get('poems')
 		poems.all = [
 			poemList.poe

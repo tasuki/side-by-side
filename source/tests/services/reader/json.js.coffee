@@ -2,7 +2,7 @@ reader = {}
 
 module "json reader", {
 	setup: () ->
-		reader = injector.get "jsonReader"
+		reader = getInjector().get 'jsonReader'
 }
 
 test "loads poem", () ->
