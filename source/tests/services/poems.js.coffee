@@ -15,6 +15,9 @@ setPoems = () ->
 	}, {
 		meta: { Active: true }
 		content: [{ section: '3', text: 'three' }]
+	}, {
+		meta: { }
+		content: [{ section: '4', text: 'four' }]
 	}]
 
 test "has default content", () ->
@@ -32,3 +35,4 @@ test "gets inactive", () ->
 	setPoems()
 	inactive = poems.getInactive()
 	equal inactive[0].content[0].section, '2'
+	equal inactive[1].content[0].section, '4'
