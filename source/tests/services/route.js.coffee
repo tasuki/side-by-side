@@ -4,7 +4,7 @@ module "route", {}
 
 setup = (
 	base = 'http://example.com'
-	path = '/asdf:zxcv/qwerty:asdf'
+	path = '/base:asdf/section:7'
 	hash = '#test'
 ) ->
 	angular.module("sideBySide").service("$location", () ->
@@ -21,17 +21,17 @@ test "has app url", () ->
 
 test "gets parameters", () ->
 	setup()
-	equal route.get(), 'asdf:zxcv/qwerty:asdf'
+	equal route.get(), 'base:asdf/section:7'
 
 test "updates parameters", () ->
 	setup()
-	route.update('asdf', 'hjkl')
-	equal route.get(), 'asdf:hjkl/qwerty:asdf'
+	route.update('base', 'zxcv')
+	equal route.get(), 'base:zxcv/section:7'
 
 test "adds parameter", () ->
-	setup()
-	route.update('new', 'one')
-	equal route.get(), 'asdf:zxcv/qwerty:asdf/new:one'
+	setup('http://example.com', '/base:asdf')
+	route.update('section', '1')
+	equal route.get(), 'base:asdf/section:1'
 
 test "processes arrays from url", () ->
 	setup('http://example.com', '/display:Language:Czech,English', '')
@@ -42,3 +42,8 @@ test "processes arrays from url", () ->
 			'Language': [ 'Czech', 'English' ]
 		}
 	}
+
+test "adds base before section", () ->
+	setup('http://example.com', '/section:7', '')
+	route.update('base', 'the_raven')
+	equal route.get(), 'base:the_raven/section:7'

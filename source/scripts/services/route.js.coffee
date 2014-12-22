@@ -29,9 +29,11 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 		value
 
 	@get = () ->
-		(property + ':' + getValue(value) \
-			for property, value of @params when value)
-		.join('/')
+		['base', 'display', 'section']
+			.filter (key) => @params[key]
+			.map (key) =>
+				key + ':' + getValue @params[key]
+			.join('/')
 
 	@update = (key, value) ->
 		@params[key] = value
