@@ -23,7 +23,7 @@ less like this:
 
 	node_modules/.bin/grunt serve
 
-Point your browser at http://0.0.0.0:8000/#/tests.the_raven/
+Point your browser at http://0.0.0.0:8000/base:tests.the_raven/
 
 ### Tests
 
