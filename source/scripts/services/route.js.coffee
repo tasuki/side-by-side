@@ -1,15 +1,14 @@
 angular.module("sideBySide").service "route", ['$location', ($location) ->
 	@params = $location.path()
-		.split('/')
-		.filter((item) -> item)
-		.map (item) ->
-			item.split(':')
+		.split '/'
+		.filter (item) -> item
+		.map (item) -> item.split ':'
 		.reduce((params, param) ->
 			key = param.shift()
 
 			if (param.length > 1)
 				value = {}
-				value[param[0]] = param[1].split(',')
+				value[param[0]] = param[1].split ','
 			else
 				value = param[0]
 
