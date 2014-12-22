@@ -1,6 +1,5 @@
 {
 	"name": "side-by-side",
-	"version": "0.0.1",
 	"author": "Vit Brunner",
 	"dependencies": {
 		"angular": "1.2.20",
