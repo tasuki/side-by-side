@@ -1,11 +1,11 @@
 reader = {}
 
 module "json reader", {
-	setup: () ->
+	setup: ->
 		reader = getInjector().get 'jsonReader'
 }
 
-test "loads poem", () ->
+test "loads poem", ->
 	deepEqual reader("""
 		{
 			meta: {

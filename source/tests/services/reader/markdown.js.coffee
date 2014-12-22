@@ -1,11 +1,11 @@
 reader = {}
 
 module "markdown reader", {
-	setup: () ->
+	setup: ->
 		reader = getInjector().get 'markdownReader'
 }
 
-test "loads poem with section numbers, paragraphs, and a list", () ->
+test "loads poem with section numbers, paragraphs, and a list", ->
 	deepEqual reader("""
 		Title: Universal Declaration of Human Rights
 		Author: John Peters Humphrey
@@ -57,7 +57,7 @@ test "loads poem with section numbers, paragraphs, and a list", () ->
 		]
 	}
 
-test "loads poem with leading text and mixed separators", () ->
+test "loads poem with leading text and mixed separators", ->
 	deepEqual reader("""
 		Title: Test leading text and mixed separators
 
@@ -79,7 +79,7 @@ test "loads poem with leading text and mixed separators", () ->
 		]
 	}
 
-test "loads poem using a custom separator", () ->
+test "loads poem using a custom separator", ->
 	deepEqual reader("""
 		Title: Separator test
 		Separator: heading

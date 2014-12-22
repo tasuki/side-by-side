@@ -1,4 +1,4 @@
-angular.module("sideBySide").service "poems", () ->
+angular.module("sideBySide").service "poems", ->
 	@all = [{
 		meta: {
 			Active: true
@@ -14,13 +14,13 @@ angular.module("sideBySide").service "poems", () ->
 	# Get active poems
 	#
 	# @return [Array] Active poems
-	@getActive = () ->
+	@getActive = ->
 		(poem for poem in @all when poem.meta.Active == true)
 
 	# Get inactive poems
 	#
 	# @return [Array] Inactive poems
-	@getInactive = () ->
+	@getInactive = ->
 		(poem for poem in @all when poem.meta.Active != true)
 
 	@

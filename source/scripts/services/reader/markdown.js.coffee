@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory("markdownReader", () ->
+angular.module("sideBySide").factory("markdownReader", ->
 	# Read markdown poem
 	#
 	# For sample input, see:
@@ -14,9 +14,9 @@ angular.module("sideBySide").factory("markdownReader", () ->
 		# @return [Object] Meta properties
 		readMeta = (text, inlineLexer) ->
 			meta = {}
-			for line in text.split("\n")
-				lexed = inlineLexer.output(line)
-				match = /([^:]*):(.*)/.exec(lexed)
+			for line in text.split "\n"
+				lexed = inlineLexer.output line
+				match = /([^:]*):(.*)/.exec lexed
 				meta[match[1].trim()] = match[2].trim()
 			meta
 
@@ -28,7 +28,7 @@ angular.module("sideBySide").factory("markdownReader", () ->
 			items = []
 			while lexed.length > 0
 				break if lexed[0]["type"] in separators
-				items.push(lexed.shift())
+				items.push lexed.shift()
 			items
 
 		# Read content from lexed blocks
@@ -46,16 +46,15 @@ angular.module("sideBySide").factory("markdownReader", () ->
 
 				text = readSection(lexed, separators)
 				text.links = lexed.links
-				content.push({
+				content.push {
 					section: heading
-					text: marked.parser(text)
-				})
+					text: marked.parser text
+				}
 			content
 
-		marked.setOptions({ smartypants: true })
-		lexed = marked.lexer(source)
-		meta = lexed.shift()
-		meta = readMeta(meta.text, new marked.InlineLexer(lexed.links))
+		marked.setOptions { smartypants: true }
+		lexed = marked.lexer source
+		meta = readMeta(lexed.shift().text, new marked.InlineLexer lexed.links)
 		separators = if meta.Separator \
 			then [meta.Separator] else ['heading', 'hr']
 

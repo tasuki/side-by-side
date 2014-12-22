@@ -1,11 +1,11 @@
 poems = {}
 
 module "poems", {
-	setup: () ->
+	setup: ->
 		poems = getInjector().get 'poems'
 }
 
-setPoems = () ->
+setPoems = ->
 	poems.all = [{
 		meta: { Active: true }
 		content: [{ section: '1', text: 'one' }]
@@ -20,18 +20,18 @@ setPoems = () ->
 		content: [{ section: '4', text: 'four' }]
 	}]
 
-test "has default content", () ->
+test "has default content", ->
 	active = poems.getActive()
 	equal active[0].content[0].text, 'Please be patient!'
 	equal active[0].content[0].section, 'Loading...'
 
-test "gets active", () ->
+test "gets active", ->
 	setPoems()
 	active = poems.getActive()
 	equal active[0].content[0].section, '1'
 	equal active[1].content[0].section, '3'
 
-test "gets inactive", () ->
+test "gets inactive", ->
 	setPoems()
 	inactive = poems.getInactive()
 	equal inactive[0].content[0].section, '2'

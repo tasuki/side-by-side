@@ -5,7 +5,7 @@ polish = {}
 expected = {}
 
 module "transformer", {
-	setup: () ->
+	setup: ->
 		transformer = getInjector().get 'transformer'
 
 		english = {
@@ -58,43 +58,43 @@ module "transformer", {
 		}
 }
 
-test "transforms", () ->
+test "transforms", ->
 	deepEqual transformer([english, czech, polish]), expected
 
-test "transforms with 2 items", () ->
+test "transforms with 2 items", ->
 	expected.meta = expected.meta.slice(0, 2)
 	expected.verses = _.map(expected.verses, (translations) ->
 		return translations.slice(0, 2)
 	)
 	deepEqual transformer([english, czech]), expected
 
-test "throws error on no param", () ->
-	throws () ->
+test "throws error on no param", ->
+	throws ->
 		transformer()
 	, /no poems found/i
 
-test "throws error on empty array", () ->
-	throws () ->
+test "throws error on empty array", ->
+	throws ->
 		transformer []
 	, /no poems found/i
 
-test "throws error on poem being too short", () ->
+test "throws error on poem being too short", ->
 	czech.content.pop()
-	throws () ->
+	throws ->
 		transformer [english, czech, polish]
 	, /missing.*nevezmeš jména/i
 
-test "throws error on poem being too long", () ->
+test "throws error on poem being too long", ->
 	czech.content.pop()
 	polish.content.pop()
-	throws () ->
+	throws ->
 		transformer [english, czech, polish]
 	, /superfluous.*sabbath/i
 
-test "throws error on poems too short plus different lengths", () ->
+test "throws error on poems too short plus different lengths", ->
 	czech.content.pop()
 	polish.content.pop()
 	polish.content.pop()
-	throws () ->
+	throws ->
 		transformer [english, czech, polish]
 	, /missing.*bogów cudzych.*nevezmeš/i

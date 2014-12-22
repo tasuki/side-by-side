@@ -3,10 +3,10 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 		.split '/'
 		.filter (item) -> item
 		.map (item) -> item.split ':'
-		.reduce((params, param) ->
+		.reduce (params, param) ->
 			key = param.shift()
 
-			if (param.length > 1)
+			if param.length > 1
 				value = {}
 				value[param[0]] = param[1].split ','
 			else
@@ -14,7 +14,7 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 
 			params[key] = value
 			params
-		, {})
+		, {}
 
 	@params.base = '' if 'base' not of @params
 
@@ -22,18 +22,18 @@ angular.module("sideBySide").service "route", ['$location', ($location) ->
 		.substring(0, $location.absUrl().length - $location.url().length)
 
 	getValue = (value) ->
-		if (typeof value == 'object')
+		if typeof value == 'object'
 			for key, val of value
 				# only works for one key...
-				return key + ":" + val.join(',')
+				return key + ":" + val.join ','
 		value
 
-	@get = () ->
+	@get = ->
 		['base', 'display', 'section']
 			.filter (key) => @params[key]
 			.map (key) =>
 				key + ':' + getValue @params[key]
-			.join('/')
+			.join '/'
 
 	@update = (key, value) ->
 		@params[key] = value

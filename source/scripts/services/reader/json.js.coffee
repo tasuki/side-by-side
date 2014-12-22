@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory("jsonReader", () ->
+angular.module("sideBySide").factory("jsonReader", ->
 	# Read json poem
 	#
 	# For sample input, see:
@@ -10,7 +10,7 @@ angular.module("sideBySide").factory("jsonReader", () ->
 		parsed = eval('(' + source + ')')
 
 		for i,verse of parsed.content
-			if typeof(verse) == "string"
+			if typeof verse == "string"
 				parsed.content[i] = { section: "", text: verse }
 			else
 				verse.section = "" if "section" not of verse

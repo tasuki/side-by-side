@@ -2,7 +2,7 @@ filter = {}
 poemList = {}
 
 module "filter", {
-	setup: () ->
+	setup: ->
 		poemList.poe = { meta: {
 			Active: false
 			Author: 'Edgar Allan Poe'
@@ -47,7 +47,7 @@ module "filter", {
 		filter = injector.get('filter')
 }
 
-test "get filter for poems that share a common property", () ->
+test "get filter for poems that share a common property", ->
 	poemList.dolu.meta.Active = true
 	poemList.vrch.meta.Active = true
 	poemList.muz.meta.Active = true
@@ -57,7 +57,7 @@ test "get filter for poems that share a common property", () ->
 		'Language': [ 'Czech' ]
 	}
 
-test "get filter for arbitrary poems using shortest key", () ->
+test "get filter for arbitrary poems using shortest key", ->
 	poemList.vrch.meta.Active = true
 	poemList.muz.meta.Active = true
 	filter.update()

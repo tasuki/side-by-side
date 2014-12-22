@@ -8,26 +8,26 @@ angular.module("sideBySide.controllers", [])
 		min = 1
 		max = 5
 
-		scroll = () ->
-			setTimeout () ->
-				if ('section' of route.params)
+		scroll = ->
+			setTimeout ->
+				if 'section' of route.params
 					section = 'section-' + route.params['section']
-					element = document.getElementById(section)
+					element = document.getElementById section
 					$document.scrollTo(element, 10, 200) if element
 			, 1
 
 		$rootScope.$on 'duScrollspy:becameActive', ($event, $element) ->
-			if (not $scope.meta[0].Loading)
-				route.update('section', $element.prop('id').replace('section-', ''))
+			if not $scope.meta[0].Loading
+				route.update 'section', $element.prop('id').replace('section-', '')
 				$rootScope.$apply()
 
-		$scope.$watchCollection () ->
+		$scope.$watchCollection ->
 			poems.getActive()
-		, () ->
+		, ->
 			active = poems.getActive()
 
 			$scope.columns = active.length
-			transformed = transformer(active)
+			transformed = transformer active
 			$scope.verses = transformed.verses
 			$scope.meta = transformed.meta
 
@@ -40,9 +40,9 @@ angular.module("sideBySide.controllers", [])
 		$scope.switchActive = (poem) ->
 			length = poems.getActive().length
 			active = poem.meta.Active
-			if ((length > min or not active) and (length < max or active))
+			if (length > min or not active) and (length < max or active)
 				poem.meta.Active = not poem.meta.Active
-				route.update('display', filter.getFilter())
+				route.update 'display', filter.getFilter()
 				# TODO else notification
 
 		$scope.flipPick = () ->
@@ -51,7 +51,7 @@ angular.module("sideBySide.controllers", [])
 		$scope.pick = false
 
 		load(
-			route.appUrl + '/' + route.params.base.replace(/\./g, '/')
+			route.appUrl + '/' + route.params.base.replace /\./g, '/'
 			route.params.display
 		)
 ]

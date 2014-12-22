@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory "load", ['filter', 'fetch', 'poems', (filter, fetch, poems) ->
+angular.module("sideBySide").factory "load", [ 'filter', 'fetch', 'poems', (filter, fetch, poems) ->
 	# Load poems
 	#
 	# @param base [String] Path to config file directory

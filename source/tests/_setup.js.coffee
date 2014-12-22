@@ -1,1 +1,1 @@
-this.getInjector = () -> angular.injector(['ng', 'sideBySide'])
+this.getInjector = -> angular.injector ['ng', 'sideBySide']

@@ -1,4 +1,4 @@
-angular.module("sideBySide").factory("transformer", () ->
+angular.module("sideBySide").factory("transformer", ->
 	# Transform translations
 	#
 	# @param translations [Array] Translations with 'meta' and 'content' keys
@@ -26,8 +26,8 @@ angular.module("sideBySide").factory("transformer", () ->
 
 			details = []
 			while _.size(_.compact(lengths)) > 1
-				mindex = _.indexOf(lengths, _.min(lengths))
-				maxdex = _.indexOf(lengths, _.max(lengths))
+				mindex = _.indexOf(lengths, _.min lengths)
+				maxdex = _.indexOf(lengths, _.max lengths)
 
 				# least occuring count is higher than most occuring count 
 				message = if mindex > maxdex \
@@ -41,7 +41,7 @@ angular.module("sideBySide").factory("transformer", () ->
 					return "'" + _.last(translation.content).text + "'"
 				)
 
-				details.push(message + lastVerses.join(", "))
+				details.push message + lastVerses.join ", "
 
 				# remove least occuring from lengths
 				delete lengths[mindex]
@@ -50,7 +50,7 @@ angular.module("sideBySide").factory("transformer", () ->
 				uneven.join(", ") + "." +
 				" (" + details.join("; ") + ")."
 
-		checkLengths(translations)
+		checkLengths translations
 
 		data = {
 			meta: (translation.meta for translation in translations)
