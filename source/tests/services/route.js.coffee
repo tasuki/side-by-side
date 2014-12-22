@@ -21,32 +21,19 @@ test "has app url", () ->
 
 test "gets parameters", () ->
 	setup()
-	deepEqual route.params, {
-		'asdf': 'zxcv'
-		'qwerty': 'asdf'
-		'base': ''
-	}
+	equal route.get(), 'asdf:zxcv/qwerty:asdf'
 
 test "updates parameters", () ->
 	setup()
 	route.update('asdf', 'hjkl')
-	deepEqual route.params, {
-		'asdf': 'hjkl'
-		'qwerty': 'asdf'
-		'base': ''
-	}
+	equal route.get(), 'asdf:hjkl/qwerty:asdf'
 
 test "adds parameter", () ->
 	setup()
 	route.update('new', 'one')
-	deepEqual route.params, {
-		'asdf': 'zxcv'
-		'qwerty': 'asdf'
-		'base': ''
-		'new': 'one'
-	}
+	equal route.get(), 'asdf:zxcv/qwerty:asdf/new:one'
 
-test "gets arrays", () ->
+test "processes arrays from url", () ->
 	setup('http://example.com', '/display:Language:Czech,English', '')
 
 	deepEqual route.params, {
