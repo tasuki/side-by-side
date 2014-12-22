@@ -3,8 +3,8 @@ angular.module("sideBySide.controllers", [])
 	() -> null
 ]
 .controller "ComparisonController", [
-	'$document', '$rootScope', '$scope', 'load', 'poems', 'route', 'transformer'
-	($document, $rootScope, $scope, load, poems, route, transformer) ->
+	'$document', '$rootScope', '$scope', 'filter', 'load', 'poems', 'route', 'transformer'
+	($document, $rootScope, $scope, filter, load, poems, route, transformer) ->
 		min = 1
 		max = 5
 
@@ -42,6 +42,7 @@ angular.module("sideBySide.controllers", [])
 			active = poem.meta.Active
 			if ((length > min or not active) and (length < max or active))
 				poem.meta.Active = not poem.meta.Active
+				route.update('display', filter.getFilter())
 				# TODO else notification
 
 		$scope.flipPick = () ->
