@@ -1,4 +1,6 @@
-angular.module("sideBySide").factory "fetch", ['$http', '$q', 'readerFactory', ($http, $q, readerFactory) ->
+angular.module("sideBySide").factory "fetch",
+['$http', '$q', 'readerFactory'
+($http, $q, readerFactory) ->
 	# Fetch
 	#
 	# @param base [String] Path to config file directory

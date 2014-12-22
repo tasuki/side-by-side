@@ -1,4 +1,5 @@
-angular.module("sideBySide").service "filter", ['poems', (poems) ->
+angular.module("sideBySide").service "filter",
+['poems', (poems) ->
 	headers = []
 
 	@update = ->

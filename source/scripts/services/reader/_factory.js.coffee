@@ -1,4 +1,5 @@
-angular.module("sideBySide").factory "readerFactory", ['$injector', ($injector) ->
+angular.module("sideBySide").factory "readerFactory",
+['$injector', ($injector) ->
 	# Create poem reader based on file name
 	#
 	# @param [String] Source file name

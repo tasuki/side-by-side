@@ -1,4 +1,5 @@
-angular.module("sideBySide").service "route", ['$location', ($location) ->
+angular.module("sideBySide").service "route",
+['$location', ($location) ->
 	@params = $location.path()
 		.split '/'
 		.filter (item) -> item
