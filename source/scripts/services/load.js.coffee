@@ -1,5 +1,6 @@
 angular.module("sideBySide").factory "load",
-['filter', 'fetch', 'poems', (filter, fetch, poems) ->
+['filter', 'fetch', 'poems'
+(filter, fetch, poems) ->
 	# Load poems
 	#
 	# @param base [String] Path to config file directory
@@ -22,6 +23,6 @@ angular.module("sideBySide").factory "load",
 			config.fetchedPoems.then (poemList) ->
 				disp = display or config.data.display
 				poems.all = (activize(poem, disp) for poem in poemList)
-				poems.heading = config.data.heading
+				poems.config = config.data
 				filter.update()
 ]

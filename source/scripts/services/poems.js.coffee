@@ -9,7 +9,7 @@ angular.module("sideBySide").service "poems", ->
 			text: 'Please be patient!'
 		}]
 	}]
-	@heading = undefined
+	@config = {}
 
 	# Get active poems
 	#

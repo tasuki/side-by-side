@@ -31,7 +31,7 @@ angular.module("sideBySide.controllers", [])
 		$scope.verses = transformed.verses
 		$scope.meta = transformed.meta
 
-		headingKey = poems.heading or "Author"
+		headingKey = poems.config.heading or "Author"
 		$scope.headings = (version[headingKey] for version in transformed.meta)
 
 		$scope.all = poems.all
