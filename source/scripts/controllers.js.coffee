@@ -1,6 +1,13 @@
 angular.module("sideBySide.controllers", [])
-.controller "AppController", [
-	() -> null
+.controller "AppController",
+['$scope', 'poems'
+($scope, poems) ->
+	$scope.title = =>
+		sbs = 'Side By Side viewer'
+		if poems.config.title
+			poems.config.title + ' – ' + sbs
+		else
+			sbs
 ]
 .controller "ComparisonController",
 ['$document', '$rootScope', '$scope', 'filter', 'load', 'poems', 'route', 'transformer'
