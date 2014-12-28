@@ -23,4 +23,9 @@ angular.module("sideBySide").service "poems", ->
 	@getInactive = ->
 		(poem for poem in @all when poem.meta.Active != true)
 
+	@getMetaKeys = ->
+		@all.reduce (all, one) ->
+			_.uniq all.concat (key for key of one.meta)
+		, []
+
 	@
