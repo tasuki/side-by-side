@@ -49,7 +49,7 @@ angular.module("sideBySide.controllers", [])
 		length = poems.getActive().length
 		active = poem.meta.Active
 		if (length > min or not active) and (length < max or active)
-			poem.meta.Active = not poem.meta.Active
+			poem.meta.Active = ! active
 			route.update 'display', filter.getFilter()
 			# TODO else notification
 
