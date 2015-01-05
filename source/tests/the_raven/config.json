@@ -1,13 +1,14 @@
 {
-	"files":
-		[ "1845-poe.md"
-		, "1881-vrchlicky.md"
-		, "1885-muzik.md"
-		, "1918-dostal-lutinov.md"
-		, "1900-zenon-przesmycki.md"
-		, "1910-barbara-beaupre.md"
-		, "1970-baranczak.md"
-		],
+	"title": "The Raven",
+	"files": [
+		"1845-poe.md",
+		"1881-vrchlicky.md",
+		"1885-muzik.md",
+		"1918-dostal-lutinov.md",
+		"1900-zenon-przesmycki.md",
+		"1910-barbara-beaupre.md",
+		"1970-baranczak.md"
+	],
 	"display": {
 		"Language": [ "Czech" ]
 	}
