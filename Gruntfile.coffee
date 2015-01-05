@@ -37,7 +37,6 @@ module.exports = (grunt) ->
 		scripts: [
 			'bower_components/lodash/dist/lodash.js'
 			'bower_components/angular/angular.js'
-			'bower_components/angular-route/angular-route.js'
 			'bower_components/angular-sanitize/angular-sanitize.js'
 			'bower_components/angular-scroll/angular-scroll.js'
 			'bower_components/marked/lib/marked.js'
