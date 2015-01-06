@@ -1,7 +1,7 @@
 Author: Karel Dostál-Lutinov  
 Title: Havran  
 Year: 1918  
-Language: Czech  
+Language: cs  
 Code: dolu  
 
 ## 1

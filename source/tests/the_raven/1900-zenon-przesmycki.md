@@ -1,7 +1,7 @@
 Author: Zenon Przesmycki  
 Title: Kruk  
 Year: 1900  
-Language: Polish  
+Language: pl  
 Code: zen  
 
 ## 1

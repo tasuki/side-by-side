@@ -1,7 +1,7 @@
 Author: Jaroslav Vrchlický  
 Title: Havran  
 Year: 1881  
-Language: Czech  
+Language: cs  
 Code: vrch  
 
 ## 1

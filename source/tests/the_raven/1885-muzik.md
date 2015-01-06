@@ -1,7 +1,7 @@
 Author: Augustin Eugen Mužík  
 Title: Havran  
 Year: 1885  
-Language: Czech  
+Language: cs  
 Code: muz  
 
 ## 1

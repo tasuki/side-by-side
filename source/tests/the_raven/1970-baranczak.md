@@ -1,7 +1,7 @@
 Author: Stanisław Barańczak  
 Title: Kruk  
 Year: 1970  
-Language: Polish  
+Language: pl  
 Code: bar  
 
 ## 1
