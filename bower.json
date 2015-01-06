@@ -8,6 +8,7 @@
 		"fontawesome": "4.2.0",
 		"lodash": "2.4.1",
 		"marked": "0.3.2",
+		"ngDialog": "0.3.8",
 		"pure": "0.2.0",
 		"qunit": "1.13.x"
 	},

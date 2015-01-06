@@ -39,6 +39,7 @@ module.exports = (grunt) ->
 			'bower_components/angular/angular.js'
 			'bower_components/angular-sanitize/angular-sanitize.js'
 			'bower_components/angular-scroll/angular-scroll.js'
+			'bower_components/ngDialog/js/ngDialog.js'
 			'bower_components/marked/lib/marked.js'
 			'scripts/app.js'
 			'scripts/controllers.js'
@@ -54,6 +55,8 @@ module.exports = (grunt) ->
 		]
 		styles: [
 			'bower_components/fontawesome/css/font-awesome.min.css'
+			'bower_components/ngDialog/css/ngDialog.css'
+			'bower_components/ngDialog/css/ngDialog-theme-default.css'
 			'bower_components/pure/pure-min.css'
 			'styles/style.css'
 		]

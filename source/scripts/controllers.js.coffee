@@ -1,13 +1,18 @@
 angular.module("sideBySide.controllers", [])
 .controller "AppController",
-['$scope', 'poems'
-($scope, poems) ->
+['$scope', 'ngDialog', 'poems'
+($scope, ngDialog, poems) ->
 	$scope.title = =>
 		sbs = 'Side By Side viewer'
 		if poems.config.title
 			poems.config.title + ' – ' + sbs
 		else
 			sbs
+
+	$scope.showPage = (page) ->
+		ngDialog.open {
+			template: 'partials/' + page + '.html'
+		}
 ]
 .controller "ComparisonController",
 ['$document', '$rootScope', '$scope', 'filter', 'load', 'poems', 'route', 'transformer'

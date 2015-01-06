@@ -22,11 +22,9 @@ html(ng-app="sideBySide" ng-controller="AppController")
 		.pure-menu.pure-menu-open.pure-menu-horizontal.menu-main
 			ul
 				li
-					a(href="") Home
+					a(href="" ng-click="showPage('help')") Help
 				li
-					a(href="help") Help
-				li
-					a(href="about") About
+					a(href="" ng-click="showPage('about')") About
 
 		div(ng-controller="ComparisonController" class="cols-{{columns}}")
 			include includes/comparison.html.jade
