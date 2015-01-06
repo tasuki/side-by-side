@@ -1,5 +1,15 @@
 {
 	"title": "The Raven",
+	"links": [{
+		"text": "English",
+		"display": { "Language": [ "en" ] }
+	}, {
+		"text": "Česky",
+		"display": { "Language": [ "cs" ] }
+	}, {
+		"text": "Polski",
+		"display": { "Language": [ "pl" ] }
+	}],
 	"files": [
 		"1845-poe.md",
 		"1881-vrchlicky.md",
@@ -9,7 +19,5 @@
 		"1910-barbara-beaupre.md",
 		"1970-baranczak.md"
 	],
-	"display": {
-		"Language": [ "cs" ]
-	}
+	"display": { "Language": [ "cs" ] }
 }

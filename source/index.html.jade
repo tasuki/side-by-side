@@ -21,6 +21,8 @@ html(ng-app="sideBySide" ng-controller="AppController")
 		// top menu
 		.pure-menu.pure-menu-open.pure-menu-horizontal.menu-main
 			ul
+				li(ng-repeat="link in links")
+					a(href="" ng-click="display(link.display)" ng-bind-html="link.text")
 				li
 					a(href="" ng-click="showPage('help')") Help
 				li

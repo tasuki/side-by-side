@@ -5,6 +5,13 @@ angular.module("sideBySide").service "filter",
 	@update = ->
 		extractHeaders poems.all
 
+	@setFilter = (filter) ->
+		for key, values of filter
+			null
+
+		poems.all.map (poem) ->
+			poem.meta.Active = poem.meta[key] in values
+
 	@getFilter = ->
 		encodings = []
 		for header in headers

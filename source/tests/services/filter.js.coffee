@@ -70,3 +70,17 @@ test "get filter for arbitrary poems using shortest key", ->
 	deepEqual filter.getFilter(), {
 		'Code': [ 'vrch', 'muz' ]
 	}
+
+test "set filter", ->
+	setPoems()
+	poemList.vrch.meta.Active = true
+	filter.update()
+	filter.setFilter {
+		'Language': [ 'English' ]
+	}
+
+	equal poemList.vrch.meta.Active, false
+	equal poemList.poe.meta.Active, true
+	deepEqual filter.getFilter(), {
+		'Code': [ 'poe' ]
+	}
