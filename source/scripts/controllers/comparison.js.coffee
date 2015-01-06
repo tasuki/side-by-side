@@ -34,12 +34,14 @@ angular.module("sideBySide").controller "ComparisonController",
 		$scope.all = poems.all
 		scroll()
 
+		if not $scope.meta[0].Loading
+			route.update 'display', filter.getFilter()
+
 	$scope.switchActive = (poem) ->
 		length = poems.getActive().length
 		active = poem.meta.Active
 		if (length > min or not active) and (length < max or active)
 			poem.meta.Active = ! active
-			route.update 'display', filter.getFilter()
 			# TODO else notification
 
 	$scope.flipPick = ->
