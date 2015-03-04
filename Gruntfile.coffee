@@ -211,6 +211,7 @@ module.exports = (grunt) ->
 	grunt.config 'stylus', add([['main', {
 		src: '**/*.styl'
 		ext: '.css'
+		options: { compress: false }
 	}]])
 
 	# Load tasks
