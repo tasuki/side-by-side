@@ -23,4 +23,9 @@ angular.module("sideBySide").controller "AppController",
 		ngDialog.open {
 			template: 'partials/' + page + '.html'
 		}
+
+	$scope.flipPick = ->
+		$scope.pick = not $scope.pick
+
+	$scope.pick = false
 ]

@@ -24,9 +24,17 @@ html(ng-app="sideBySide" ng-controller="AppController")
 				li(ng-repeat="link in links")
 					a(href="" ng-click="display(link.display)" ng-bind-html="link.text")
 				li
-					a(href="" ng-click="showPage('help')") Help
+					a(href="" ng-click="flipPick()")
+						i.fa.fa-bars
+						span Pick
 				li
-					a(href="" ng-click="showPage('about')") About
+					a(href="" ng-click="showPage('help')")
+						i.fa.fa-question-circle
+						span Help
+				li
+					a(href="" ng-click="showPage('about')")
+						i.fa.fa-info-circle
+						span About
 
 		div(ng-controller="ComparisonController" class="cols-{{columns}}")
 			include includes/comparison.html.jade

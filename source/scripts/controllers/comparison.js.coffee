@@ -44,11 +44,6 @@ angular.module("sideBySide").controller "ComparisonController",
 			poem.meta.Active = ! active
 			# TODO else notification
 
-	$scope.flipPick = ->
-		$scope.pick = not $scope.pick
-
-	$scope.pick = false
-
 	load(
 		route.appUrl + '/' + route.params.base.replace /\./g, '/'
 		route.params.display
