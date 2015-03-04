@@ -3,6 +3,7 @@
 	"author": "Vit Brunner",
 	"dependencies": {
 		"angular": "1.2.20",
+		"angular-animate": "1.2.20",
 		"angular-sanitize": "1.2.20",
 		"angular-scroll": "0.6.2",
 		"fontawesome": "4.2.0",

@@ -73,6 +73,7 @@ body
 	position: fixed
 	left: 0
 	bottom: 36px
+	transition: .5s linear all
 
 	width: 100%
 	.pick-in
@@ -100,6 +101,9 @@ body
 	.disabled
 		color: $neutral
 
+.pick.ng-hide
+	max-height: 0
+
 max_columns = 20
 for columns in 1 .. max_columns
 	.cols-{columns}
@@ -108,3 +112,6 @@ for columns in 1 .. max_columns
 
 			.version-padded
 				padding: 0px (100 / (5 * columns))%
+
+.ng-hide-add, .ng-hide-remove
+	display: block !important
