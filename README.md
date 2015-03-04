@@ -13,10 +13,14 @@ bibles, etc.
 
 ### Installation
 
-Install nodejs and javascript dependencies, on Debian/Ubuntu, it goes more or
-less like this:
+Install nodejs, eg. on Debian/Ubuntu:
 
 	sudo apt-get install nodejs
+
+Clone the project, go to project folder, and install dependencies:
+
+	git clone git@github.com:tasuk/side-by-side.git
+	cd side-by-side
 	npm install
 
 ### Run dev server
@@ -27,4 +31,11 @@ Point your browser at http://0.0.0.0:8000/base:tests.the_raven/
 
 ### Tests
 
-Run tests with `npm test`.
+If you have the grunt dev server running, point your browser at http://0.0.0.0:8000/tests.html.
+Otherwise, run tests with `npm test`.
+
+### Release
+
+First, upgrade the version number in `package.json`. Commit the change, and create a zip file with the release:
+
+	node_modules/.bin/grunt release
