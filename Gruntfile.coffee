@@ -141,6 +141,7 @@ module.exports = (grunt) ->
 							'partials/**'
 							'scripts/all_min.js'
 							'styles/all_min.css'
+							'tests/**'
 						]
 						cwd: 'build-min'
 						dest: 'side-by-side'
