@@ -129,7 +129,7 @@ module.exports = (grunt) ->
 			min: {
 				options: {
 					mode: 'zip'
-					archive: 'release.zip'
+					archive: 'side-by-side.zip'
 					level: 9
 				}
 				files: [
