@@ -19,8 +19,10 @@ angular.module("sideBySide").service "route",
 
 	@params.base = '' if 'base' not of @params
 
-	@appUrl = $location.absUrl()
-		.substring(0, $location.absUrl().length - $location.url().length)
+	absUrl = $location.absUrl()
+	@appUrl = absUrl.substring(0, absUrl.length - $location.url().length)
+	if @appUrl.substring(@appUrl.length - 2) == '/#'
+		@appUrl = @appUrl.substring(0, @appUrl.length - 2)
 
 	getValue = (value) ->
 		if typeof value == 'object'

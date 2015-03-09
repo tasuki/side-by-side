@@ -47,3 +47,8 @@ test "adds base before section", ->
 	setup('http://example.com', '/section:7', '')
 	route.update('base', 'the_raven')
 	equal route.get(), 'base:the_raven/section:7'
+
+test "works with hash url", ->
+	setup('http://example.com/#', '/base:asdf', '')
+	deepEqual route.appUrl, 'http://example.com'
+	deepEqual route.params, { 'base': 'asdf' }
