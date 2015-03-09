@@ -5,9 +5,47 @@ e.g. poems, bibles, etc.
 
 ## Set Up
 
-You will need a web server. Here we will assume you use Apache on Linux on
-`localhost`, and that your username is `user`, but the instructions shouldn't
-be difficult to alter to any other OS and web server combination.
+All you need is a web server. Following are two examples, one using
+[DigitalOcean](https://www.digitalocean.com/?refcode=145c195a4635) (referral
+link, will give you extra credit when you sign up) virtual private server, or
+on your local computer.
+
+### DigitalOcean
+
+Create an account and log in. Create a droplet, you can leave all the default
+settings. Ssh in, install apache and unzip:
+
+	sudo apt-get install apache2 unzip
+
+Download and install side by side:
+
+	cd /var/www
+	rm -rf html
+	wget https://github.com/tasuk/side-by-side/releases/download/v0.0.1/side-by-side.zip
+	unzip side-by-side.zip
+	mv side-by-side html
+
+Point your browser at (replace DROPLET_IP with the actual droplet ip address):
+
+	http://DROPLET_IP/#/base:tests.the_raven
+
+Optionally, use apache rewrites to get rid of the hash: First, edit the
+`/etc/apache2/apache2.conf` file, find the `<Directory /var/www/>` section and
+change `AllowOverride None` to `AllowOverride All`. Then run the following
+commands:
+
+	a2enmod rewrite
+	service apache2 restart
+
+Now point your browser at:
+
+	http://DROPLET_IP/base:tests.the_raven
+
+### Local Installation
+
+Here we will assume you use Apache on Linux on `localhost`, and that your
+username is `user`, but the instructions shouldn't be difficult to alter to any
+other OS and web server combination.
 
 Put the `side-by-side` directory into `~/public_html/side-by-side/`.
 
@@ -146,7 +184,7 @@ And one more, called `tomas-jacko.md`:
 	jen o trochu víc zarostlou.  
 	A proto dneska jsem, kde jsem.  
 
-Now visit http://localhost/~user/side-by-side/ and voilá...
+Now visit the website (without the base specified) and voilá...
 
 ## Options
 

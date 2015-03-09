@@ -32,6 +32,12 @@ add = (subtasks, defaults = {}) ->
 		params
 	, {})
 
+get_base = (vars, min = false) ->
+	if typeof(vars.base) == 'string'
+		return vars.base
+
+	return if min then '/sbs/' else '/'
+
 module.exports = (grunt) ->
 	vars = {
 		scripts: [
@@ -78,10 +84,6 @@ module.exports = (grunt) ->
 		]
 		html5mode: false
 		min: false
-	}
-
-	template_data = {
-		base: '/'
 	}
 
 	watchconfigs = {
@@ -165,7 +167,6 @@ module.exports = (grunt) ->
 				options: {
 					urls: [
 						'http://0.0.0.0:8000/tests.html'
-						'http://0.0.0.0:8001/tests.html'
 					]
 				}
 			}
@@ -196,17 +197,20 @@ module.exports = (grunt) ->
 	], {
 		options: {
 			processContent: (content) ->
-				grunt.template.process content, { data: template_data }
+				grunt.template.process content, { data: { base: get_base(vars) } }
 		}
 	})
 
 	grunt.config 'jade', add([
 		[ 'main', { options: {
-			data: _.extend {}, vars, template_data
+			data: _.extend {}, vars, { base: get_base(vars) }
 			pretty: true
 		}}]
 		[ 'min', { options: {
-			data: _.extend {}, vars, template_data, { min: true }
+			data: _.extend {}, vars, {
+				min: true
+				base: get_base(vars, true)
+			}
 		}}]
 	], {
 		src: [ '*.jade', 'partials/**/*.jade' ]
@@ -238,7 +242,7 @@ module.exports = (grunt) ->
 	# Register tasks
 	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
 	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
-	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
+	grunt.registerTask 'test', [ 'default', 'connect:main', 'qunit' ]
 
 	grunt.registerTask 'serve', () ->
 		grunt.task.run 'default'
