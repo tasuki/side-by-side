@@ -76,6 +76,7 @@ module.exports = (grunt) ->
 		test_styles: [
 			'bower_components/qunit/qunit/qunit.css'
 		]
+		html5mode: false
 		min: false
 	}
 
@@ -124,33 +125,6 @@ module.exports = (grunt) ->
 
 	grunt.initConfig {
 		pkg: grunt.file.readJSON 'package.json'
-
-		compress: {
-			min: {
-				options: {
-					mode: 'zip'
-					archive: 'side-by-side.zip'
-					level: 9
-				}
-				files: [
-					{
-						src: [
-							'README.md'
-							'.htaccess'
-							'index.html'
-							'fonts/**'
-							'partials/**'
-							'scripts/all_min.js'
-							'styles/all_min.css'
-							'tests/**'
-						]
-						cwd: 'build-min'
-						dest: 'side-by-side'
-						expand: true
-					}
-				]
-			}
-		}
 
 		connect: {
 			main: {
@@ -252,7 +226,6 @@ module.exports = (grunt) ->
 
 	# Load tasks
 	grunt.loadNpmTasks('grunt-contrib-coffee');
-	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -266,7 +239,6 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
 	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
-	grunt.registerTask 'release', [ 'default', 'min', 'compress' ]
 
 	grunt.registerTask 'serve', () ->
 		grunt.task.run 'default'
