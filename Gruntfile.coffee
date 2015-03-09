@@ -135,6 +135,7 @@ module.exports = (grunt) ->
 				files: [
 					{
 						src: [
+							'README.md'
 							'.htaccess'
 							'index.html'
 							'fonts/**'
@@ -146,10 +147,6 @@ module.exports = (grunt) ->
 						cwd: 'build-min'
 						dest: 'side-by-side'
 						expand: true
-					}
-					{
-						src: 'README.md'
-						dest: 'side-by-side'
 					}
 				]
 			}
@@ -214,6 +211,14 @@ module.exports = (grunt) ->
 			dest: 'build-min/fonts/'
 			options: {}
 		}]
+		[ 'min_readme', {
+			cwd: ''
+			src: 'README-USAGE.md'
+			dest: 'build-min/'
+			rename: (dest, src) ->
+				dest + src.replace('-USAGE', '')
+			options: {}
+		}]
 	], {
 		options: {
 			processContent: (content) ->
@@ -259,7 +264,7 @@ module.exports = (grunt) ->
 
 	# Register tasks
 	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'min', 'connect', 'qunit' ]
 	grunt.registerTask 'release', [ 'default', 'min', 'compress' ]
 
