@@ -211,6 +211,7 @@ module.exports = (grunt) ->
 				min: true
 				base: get_base(vars, true)
 			}
+			pretty: true
 		}}]
 	], {
 		src: [ '*.jade', 'partials/**/*.jade' ]
