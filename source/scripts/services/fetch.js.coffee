@@ -8,6 +8,12 @@ angular.module("sideBySide").factory "fetch",
 	(base) ->
 		file = base + '/config.json'
 		$http.get(file).then (config) ->
+			if typeof config.data != "object"
+				throw "Config file " + file + " doesn't contain data."
+
+			if typeof config.data.files != "object"
+				throw "Config doesn't contain a list of files."
+
 			promises = config.data.files.map (poem) ->
 				$http.get(base + '/' + poem).then (response) ->
 					readerFactory(poem) response.data
