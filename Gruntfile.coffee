@@ -82,7 +82,7 @@ module.exports = (grunt) ->
 		test_styles: [
 			'bower_components/qunit/qunit/qunit.css'
 		]
-		html5mode: false
+		html5Mode: false
 		min: false
 	}
 
@@ -203,7 +203,10 @@ module.exports = (grunt) ->
 
 	grunt.config 'jade', add([
 		[ 'main', { options: {
-			data: _.extend {}, vars, { base: get_base(vars) }
+			data: _.extend {}, vars, {
+				base: get_base(vars)
+				html5Mode: true
+			}
 			pretty: true
 		}}]
 		[ 'min', { options: {
