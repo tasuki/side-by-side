@@ -33,9 +33,6 @@ add = (subtasks, defaults = {}) ->
 	, {})
 
 get_base = (vars, min = false) ->
-	if typeof(vars.base) == 'string'
-		return vars.base
-
 	return if min then '/sbs/' else '/'
 
 module.exports = (grunt) ->
@@ -176,9 +173,21 @@ module.exports = (grunt) ->
 	grunt.config 'copy', add([
 		[ 'main', {
 			src: [ '.htaccess', 'tests/the_raven/*' ]
+			options: {
+				processContent: (content) ->
+					grunt.template.process content, { data: {
+						base: get_base(vars)
+					}}
+			}
 		}]
 		[ 'min', {
 			src: [ '.htaccess', 'tests/the_raven/*' ]
+			options: {
+				processContent: (content) ->
+					grunt.template.process content, { data: {
+						base: get_base(vars, true)
+					}}
+			}
 		}]
 		[ 'min_fonts', {
 			cwd: 'build/bower_components/fontawesome/fonts'
@@ -194,12 +203,7 @@ module.exports = (grunt) ->
 				dest + src.replace('-USAGE', '')
 			options: {}
 		}]
-	], {
-		options: {
-			processContent: (content) ->
-				grunt.template.process content, { data: { base: get_base(vars) } }
-		}
-	})
+	])
 
 	grunt.config 'jade', add([
 		[ 'main', { options: {
