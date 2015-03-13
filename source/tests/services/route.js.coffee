@@ -23,6 +23,14 @@ test "gets parameters", ->
 	setup()
 	equal route.get(), 'base:asdf/section:7'
 
+test "gets base dir", ->
+	setup()
+	equal route.getBaseDir(), 'http://example.com/asdf/'
+
+test "gets more complicated base dir", ->
+	setup('http://example.com/path/#', '/base:test.this', '')
+	equal route.getBaseDir(), 'http://example.com/path/test/this/'
+
 test "updates parameters", ->
 	setup()
 	route.update('base', 'zxcv')

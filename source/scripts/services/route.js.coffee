@@ -20,9 +20,9 @@ angular.module("sideBySide").service "route",
 	@params.base = '' if 'base' not of @params
 
 	absUrl = $location.absUrl()
-	@appUrl = absUrl.substring(0, absUrl.length - $location.url().length)
-	if @appUrl.substring(@appUrl.length - 2) == '/#'
-		@appUrl = @appUrl.substring(0, @appUrl.length - 2)
+	@appUrl = absUrl
+		.substring(0, absUrl.length - $location.url().length)
+		.replace /\/?#?$/, '' # remove / and # at string end
 
 	getValue = (value) ->
 		if typeof value == 'object'
@@ -37,6 +37,13 @@ angular.module("sideBySide").service "route",
 			.map (key) =>
 				key + ':' + getValue @params[key]
 			.join '/'
+
+
+	@getBaseDir = ->
+		base = '/'
+		if @params.base
+			base += @params.base.replace(/\./g, '/') + '/'
+		@appUrl + base
 
 	@update = (key, value) ->
 		@params[key] = value

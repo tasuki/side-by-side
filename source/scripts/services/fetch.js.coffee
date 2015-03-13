@@ -6,7 +6,7 @@ angular.module("sideBySide").factory "fetch",
 	# @param base [String] Path to config file directory
 	# @return [Object] Promises and config data
 	(base) ->
-		file = base + '/config.json'
+		file = base + 'config.json'
 		$http.get(file).then (config) ->
 			if typeof config.data != "object"
 				throw "Config file " + file + " doesn't contain data."

@@ -45,7 +45,7 @@ angular.module("sideBySide").controller "ComparisonController",
 			# TODO else notification
 
 	load(
-		route.appUrl + '/' + route.params.base.replace /\./g, '/'
+		route.getBaseDir()
 		route.params.display
 	)
 ]
