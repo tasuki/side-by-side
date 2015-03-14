@@ -9,8 +9,7 @@ e.g. poems, bibles, etc.
 
 Want to set up your own side by side comparison with minimal hassle?
 
-Go to [latest release](https://github.com/tasuk/side-by-side/releases/latest/),
-download the `side-by-side.zip` file and follow the instructions within!
+See [the sample app](https://github.com/tasuk/sbs) with the instructions!
 
 ## Development
 
@@ -35,16 +34,7 @@ Point your browser at http://0.0.0.0:8000/base:tests.the_raven/
 ### Tests
 
 If you have the grunt dev server running, point your browser at
-http://0.0.0.0:8000/tests.html.  Otherwise, run tests with `npm test`.
-
-### Release
-
-First, upgrade the version number in `package.json`. Commit the change, create
-a zip file with the release:
-
-	node_modules/.bin/grunt release
-
-Create a release on GitHub, upload the `side-by-side.zip` file.
+http://0.0.0.0:8000/tests.html. Otherwise, run tests with `npm test`.
 
 ## Source & License
 

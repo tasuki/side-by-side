@@ -3,74 +3,24 @@
 Easy visual comparison of different translations or versions of itemized texts;
 e.g. poems, bibles, etc.
 
-## Set Up
+This repository is the build artifact of https://github.com/tasuk/side-by-side  
+See sample application at http://tasuk.github.io/sbs/#/base:tests.the_raven
 
-All you need is a web server. Following are two examples, one using
-[DigitalOcean](https://www.digitalocean.com/?refcode=145c195a4635) (referral
-link, will give you extra credit when you sign up) virtual private server, or
-on your local computer.
+## Quick start — Set up
 
-### DigitalOcean
+[Fork] this very [repository]. When you push to the repository, a site should
+appear at http://username.github.io/sbs/, where _username_ is your github
+username.
 
-Create an account and log in. Create a droplet, you can leave all the default
-settings. Ssh in, install apache and unzip:
+[fork]: https://help.github.com/articles/fork-a-repo/
+[repository]: https://github.com/tasuk/sbs
 
-	sudo apt-get install apache2 unzip
+### Basic usage
 
-Download and install side by side:
+In the project directory, [create a file] called `config.json` with the
+following content:
 
-	cd /var/www
-	rm -rf html
-	wget https://github.com/tasuk/side-by-side/releases/download/v0.0.1/side-by-side.zip
-	unzip side-by-side.zip
-	mv side-by-side html
-
-Point your browser at (replace DROPLET_IP with the actual droplet ip address):
-
-	http://DROPLET_IP/#/base:tests.the_raven
-
-Optionally, use apache rewrites to get rid of the hash: First, edit the
-`/etc/apache2/apache2.conf` file, find the `<Directory /var/www/>` section and
-change `AllowOverride None` to `AllowOverride All`. Then run the following
-commands:
-
-	a2enmod rewrite
-	service apache2 restart
-
-Now point your browser at:
-
-	http://DROPLET_IP/base:tests.the_raven
-
-### Local Installation
-
-Here we will assume you use Apache on Linux on `localhost`, and that your
-username is `user`, but the instructions shouldn't be difficult to alter to any
-other OS and web server combination.
-
-Put the `side-by-side` directory into `~/public_html/side-by-side/`.
-
-You'll need to manually change two files. The first one is the `.htaccess`, in
-which you need to set the RewriteBase to the path under which your web server
-will display the directory:
-
-	RewriteBase /~user/side-by-side/
-
-> Note: if you're not using Apache, you'll have to set up redirects by
-> yourself. The rule is simple: if the file exists, retrieve it, otherwise
-> retrieve `index.html`.
-
-The second file that needs altering is `index.html`, in which you need to
-change the base tag to the same path as above:
-
-	<base href="/~user/side-by-side/">
-
-Now you can verify the installation works by visiting
-http://localhost/~user/side-by-side/base:tests.the_raven/
-
-## Sample Usage
-
-In the project directory, create a file called `config.json` with the following
-content:
+[create a file]: https://help.github.com/articles/creating-new-files/
 
 	{
 		"title": "The Road Not Taken",
@@ -81,8 +31,8 @@ content:
 		]
 	}
 
-Create a directory `the-road-not-taken`. In it, create a file called
-`robert-frost.md` with the following content:
+Then create a file `the-road-not-taken/robert-frost.md` with the following
+content:
 
 	Title: The Road Not Taken  
 	Author: Robert Frost  
@@ -184,11 +134,32 @@ And one more, called `tomas-jacko.md`:
 	jen o trochu víc zarostlou.  
 	A proto dneska jsem, kde jsem.  
 
-Now visit the website (without the base specified) and voilá...
+Now visit http://username.github.io/sbs — you should see the site with a basic
+comparison of these three versions of the poem.
 
-## Options
+> Note: You can pick a project name and [rename your repository]. After that,
+> edit the `index.html` file and change the html base:
+> `<base href="/your-project-name/">`.
 
-*TODO*
+[rename your repository]: https://help.github.com/articles/renaming-a-repository/
+
+## Self hosting; advanced options
+
+You can [download the build] and set it up on your own web server. There are no
+dynamic parts, a static server is enough. Don't forget to set the appropriate
+`base` in `index.html`.
+
+[download the build]: https://github.com/tasuk/sbs/archive/gh-pages.zip
+
+### Pretty urls — HTML5 mode
+
+To get rid of the hash in the url:
+
+1. Edit `index.html` and change `<script>html5Mode=false;</script>` to
+   `<script>html5Mode=true;</script>`.
+2. Make the web server redirect any requests for which the file doesn't exist
+   to `index.html`. For apache, there's a `.htaccess` file included. Please
+   note you need to change its `RewriteBase`.
 
 ## Source & License
 
