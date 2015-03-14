@@ -33,6 +33,8 @@ add = (subtasks, defaults = {}) ->
 	, {})
 
 get_base = (vars, min = false) ->
+	if typeof(vars.base) == 'string'
+		return vars.base
 	return if min then '/sbs/' else '/'
 
 module.exports = (grunt) ->
