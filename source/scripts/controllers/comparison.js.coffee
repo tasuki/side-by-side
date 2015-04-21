@@ -30,7 +30,7 @@ angular.module("sideBySide").controller "ComparisonController",
 		headingKey = poems.config.heading or "Author"
 		$scope.headings = (version[headingKey] for version in transformed.meta)
 
-		$scope.metaKeys = poems.getMetaKeys()
+		$scope.metaKeys = poems.config.metaKeys or poems.getMetaKeys()
 		$scope.all = poems.all
 		scroll()
 

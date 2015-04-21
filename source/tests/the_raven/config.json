@@ -19,5 +19,6 @@
 		"1910-barbara-beaupre.md",
 		"1970-baranczak.md"
 	],
-	"display": { "Language": [ "cs" ] }
+	"display": { "Language": [ "cs" ] },
+	"metaKeys": [ "Author", "Title", "Year", "Language" ]
 }
