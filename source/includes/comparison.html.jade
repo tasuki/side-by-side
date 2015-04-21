@@ -22,7 +22,9 @@
 			.version-padded
 				.version-container.version-container-top
 					p
-						.text(ng-repeat="key in metaKeys") #[em {{key}}:] {{poemmeta[key]}}
+						.text(ng-repeat="key in metaKeys")
+							em(ng-bind-html="key")
+							span(ng-bind-html="poemmeta[key]")
 
 	.pure-g-r(du-scrollspy ng-href="#section-{{$index + 1}}" offset="100px" ng-repeat="verse in verses" id="section-{{$index + 1}}")
 		.version(ng-repeat="version in verse")
