@@ -25,7 +25,7 @@ angular.module("sideBySide").service "poems", ->
 
 	@getMetaKeys = ->
 		@all.reduce (all, one) ->
-			_.uniq all.concat (key for key of one.meta)
+			_.uniq all.concat (key for key of one.meta when key not in ['$$hashKey', 'Active'])
 		, []
 
 	@
