@@ -15,7 +15,7 @@ angular.module("sideBySide").factory "fetch",
 				throw "Config doesn't contain a list of files."
 
 			promises = config.data.files.map (poem) ->
-				$http.get(base + '/' + poem).then (response) ->
+				$http.get(base + poem).then (response) ->
 					readerFactory(poem) response.data
 
 			{
