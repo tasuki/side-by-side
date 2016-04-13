@@ -2,11 +2,7 @@ angular.module("sideBySide").controller "AppController",
 ['$scope', 'ngDialog', 'filter', 'poems'
 ($scope, ngDialog, filter, poems) ->
 	$scope.title = =>
-		sbs = 'Side By Side viewer'
-		if poems.config.title
-			poems.config.title + ' – ' + sbs
-		else
-			sbs
+		poems.config.title || 'Side By Side viewer'
 
 	$scope.$watchCollection ->
 		poems.config
