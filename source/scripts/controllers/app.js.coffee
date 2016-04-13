@@ -4,6 +4,9 @@ angular.module("sideBySide").controller "AppController",
 	$scope.title = =>
 		poems.config.title || 'Side By Side viewer'
 
+	$scope.description = =>
+		poems.config.description || ''
+
 	$scope.$watchCollection ->
 		poems.config
 	, ->
