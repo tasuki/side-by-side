@@ -3,8 +3,8 @@
 Easy visual comparison of different translations or versions of itemized texts;
 e.g. poems, bibles, etc.
 
-This repository is the build artifact of https://github.com/tasuk/side-by-side  
-See sample application at http://tasuk.github.io/sbs/#/base:tests.the_raven
+This repository is the build artifact of https://github.com/tasuki/side-by-side  
+See sample application at http://tasuki.github.io/sbs/#/base:tests.the_raven
 
 ## Quick start — Set up
 
@@ -13,7 +13,7 @@ appear at http://username.github.io/sbs/, where _username_ is your github
 username.
 
 [fork]: https://help.github.com/articles/fork-a-repo/
-[repository]: https://github.com/tasuk/sbs
+[repository]: https://github.com/tasuki/sbs
 
 ### Basic usage
 
@@ -149,7 +149,7 @@ You can [download the build] and set it up on your own web server. There are no
 dynamic parts, a static server is enough. Don't forget to set the appropriate
 `base` in `index.html`.
 
-[download the build]: https://github.com/tasuk/sbs/archive/gh-pages.zip
+[download the build]: https://github.com/tasuki/sbs/archive/gh-pages.zip
 
 ### Pretty urls — HTML5 mode
 
@@ -163,7 +163,7 @@ To get rid of the hash in the url:
 
 ## Source & License
 
-https://github.com/tasuk/side-by-side
+https://github.com/tasuki/side-by-side
 
 Copyright (c) 2015 Vít Brunner
 

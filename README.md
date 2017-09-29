@@ -1,6 +1,6 @@
 # Side By Side
 
-[![Build Status](https://travis-ci.org/tasuk/side-by-side.png?branch=master)](https://travis-ci.org/tasuk/side-by-side)
+[![Build Status](https://travis-ci.org/tasuki/side-by-side.png?branch=master)](https://travis-ci.org/tasuki/side-by-side)
 
 Easy visual comparison of different translations or versions of itemized texts;
 e.g. poems, bibles, etc.
@@ -9,7 +9,7 @@ e.g. poems, bibles, etc.
 
 Want to set up your own side by side comparison with minimal hassle?
 
-See [the sample app](https://github.com/tasuk/sbs) with the instructions!
+See [the sample app](https://github.com/tasuki/sbs) with the instructions!
 
 ## Development
 
@@ -21,7 +21,7 @@ Install nodejs, eg. on Debian/Ubuntu:
 
 Clone the project, go to project folder, and install dependencies:
 
-	git clone git@github.com:tasuk/side-by-side.git
+	git clone git@github.com:tasuki/side-by-side.git
 	cd side-by-side
 	npm install
 
@@ -38,7 +38,7 @@ http://0.0.0.0:8000/tests.html. Otherwise, run tests with `npm test`.
 
 ## Source & License
 
-https://github.com/tasuk/side-by-side
+https://github.com/tasuki/side-by-side
 
 Copyright (c) 2015 Vít Brunner
 
