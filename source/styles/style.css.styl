@@ -3,6 +3,7 @@ $light = #CCC
 $neutral = #888
 $dark = #333
 $darker = #222
+$bottom_bar_height = 32
 
 body
 	color: $darker
@@ -11,16 +12,16 @@ body
 	font-size: 18px
 	line-height: 22px
 	text-rendering: optimizeLegibility
-	padding-bottom: 36px
+	padding-bottom: $bottom_bar_height px
 
 .pure-menu.pure-menu-open
-	height: 36px
 	color: $lighter
 	background: $darker
 	li
 		a
 			color: $light
 			background: $darker
+			line-height: 22px
 			&:hover
 				background: $dark
 				color: $lighter
@@ -31,18 +32,22 @@ body
 			vertical-align: middle
 
 .pure-menu.menu-main
+	height: 34px
 	.fa
+		font-size: 16px
 		margin-right: 7px
 
 .pure-menu.menu-verses
+	height: $bottom_bar_height px
 	position: fixed
 	left: 0
 	bottom: 0
 	:hover
 		cursor: pointer
 	.arrow
+		font-size: 16px
+		top: 2px
 		left: -15px
-		line-height: 22px
 		position: absolute
 
 a
@@ -79,7 +84,6 @@ a
 		padding: 1px 5px
 		border-radius: 5px
 		position: absolute
-		line-height: 22px
 		left: 0px
 		top: -6px
 
@@ -88,7 +92,7 @@ a
 	color: $light
 	position: fixed
 	left: 0
-	bottom: 36px
+	bottom: $bottom_bar_height px
 	transition: .3s linear all
 
 	width: 100%
