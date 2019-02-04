@@ -3,8 +3,8 @@
 		.version(ng-repeat="heading in headings")
 			.version-padded
 				.version-menu
-					.arrow.fa.fa-chevron-up(ng-show="!pick")
-					.arrow.fa.fa-chevron-down(ng-show="pick")
+					.arrow.material-icons(ng-show="!pick") keyboard_arrow_up
+					.arrow.material-icons(ng-show="pick") keyboard_arrow_down
 					.text(ng-bind-html="heading")
 
 .pick(ng-show="pick")

@@ -6,6 +6,7 @@ html(ng-app="sideBySide" ng-controller="AppController")
 		meta(charset="utf-8")
 		meta(name="description", content="{{ description() }}")
 		link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/css?family=Alegreya:400,400italic,700&subset=latin,latin-ext,greek,greek-ext,cyrillic,cyrillic-ext,vietnamese")
+		link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/icon?family=Material+Icons")
 		if html5Mode == true
 			script.
 				html5Mode=true;
@@ -31,11 +32,11 @@ html(ng-app="sideBySide" ng-controller="AppController")
 					a(href="" ng-click="display(link.display)" ng-bind-html="link.text")
 				li
 					a(href="" ng-click="flipPick()")
-						i.fa.fa-bars
+						i.material-icons menu
 						span Compare translations
 				li
 					a(href="" ng-click="showPage('about')")
-						i.fa.fa-info-circle
+						i.material-icons star
 						span About
 
 		div(ng-controller="ComparisonController" class="cols-{{columns}}")

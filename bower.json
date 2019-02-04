@@ -6,7 +6,6 @@
 		"angular-animate": "1.2.20",
 		"angular-sanitize": "1.2.20",
 		"angular-scroll": "0.6.2",
-		"fontawesome": "4.2.0",
 		"lodash": "2.4.1",
 		"marked": "0.3.2",
 		"ngDialog": "0.3.8",

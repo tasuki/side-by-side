@@ -61,7 +61,6 @@ module.exports = (grunt) ->
 			'scripts/services/reader/markdown.js'
 		]
 		styles: [
-			'bower_components/fontawesome/css/font-awesome.min.css'
 			'bower_components/ngDialog/css/ngDialog.css'
 			'bower_components/ngDialog/css/ngDialog-theme-default.css'
 			'bower_components/pure/pure-min.css'
@@ -191,12 +190,6 @@ module.exports = (grunt) ->
 					}}
 			}
 		}]
-		[ 'min_fonts', {
-			cwd: 'build/bower_components/fontawesome/fonts'
-			src: '*'
-			dest: 'build-min/fonts/'
-			options: {}
-		}]
 		[ 'min_readme', {
 			cwd: ''
 			src: 'README-USAGE.md'
@@ -251,7 +244,7 @@ module.exports = (grunt) ->
 
 	# Register tasks
 	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_fonts', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'connect:main', 'qunit' ]
 
 	grunt.registerTask 'serve', () ->
