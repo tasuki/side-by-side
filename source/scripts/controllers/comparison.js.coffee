@@ -1,6 +1,6 @@
 angular.module("sideBySide").controller "ComparisonController",
-['$document', '$rootScope', '$scope', 'filter', 'load', 'poems', 'route', 'transformer'
-($document, $rootScope, $scope, filter, load, poems, route, transformer) ->
+['$document', '$rootScope', '$scope', '$timeout', 'filter', 'load', 'poems', 'route', 'transformer'
+($document, $rootScope, $scope, $timeout, filter, load, poems, route, transformer) ->
 	min = 1
 	max = 5
 
@@ -40,9 +40,18 @@ angular.module("sideBySide").controller "ComparisonController",
 	$scope.switchActive = (poem) ->
 		length = poems.getActive().length
 		active = poem.meta.Active
-		if (length > min or not active) and (length < max or active)
+
+		if (length <= min and active)
+			$scope.tooFew = true
+			$timeout((-> $scope.tooFew = false), 1000)
+		else if (length >= max and not active)
+			$scope.tooMany = true
+			$timeout((-> $scope.tooMany = false), 2500)
+		else
 			poem.meta.Active = ! active
-			# TODO else notification
+
+	$scope.tooFew = false
+	$scope.tooMany = false
 
 	load(
 		route.getBaseDir()

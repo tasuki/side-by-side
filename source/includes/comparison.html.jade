@@ -9,6 +9,8 @@
 
 .pick(ng-show="pick")
 	.pick-in
+		div#too-few(ng-hide="! tooFew") There is no escape.
+		div#too-many(ng-hide="! tooMany") You can only compare five translations at the moment. Choose wisely.
 		table
 			tr
 				th(ng-repeat="attribute in metaKeys" ng-bind-html="attribute")

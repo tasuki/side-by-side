@@ -106,6 +106,14 @@ a
 	a
 		color: $neutral
 
+	#too-few, #too-many
+		color: #F66
+		text-align: center
+		transition: .3s linear all
+		height: 36px
+	#too-few.ng-hide, #too-many.ng-hide
+		height: 0px
+
 	table
 		margin: auto
 		min-width: 50%
