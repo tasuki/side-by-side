@@ -52,15 +52,12 @@ angular.module("sideBySide").factory("transformer", ->
 
 		checkLengths translations
 
-		data = {
+		verses = _.map(_.range(translations[0].content.length), (i) -> (
+			_.map(translations, (t) -> t.content[i])
+		))
+
+		{
 			meta: (translation.meta for translation in translations)
-			verses: []
+			verses: verses
 		}
-
-		# columns into rows and rows into columns
-		for i in _.range(translations[0].content.length)
-			data.verses.push(translation.content[i] \
-				for translation in translations)
-
-		data
 )
