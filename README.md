@@ -36,6 +36,11 @@ Point your browser at http://0.0.0.0:8000/base:tests.the_raven/
 If you have the grunt dev server running, point your browser at
 http://0.0.0.0:8000/tests.html. Otherwise, run tests with `npm test`.
 
+### Package/release
+
+To package, run `node_moduler/.bin/grunt min`, the result will be in the
+`build-min` directory. Copy that to https://github.com/tasuki/sbs
+
 ## Source & License
 
 https://github.com/tasuki/side-by-side
