@@ -38,7 +38,7 @@ http://0.0.0.0:8000/tests.html. Otherwise, run tests with `npm test`.
 
 ### Package/release
 
-To package, run `node_moduler/.bin/grunt min`, the result will be in the
+To package, run `node_modules/.bin/grunt min`, the result will be in the
 `build-min` directory. Copy that to https://github.com/tasuki/sbs
 
 ## Source & License
