@@ -4,12 +4,12 @@ Easy visual comparison of different translations or versions of itemized texts;
 e.g. poems, bibles, etc.
 
 This repository is the build artifact of https://github.com/tasuki/side-by-side  
-See sample application at http://tasuki.github.io/sbs/#/base:tests.the_raven
+See sample application at https://tasuki.github.io/sbs/#/base:tests.the_raven
 
 ## Quick start — Set up
 
 [Fork] this very [repository]. When you push to the repository, a site should
-appear at http://username.github.io/sbs/, where _username_ is your github
+appear at https://username.github.io/sbs/, where _username_ is your github
 username.
 
 [fork]: https://help.github.com/articles/fork-a-repo/
@@ -134,7 +134,7 @@ And one more, called `tomas-jacko.md`:
 	jen o trochu víc zarostlou.  
 	A proto dneska jsem, kde jsem.  
 
-Now visit http://username.github.io/sbs — you should see the site with a basic
+Now visit https://username.github.io/sbs — you should see the site with a basic
 comparison of these three versions of the poem.
 
 > Note: You can pick a project name and [rename your repository]. After that,
