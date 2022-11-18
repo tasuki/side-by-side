@@ -20,6 +20,9 @@
 		"lodash": "2.4.x",
 		"marked": "0.3.2"
 	},
+	"overrides": {
+		"graceful-fs": "^4.2.10"
+	},
 	"scripts": {
 		"test": "node_modules/.bin/grunt test",
 		"postinstall": "node_modules/.bin/bower install"

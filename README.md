@@ -15,9 +15,9 @@ See [the sample app](https://github.com/tasuki/sbs) with the instructions!
 
 ### Installation
 
-Install nodejs, eg. on Debian/Ubuntu:
+Install nodejs, [probably 16+][bug] (worked with nodejs 18 from Ubuntu snaps in 2022).
 
-	sudo apt-get install nodejs
+[bug]: https://stackoverflow.com/questions/55921442/how-to-fix-referenceerror-primordials-is-not-defined-in-node-js
 
 Clone the project, go to project folder, and install dependencies:
 
