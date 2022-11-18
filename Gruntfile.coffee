@@ -11,6 +11,7 @@ middleware = (connect, options) ->
 		'svg'
 		'ttf'
 		'woff'
+		'woff2'
 		'otf'
 	]).join('|')
 
@@ -64,6 +65,7 @@ module.exports = (grunt) ->
 			'bower_components/ngDialog/css/ngDialog.css'
 			'bower_components/ngDialog/css/ngDialog-theme-default.css'
 			'bower_components/pure/pure-min.css'
+			'styles/fonts.css'
 			'styles/style.css'
 		]
 		test_scripts: [
@@ -181,6 +183,9 @@ module.exports = (grunt) ->
 					}}
 			}
 		}]
+		[ 'fonts', {
+			src: ['fonts/*']
+		}]
 		[ 'min', {
 			src: [ '.htaccess', 'tests/the_raven/*' ]
 			options: {
@@ -189,6 +194,10 @@ module.exports = (grunt) ->
 						base: get_base(vars, true)
 					}}
 			}
+		}]
+		[ 'min_fonts', {
+			src: ['fonts/*']
+			dest: 'build-min/'
 		}]
 		[ 'min_readme', {
 			cwd: ''
@@ -243,8 +252,8 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	# Register tasks
-	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'jade:main', 'stylus:main' ]
-	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_readme', 'uglify:min', 'cssmin:min' ]
+	grunt.registerTask 'default', [ 'coffee:main', 'copy:main', 'copy:fonts', 'jade:main', 'stylus:main' ]
+	grunt.registerTask 'min', [ 'jade:min', 'copy:min', 'copy:min_readme', 'copy:min_fonts', 'uglify:min', 'cssmin:min' ]
 	grunt.registerTask 'test', [ 'default', 'connect:main', 'qunit' ]
 
 	grunt.registerTask 'serve', () ->

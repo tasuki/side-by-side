@@ -5,8 +5,6 @@ html(ng-app="sideBySide" ng-controller="AppController")
 		title(ng-bind="title()") Side By Side viewer
 		meta(charset="utf-8")
 		meta(name="description", content="{{ description() }}")
-		link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/css?family=Alegreya:400,400italic,700&subset=latin,latin-ext,greek,greek-ext,cyrillic,cyrillic-ext,vietnamese")
-		link(rel="stylesheet", type="text/css", href="//fonts.googleapis.com/icon?family=Material+Icons")
 		if html5Mode == true
 			script.
 				html5Mode=true;
