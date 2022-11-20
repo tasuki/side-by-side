@@ -33,11 +33,6 @@ body
 
 .pure-menu.menu-main
 	height: 34px
-	.material-icons
-		font-size: 18px
-		margin-right: 7px
-		padding-bottom: 2px
-		vertical-align: middle
 
 .pure-menu.menu-verses
 	height: $bottom_bar_height px
@@ -47,10 +42,11 @@ body
 	:hover
 		cursor: pointer
 	.arrow
+		width: 24px
+		height: 24px
 		left: -15px
+		top: 2px
 		position: absolute
-		vertical-align: middle
-		display: inline-block
 		transition: .3s linear all
 	.arrow.ng-hide
 		transform: scale(.1)
@@ -60,6 +56,15 @@ a
 
 p
 	margin: 24px 0px
+
+.icon
+	height: 18px
+	width: 18px
+	line-height: 18px
+	margin-right: 7px
+	margin-top: -2px
+	vertical-align: middle
+	display: inline-block
 
 #section-meta .key
 	padding-right: 10px

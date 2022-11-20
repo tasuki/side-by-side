@@ -30,11 +30,13 @@ html(ng-app="sideBySide" ng-controller="AppController")
 					a(href="" ng-click="display(link.display)" ng-bind-html="link.text")
 				li
 					a(href="" ng-click="flipPick()")
-						i.material-icons menu
+						svg.icon
+							use(xlink:href="/fonts/icons.svg#icon-menu")
 						span Compare translations
 				li
 					a(href="" ng-click="showPage('about')")
-						i.material-icons star
+						svg.icon
+							use(xlink:href="/fonts/icons.svg#icon-star")
 						span About
 
 		div(ng-controller="ComparisonController" class="cols-{{columns}}")

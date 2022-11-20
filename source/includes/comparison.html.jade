@@ -3,8 +3,10 @@
 		.version(ng-repeat="heading in headings")
 			.version-padded
 				.version-menu
-					.arrow.material-icons(ng-show="!pick") keyboard_arrow_up
-					.arrow.material-icons(ng-show="pick") keyboard_arrow_down
+					svg.icon.arrow(ng-show="!pick")
+						use(xlink:href="/fonts/icons.svg#icon-expand-less")
+					svg.icon.arrow(ng-show="pick")
+						use(xlink:href="/fonts/icons.svg#icon-expand-more")
 					.text(ng-bind-html="heading")
 
 .pick(ng-show="pick")
